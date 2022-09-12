@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace caca
 {
@@ -7,20 +8,26 @@ namespace caca
         #region Inspector
 
         [Header("Others")]
-        public Transform _timerLeft;
-        public Transform _timerRight;
+        public Slider _timerLeft;
+        public Slider _timerRight;
+        public Image _timer;
+        public Image _eye;
+        public Gradient _gradientTimer;
+        public Gradient _gradientEye;
+        public CanvasGroup _canvasGroup;
 
         [Header("Game Manager")]
         public int _limitTime;
+        public int _disappearingTime;
 
         #endregion
 
 
         #region Hidden
 
-        private int _timeTemp = 9999;
-
         private float _startTime;
+        private float _tempLimitTime;
+        private float _tempDisappearingTime;
 
         #endregion
 
@@ -30,6 +37,8 @@ namespace caca
         private void Start()
         {
             _startTime = Time.realtimeSinceStartup;
+            _tempLimitTime = (float)_limitTime;
+            _tempDisappearingTime = (float)_disappearingTime;
         }
 
         private void Update()
@@ -44,16 +53,25 @@ namespace caca
 
         public void TimeManagement()
         {
-            int seconds = Mathf.RoundToInt(Time.realtimeSinceStartup) - Mathf.RoundToInt(_startTime);
-            int timeLeft = _limitTime - seconds;
+            float seconds = Time.realtimeSinceStartup - _startTime;
+            float timeLeft = _tempLimitTime - seconds;
 
-            if (timeLeft > -1 && timeLeft < _timeTemp)
+            if (timeLeft > 0)
             {
-                //_timerLeft.position = new Vector3((_timerLeft.position.x + ((1 / _factor) * 0.5f)), _timerLeft.position.y, _timerLeft.position.z);
-                //_timerLeft.localPosition = new Vector3((_timerLeft.position.x + (1 / _factor)), _timerLeft.position.y, _timerLeft.position.z);
-                //_timerRight.position = new Vector3((_timerLeft.position.x - (1 / _factor)), _timerLeft.position.y, _timerLeft.position.z);
+                _timerLeft.value = 1 - (timeLeft / _tempLimitTime);
+                _timerRight.value = 1 - (timeLeft / _tempLimitTime);
 
-                _timeTemp = timeLeft;
+                _timer.color = _gradientTimer.Evaluate(1 - (timeLeft / _tempLimitTime));
+                _eye.color = _gradientEye.Evaluate(1 - (timeLeft / _tempLimitTime));
+            }
+            else
+            {
+                float _alpha = _tempDisappearingTime + _tempLimitTime - seconds;
+
+                if (_alpha > 0)
+                {
+                    _canvasGroup.alpha = (_alpha / _tempDisappearingTime);
+                }
             }
         }
 
