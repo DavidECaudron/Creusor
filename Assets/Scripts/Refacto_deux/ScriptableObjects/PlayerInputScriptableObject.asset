@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eaaefff1fea68740ab71a8d8d477b3e, type: 3}
+  m_Name: PlayerInputScriptableObject
+  m_EditorClassIdentifier: 
+  _playerScriptableObject: {fileID: 11400000, guid: 8dc78967be60d5b418cab6904f47c139,
+    type: 2}
+  _playerMovementScriptableObject: {fileID: 11400000, guid: 372a956cf5bd53d41a8921c294657e9c,
+    type: 2}
+  _playerAbilitiesScriptableObject: {fileID: 11400000, guid: 866427362204e774bae562152a966570,
+    type: 2}
+  _digThrowDirtScriptableObject: {fileID: 11400000, guid: 693761f5f3bafe24cb77c796424998db,
+    type: 2}
+  _digShockwaveScriptableObject: {fileID: 11400000, guid: 3082fafe3fc2f6b4c9fcf85baf03793f,
+    type: 2}
