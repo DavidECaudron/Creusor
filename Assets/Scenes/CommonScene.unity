@@ -1124,6 +1124,8 @@ Transform:
   - {fileID: 1099916428}
   - {fileID: 1548163455}
   - {fileID: 1480814037}
+  - {fileID: 1897732084}
+  - {fileID: 1986648543}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8156,14 +8158,14 @@ MonoBehaviour:
   _rightButtonPivot: {fileID: 1923795446}
   _rightButtonSpawn: {fileID: 3576221172183876836}
   _rightButtonCooldownImage: {fileID: 6448314404494871065}
-  _rightButtonDamage: 10
-  _rightButtonCooldown: 0.25
+  _rightButtonDamage: 20
+  _rightButtonCooldown: 0.5
   _shockwavePrefab: {fileID: 1548516181378587945, guid: 12346f219f059914ebc297c3ffe122f4,
     type: 3}
   _shockwaveSpawn: {fileID: 3191802183152756289}
   _shockwaveCooldownImage: {fileID: 6448314404368782746}
-  _shockwaveDamage: 80
-  _shockwaveCooldown: 2
+  _shockwaveDamage: 60
+  _shockwaveCooldown: 20
 --- !u!54 &649747327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13507,7 +13509,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
-  _numberOfEnemy: 5
+  _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1099916427
 SphereCollider:
@@ -17164,7 +17166,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
-  _numberOfEnemy: 5
+  _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1480814036
 SphereCollider:
@@ -18357,7 +18359,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
-  _numberOfEnemy: 5
+  _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1548163454
 SphereCollider:
@@ -19949,7 +19951,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
-  _numberOfEnemy: 5
+  _numberOfEnemy: 3
   _spawnAreaRange: 5
 --- !u!135 &1660600633
 SphereCollider:
@@ -22664,6 +22666,70 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1890070789}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1897732083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897732084}
+  - component: {fileID: 1897732086}
+  - component: {fileID: 1897732085}
+  m_Layer: 2
+  m_Name: Enemy Pack (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1897732084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897732083}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.6, y: 0, z: 20.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80058717}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1897732085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897732083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff01ec034a3b96d49a35396d6540b7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 6210558268499513863, guid: a24a2c6416199fc458103c8d17e27679,
+    type: 3}
+  _playerTransform: {fileID: 649747324}
+  _cameraTransform: {fileID: 1094488819}
+  _numberOfEnemy: 7
+  _spawnAreaRange: 5
+--- !u!135 &1897732086
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897732083}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1923795445
 GameObject:
   m_ObjectHideFlags: 0
@@ -23291,6 +23357,70 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1978773595}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986648542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986648543}
+  - component: {fileID: 1986648545}
+  - component: {fileID: 1986648544}
+  m_Layer: 2
+  m_Name: Enemy Pack (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1986648543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986648542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 75.7, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80058717}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986648544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986648542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff01ec034a3b96d49a35396d6540b7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 6210558268499513863, guid: a24a2c6416199fc458103c8d17e27679,
+    type: 3}
+  _playerTransform: {fileID: 649747324}
+  _cameraTransform: {fileID: 1094488819}
+  _numberOfEnemy: 5
+  _spawnAreaRange: 5
+--- !u!135 &1986648545
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986648542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1997157575
 PrefabInstance:
   m_ObjectHideFlags: 0
