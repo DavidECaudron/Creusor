@@ -29,10 +29,12 @@ namespace refacto_deux
         // Update is called once per frame
         void Update()
         {
-            Vector3 playerMarkerRotation = playerMarker.transform.eulerAngles;
-            playerMarkerRotation.z = player.eulerAngles.y;
-            playerMarker.transform.eulerAngles = playerMarkerRotation;
-
+            if (player != null)
+            {
+                Vector3 playerMarkerRotation = playerMarker.transform.eulerAngles;
+                playerMarkerRotation.z = player.eulerAngles.y;
+                playerMarker.transform.eulerAngles = playerMarkerRotation;
+            }
         }
 
         private void LateUpdate()
