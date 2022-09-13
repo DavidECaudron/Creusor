@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Noemie.unity
     guid: b61047dd86aef38409f8f3cbea263996
   - enabled: 1
-    path: Assets/Scenes/Ca Me Pele Les Couilles.unity
+    path: Assets/Scenes/Developpeur.unity
     guid: eb4342bb13a5e6f43938d04164f9803b
   m_configObjects: {}
