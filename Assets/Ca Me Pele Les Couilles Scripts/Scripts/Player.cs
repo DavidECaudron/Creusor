@@ -13,11 +13,15 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public Image _healthImage;
         public LayerMask _rightMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
 
         [Header("Player")]
         [Range(0.0f, 10.0f)] public int _movementSpeed;
+        public int _maxHealth;
+        public int _slowIntensity;
+        public float _slowDuration;
 
         [Header("Right Button")]
         public GameObject _rightButtonPrefab;
@@ -53,8 +57,10 @@ namespace caca
         private bool _isUsingAbility = false;
         private bool _isTargetingGround = false;
         private bool _isTargetingEnemy = false;
+        private bool _hasBeenHit = false;
         private float _timeCheckRightButton = 0.0f;
         private float _timeCheckShockwave = 0.0f;
+        private int _currentHealth;
 
         #endregion
 
@@ -71,6 +77,7 @@ namespace caca
         {
             _timeCheckRightButton = -_rightButtonCooldown;
             _timeCheckShockwave = -_shockwaveCooldown;
+            _currentHealth = _maxHealth;
         }
 
         private void Update()
@@ -145,6 +152,21 @@ namespace caca
             }
         }
 
+        public void TakeDamage(int damage)
+        {
+            if (_currentHealth - damage > 0)
+            {
+                _healthImage.fillAmount = ((float)_currentHealth / (float)_maxHealth);
+                _currentHealth -= damage;
+                StartCoroutine(SlowCoroutine());
+                _hasBeenHit = true;
+            }
+            else
+            {
+                this.enabled = false;
+            }
+        }
+
         #endregion
 
 
@@ -155,7 +177,7 @@ namespace caca
             if (context.performed)
             {
                 _isLeftClicking = true;
-                StartCoroutine(CastNextPosition());
+                StartCoroutine(CastNextPositionCoroutine());
             }
 
             if (context.canceled)
@@ -170,7 +192,7 @@ namespace caca
             {
                 _isUsingAbility = true;
 
-                StartCoroutine(CastLookPosition());
+                StartCoroutine(CastLookPositionCoroutine());
 
                 _rightButtonPivot.gameObject.SetActive(true);
             }
@@ -303,12 +325,25 @@ namespace caca
             }
         }
 
+        public void OnConsumable(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+
+            }
+
+            if (context.canceled)
+            {
+
+            }
+        }
+
         #endregion
 
 
         #region Utils
 
-        IEnumerator CastNextPosition()
+        IEnumerator CastNextPositionCoroutine()
         {
             while (_isLeftClicking == true)
             {
@@ -345,7 +380,7 @@ namespace caca
             }
         }
 
-        IEnumerator CastLookPosition()
+        IEnumerator CastLookPositionCoroutine()
         {
             while (_isUsingAbility == true)
             {
@@ -368,6 +403,20 @@ namespace caca
                 }
 
                 yield return new WaitForEndOfFrame();
+            }
+        }
+
+        IEnumerator SlowCoroutine()
+        {
+            if (_hasBeenHit == false)
+            {
+                _movementSpeed -= _slowIntensity;
+
+                yield return new WaitForSecondsRealtime(_slowDuration);
+
+                _movementSpeed += _slowIntensity;
+
+                _hasBeenHit = false;
             }
         }
 
