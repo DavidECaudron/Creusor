@@ -5,24 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5e35dc78cc19b1e4dbfbb3eb8d5245cc
   - enabled: 0
     path: Assets/Scenes/CommonScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Liam.unity
-    guid: 3569425924e259d41af9d3567bae42a0
-  - enabled: 0
-    path: Assets/Scenes/David.unity
-    guid: 8183512996e24d84489caefd560b2279
-  - enabled: 0
-    path: Assets/Scenes/Bryan.unity
-    guid: 02caaefa402e8314ebf57d494008656e
-  - enabled: 0
-    path: Assets/Scenes/Noemie.unity
-    guid: b61047dd86aef38409f8f3cbea263996
+  - enabled: 1
+    path: Assets/Scenes/LevelDesign.unity
+    guid: 01da2e82e0c1e384fa5853712f1879da
   - enabled: 1
     path: Assets/Scenes/Developpeur.unity
     guid: eb4342bb13a5e6f43938d04164f9803b

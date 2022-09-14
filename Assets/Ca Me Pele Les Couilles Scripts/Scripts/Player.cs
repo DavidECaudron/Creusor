@@ -10,6 +10,7 @@ namespace caca
         #region Inspector
 
         [Header("Others")]
+        public Game_Manager _gameManager;
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
@@ -163,7 +164,7 @@ namespace caca
             }
             else
             {
-                this.enabled = false;
+                _gameManager.LoadMainMenu();
             }
         }
 

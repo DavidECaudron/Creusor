@@ -399,8 +399,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1085272090}
-        m_TargetAssemblyTypeName: StartProto, Assembly-CSharp
-        m_MethodName: StartProtoButton
+        m_TargetAssemblyTypeName: caca.Main_Menu, Caca
+        m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085272085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca54382e5fd4dd644939d018462701c6, type: 3}
+  m_Script: {fileID: 11500000, guid: f541678ab15c0ca488a425c38584883b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1272364677

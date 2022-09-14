@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace caca
@@ -73,6 +74,16 @@ namespace caca
                     _canvasGroup.alpha = (_alpha / _tempDisappearingTime);
                 }
             }
+        }
+
+        #endregion
+
+
+        #region Utils
+
+        public void LoadMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
 
         #endregion
