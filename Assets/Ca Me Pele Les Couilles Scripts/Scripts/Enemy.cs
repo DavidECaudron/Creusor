@@ -20,7 +20,6 @@ namespace caca
         public Transform _playerTransform;
         public Transform _cameraTransform;
         public Transform _attackDetection;
-        public MeshRenderer _meshRenderer;
         public Slider _healthSlider;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
@@ -43,6 +42,7 @@ namespace caca
         private Transform _transform;
         private Transform _healthSliderTransform;
         private NavMeshAgent _navMeshAgent;
+        private MeshRenderer _meshRenderer;
 
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
@@ -72,11 +72,13 @@ namespace caca
             if (_enemyType == EnemyType.Melee)
             {
                 _meleeModel.SetActive(true);
+                _meshRenderer = _meleeModel.GetComponent<MeshRenderer>();
             }
 
             if (_enemyType == EnemyType.Ranged)
             {
                 _rangedModel.SetActive(true);
+                _meshRenderer = _rangedModel.GetComponent<MeshRenderer>();
             }
         }
 
