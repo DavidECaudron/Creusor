@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028462, g: 0.22571574, b: 0.30692294, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2907,7 +2907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241120952}
   - component: {fileID: 241120953}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider_Area01_blocking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16253,7 +16253,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2783131832183395012, guid: c7fc67c1f7d23e2459eba85a6b5d679c, type: 3}
 --- !u!1001 &815402314
