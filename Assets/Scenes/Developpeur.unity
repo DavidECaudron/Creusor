@@ -30570,6 +30570,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 1519928788}
   _cameraTransform: {fileID: 842416509}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &582211646
@@ -46528,7 +46529,7 @@ PrefabInstance:
     - target: {fileID: -4633758276524360769, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
       propertyPath: _spawnAreaRange
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7650414242335021334, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
@@ -48213,6 +48214,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 1519928788}
   _cameraTransform: {fileID: 842416509}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &883210584
@@ -55460,6 +55462,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40cf838e8a55f864c82dbc74e96828db, type: 3}
+--- !u!1 &1045883366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045883367}
+  - component: {fileID: 1045883369}
+  - component: {fileID: 1045883368}
+  m_Layer: 2
+  m_Name: Enemy Pack (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045883367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045883366}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -6.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2030216228}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045883368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045883366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff01ec034a3b96d49a35396d6540b7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 6210558268499513863, guid: a24a2c6416199fc458103c8d17e27679,
+    type: 3}
+  _playerTransform: {fileID: 1519928788}
+  _cameraTransform: {fileID: 842416509}
+  _enemyType: 1
+  _numberOfEnemy: 2
+  _spawnAreaRange: 5
+--- !u!135 &1045883369
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045883366}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1046017301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56520,6 +56587,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 1519928788}
   _cameraTransform: {fileID: 842416509}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &1060411482
@@ -58193,7 +58261,8 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 1519928788}
   _cameraTransform: {fileID: 842416509}
-  _numberOfEnemy: 5
+  _enemyType: 0
+  _numberOfEnemy: 3
   _spawnAreaRange: 5
 --- !u!135 &1098226573
 SphereCollider:
@@ -82053,8 +82122,8 @@ MonoBehaviour:
     m_Bits: 2049
   _movementSpeed: 5
   _maxHealth: 1000
-  _slowIntensity: 2
-  _slowDuration: 1
+  _slowIntensity: 1
+  _slowDuration: 2
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 2093741577}
@@ -83317,6 +83386,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 1519928788}
   _cameraTransform: {fileID: 842416509}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &1536588899
@@ -109774,6 +109844,7 @@ Transform:
   - {fileID: 1536588897}
   - {fileID: 1060411480}
   - {fileID: 883210582}
+  - {fileID: 1045883367}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

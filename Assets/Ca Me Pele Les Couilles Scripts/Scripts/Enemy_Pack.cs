@@ -12,6 +12,7 @@ namespace caca
         public Transform _cameraTransform;
 
         [Header("Enemy Pack")]
+        public EnemyType _enemyType;
         [Range(0, 10)] public int _numberOfEnemy;
         [Range(0, 5)] public int _spawnAreaRange;
 
@@ -63,6 +64,7 @@ namespace caca
 
                 enemyClone._playerTransform = _playerTransform;
                 enemyClone._cameraTransform = _cameraTransform;
+                enemyClone._enemyType = _enemyType;
 
                 _enemyTable[i] = enemyClone;
             }

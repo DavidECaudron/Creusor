@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 namespace caca
 {
+    public enum EnemyType
+    {
+        Melee,
+        Ranged,
+        Dasher
+    }
+
     public class Enemy : MonoBehaviour
     {
         #region Inspector
@@ -15,11 +22,14 @@ namespace caca
         public Transform _attackDetection;
         public MeshRenderer _meshRenderer;
         public Slider _healthSlider;
+        public GameObject _meleeModel;
+        public GameObject _rangedModel;
         public Vector3 _initialPosition;
         public bool _isPlayerInDetectionRange = false;
 
         [Header("Enemy")]
-        [Range(0, 10)] public int _movementSpeed;
+        public EnemyType _enemyType;
+        public int _movementSpeed;
         public int _maxHealth;
         public float _attackPerSecond;
         public int _damage;
@@ -58,6 +68,16 @@ namespace caca
             _navMeshAgent.acceleration = _movementSpeed;
             _currentHealth = _maxHealth;
             _initialPosition = _transform.position;
+
+            if (_enemyType == EnemyType.Melee)
+            {
+                _meleeModel.SetActive(true);
+            }
+
+            if (_enemyType == EnemyType.Ranged)
+            {
+                _rangedModel.SetActive(true);
+            }
         }
 
         private void LateUpdate()
@@ -76,30 +96,67 @@ namespace caca
         {
             if (_isPlayerInDetectionRange == true)
             {
-                if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
+                if (_enemyType == EnemyType.Melee)
                 {
-                    _isPlayerInAttackRange = false;
-                    _isAttacking = false;
-                    _navMeshAgent.SetDestination(_playerTransform.position);
-                }
-                else
-                {
-                    _navMeshAgent.SetDestination(_transform.position);
-                    _isPlayerInAttackRange = true;
-
-                    if (_isAttacking == false)
+                    if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
                     {
-                        Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+                        _isPlayerInAttackRange = false;
+                        _isAttacking = false;
+                        _navMeshAgent.SetDestination(_playerTransform.position);
+                    }
+                    else
+                    {
+                        _transform.LookAt(_playerTransform);
 
-                        foreach (var hitCollider in hitColliders)
+                        _navMeshAgent.SetDestination(_transform.position);
+                        _isPlayerInAttackRange = true;
+
+                        if (_isAttacking == false)
                         {
-                            if (hitCollider.transform.CompareTag("player"))
-                            {
-                                StartCoroutine(AttackCoroutine());
-                            }
-                        }
+                            Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
 
-                        _isAttacking = true;
+                            foreach (var hitCollider in hitColliders)
+                            {
+                                if (hitCollider.transform.CompareTag("player"))
+                                {
+                                    StartCoroutine(AttackCoroutine());
+                                }
+                            }
+
+                            _isAttacking = true;
+                        }
+                    }
+                }
+
+                if (_enemyType == EnemyType.Ranged)
+                {
+                    if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                    {
+                        _isPlayerInAttackRange = false;
+                        _isAttacking = false;
+                        _navMeshAgent.SetDestination(_playerTransform.position);
+                    }
+                    else
+                    {
+                        _transform.LookAt(_playerTransform);
+
+                        _navMeshAgent.SetDestination(_transform.position);
+                        _isPlayerInAttackRange = true;
+
+                        //if (_isAttacking == false)
+                        //{
+                        //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+
+                        //    foreach (var hitCollider in hitColliders)
+                        //    {
+                        //        if (hitCollider.transform.CompareTag("player"))
+                        //        {
+                        //            StartCoroutine(AttackCoroutine());
+                        //        }
+                        //    }
+
+                        //    _isAttacking = true;
+                        //}
                     }
                 }
             }

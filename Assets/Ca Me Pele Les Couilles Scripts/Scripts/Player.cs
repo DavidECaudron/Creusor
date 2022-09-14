@@ -19,7 +19,7 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
 
         [Header("Player")]
-        [Range(0.0f, 10.0f)] public int _movementSpeed;
+        public int _movementSpeed;
         public int _maxHealth;
         public int _slowIntensity;
         public float _slowDuration;

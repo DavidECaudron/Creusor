@@ -420,6 +420,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 347b13e0-7da0-4cc8-a413-183fc77f351c
     m_ActionName: Player/MouseRightButton[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20a45d1b-3b96-4dd2-af04-c6f9b704dfee
+    m_ActionName: Player/Consumable[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -437,22 +441,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cb86d35f9ac9449ba66894a10b05d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _camera: {fileID: 4356826741336656752}
   _abilitiesClone: {fileID: 0}
   _graphics: {fileID: 4356826740002907905}
-  _layerMask:
+  _healthImage: {fileID: 0}
+  _rightMouseButtonLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
+  _abilitiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   _movementSpeed: 5
+  _maxHealth: 1000
+  _slowIntensity: 1
+  _slowDuration: 2
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 4356826740557680756}
   _rightButtonSpawn: {fileID: 997482323437395302}
+  _rightButtonCooldownImage: {fileID: 0}
   _rightButtonDamage: 10
   _rightButtonCooldown: 0.25
   _shockwavePrefab: {fileID: 1548516181378587945, guid: 12346f219f059914ebc297c3ffe122f4,
     type: 3}
   _shockwaveSpawn: {fileID: 1170093653592719299}
+  _shockwaveCooldownImage: {fileID: 0}
   _shockwaveDamage: 80
   _shockwaveCooldown: 2
 --- !u!1 &4356826740002907904
