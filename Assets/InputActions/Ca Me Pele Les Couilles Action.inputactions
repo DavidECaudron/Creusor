@@ -1,5 +1,5 @@
 {
-    "name": "InputActions_Player3",
+    "name": "Ca Me Pele Les Couilles Action",
     "maps": [
         {
             "name": "Player",
@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Consumable",
+                    "type": "Button",
+                    "id": "20a45d1b-3b96-4dd2-af04-c6f9b704dfee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -86,7 +95,7 @@
                 {
                     "name": "",
                     "id": "ab6828df-dddb-472b-8f83-181db34ac629",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -97,7 +106,7 @@
                 {
                     "name": "",
                     "id": "f57cd692-805b-4df3-9b71-95a43d7acdea",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -108,7 +117,7 @@
                 {
                     "name": "",
                     "id": "8ca93db3-f897-40ef-8569-bb1b6fc72dc1",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -124,6 +133,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseRightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2756ff92-7cad-4a73-83df-ef636a099265",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Consumable",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

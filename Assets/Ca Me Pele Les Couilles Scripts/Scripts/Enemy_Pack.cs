@@ -79,7 +79,7 @@ namespace caca
             {
                 for (int i = 0; i < _enemyTable.Length; i++)
                 {
-                    _enemyTable[i]._isPlayerInRange = true;
+                    _enemyTable[i]._isPlayerInDetectionRange = true;
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace caca
             {
                 for (int i = 0; i < _enemyTable.Length; i++)
                 {
-                    _enemyTable[i]._isPlayerInRange = false;
+                    _enemyTable[i]._isPlayerInDetectionRange = false;
                 }
             }
         }

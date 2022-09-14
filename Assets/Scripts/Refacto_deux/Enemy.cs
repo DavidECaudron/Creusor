@@ -118,6 +118,7 @@ namespace refacto_deux
                 yield return new WaitForSeconds(1.0f / _attackPerSecond);
 
                 Collider[] hitColliders = Physics.OverlapSphere(_position.position, 0.5f);
+
                 foreach (var hitCollider in hitColliders)
                 {
                     if (hitCollider.transform.CompareTag("player"))
