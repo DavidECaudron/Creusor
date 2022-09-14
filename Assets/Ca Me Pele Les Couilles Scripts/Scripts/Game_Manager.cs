@@ -8,10 +8,10 @@ namespace caca
         #region Inspector
 
         [Header("Others")]
-        public Slider _timerLeft;
-        public Slider _timerRight;
-        public Image _timer;
-        public Image _eye;
+        public Slider _sliderLeft;
+        public Slider _sliderRight;
+        public Image _timerImage;
+        public Image _eyeImage;
         public Gradient _gradientTimer;
         public Gradient _gradientEye;
         public CanvasGroup _canvasGroup;
@@ -58,11 +58,11 @@ namespace caca
 
             if (timeLeft > 0)
             {
-                _timerLeft.value = 1 - (timeLeft / _tempLimitTime);
-                _timerRight.value = 1 - (timeLeft / _tempLimitTime);
+                _sliderLeft.value = 1 - (timeLeft / _tempLimitTime);
+                _sliderRight.value = 1 - (timeLeft / _tempLimitTime);
 
-                _timer.color = _gradientTimer.Evaluate(1 - (timeLeft / _tempLimitTime));
-                _eye.color = _gradientEye.Evaluate(1 - (timeLeft / _tempLimitTime));
+                _timerImage.color = _gradientTimer.Evaluate(1 - (timeLeft / _tempLimitTime));
+                _eyeImage.color = _gradientEye.Evaluate(1 - (timeLeft / _tempLimitTime));
             }
             else
             {
