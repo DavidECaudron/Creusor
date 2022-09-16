@@ -7,6 +7,7 @@ namespace caca
         #region Inspector
 
         [Header("Other")]
+        public Game_Manager _gameManager;
         public GameObject _enemyPrefab;
         public Transform _playerTransform;
         public Transform _cameraTransform;
@@ -65,6 +66,8 @@ namespace caca
                 enemyClone._playerTransform = _playerTransform;
                 enemyClone._cameraTransform = _cameraTransform;
                 enemyClone._enemyType = _enemyType;
+
+                _gameManager.AddEnemyInTable(enemyClone);
 
                 _enemyTable[i] = enemyClone;
             }

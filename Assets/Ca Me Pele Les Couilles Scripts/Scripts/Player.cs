@@ -19,9 +19,9 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
 
         [Header("Player")]
-        public int _movementSpeed;
-        public int _maxHealth;
-        public int _slowIntensity;
+        public float _movementSpeed;
+        public float _maxHealth;
+        public float _slowIntensity;
         public float _slowDuration;
 
         [Header("Right Button")]
@@ -61,7 +61,7 @@ namespace caca
         private bool _hasBeenHit = false;
         private float _timeCheckRightButton = 0.0f;
         private float _timeCheckShockwave = 0.0f;
-        private int _currentHealth;
+        private float _currentHealth;
 
         #endregion
 
@@ -153,13 +153,15 @@ namespace caca
             }
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             if (_currentHealth - damage > 0)
             {
-                _healthImage.fillAmount = ((float)_currentHealth / (float)_maxHealth);
+                _healthImage.fillAmount = (_currentHealth / _maxHealth);
                 _currentHealth -= damage;
+
                 StartCoroutine(SlowCoroutine());
+
                 _hasBeenHit = true;
             }
             else
@@ -210,17 +212,20 @@ namespace caca
 
                     foreach (Collider hit in hitColliders)
                     {
-                        //if (hit.CompareTag("chest"))
-                        //{
-                        //    if (hit.transform.parent.parent.GetComponent<Chest>()._isChestTaken == false)
-                        //    {
-                        //        _gameManagerScriptableObject.GameManager.AddGold();
+                        if (hit.CompareTag("chest"))
+                        {
+                            Chest chest = hit.transform.GetComponent<Chest>();
 
-                        //        hitCollider.transform.parent.GetComponent<Chest>()._isChestTaken = true;
+                            if (chest._isTaken == false)
+                            {
+                                _gameManager.AddGold(chest._gold);
+                                _gameManager.AddChest(chest._nbChest);
 
-                        //        Destroy(hit.transform.parent.gameObject, 2.0f);
-                        //    }
-                        //}
+                                chest._isTaken = true;
+
+                                Destroy(chest.gameObject, 2.0f);
+                            }
+                        }
 
                         if (hit.CompareTag("enemy"))
                         {
@@ -298,17 +303,20 @@ namespace caca
 
                     foreach (Collider hit in hitColliders)
                     {
-                        //if (hit.CompareTag("chest"))
-                        //{
-                        //    if (hit.transform.parent.parent.GetComponent<Chest>()._isChestTaken == false)
-                        //    {
-                        //        _gameManagerScriptableObject.GameManager.AddGold();
+                        if (hit.CompareTag("chest"))
+                        {
+                            Chest chest = hit.transform.GetComponent<Chest>();
 
-                        //        hitCollider.transform.parent.GetComponent<Chest>()._isChestTaken = true;
+                            if (chest._isTaken == false)
+                            {
+                                _gameManager.AddGold(chest._gold);
+                                _gameManager.AddChest(chest._nbChest);
 
-                        //        Destroy(hit.transform.parent.gameObject, 2.0f);
-                        //    }
-                        //}
+                                chest._isTaken = true;
+
+                                Destroy(chest.gameObject, 2.0f);
+                            }
+                        }
 
                         if (hit.CompareTag("enemy"))
                         {

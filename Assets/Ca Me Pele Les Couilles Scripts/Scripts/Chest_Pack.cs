@@ -7,6 +7,7 @@ namespace caca
         #region Inspector
 
         [Header("Other")]
+        public Game_Manager _gameManager;
         public GameObject _chestPrefab;
         public Transform _areaTransform;
 
@@ -66,6 +67,8 @@ namespace caca
                 clone.transform.localScale *= 0.75f;
 
                 Chest chestClone = clone.GetComponent<Chest>();
+
+                _gameManager.AddChestInTable(chestClone);
 
                 _chestTable[i] = chestClone;
             }
