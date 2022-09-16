@@ -63,10 +63,10 @@ namespace caca
                 Vector3 randomPos = new Vector3(_transform.position.x + randomX, _transform.position.y - 2.25f, _transform.position.z + randomZ);
 
                 GameObject clone = Instantiate(_chestPrefab, randomPos, _chestPrefab.transform.rotation, _transform);
-
-                clone.transform.localScale *= 0.75f;
-
                 Chest chestClone = clone.GetComponent<Chest>();
+
+                chestClone.transform.localScale *= 0.75f;
+
 
                 _gameManager.AddChestInTable(chestClone);
 
