@@ -25,7 +25,6 @@ namespace caca
         public Slider _healthSlider;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
-        public Enemy_Pack _enemyPack;
         public Vector3 _initialPosition;
         public bool _isPlayerInDetectionRange = false;
 
