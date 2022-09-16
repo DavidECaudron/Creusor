@@ -214,7 +214,7 @@ namespace caca
                     {
                         if (hit.CompareTag("chest"))
                         {
-                            Chest chest = hit.transform.parent.GetComponent<Chest>();
+                            Chest chest = hit.transform.GetComponent<Chest>();
 
                             if (chest._isTaken == false)
                             {
@@ -305,7 +305,7 @@ namespace caca
                     {
                         if (hit.CompareTag("chest"))
                         {
-                            Chest chest = hit.transform.parent.GetComponent<Chest>();
+                            Chest chest = hit.transform.GetComponent<Chest>();
 
                             if (chest._isTaken == false)
                             {

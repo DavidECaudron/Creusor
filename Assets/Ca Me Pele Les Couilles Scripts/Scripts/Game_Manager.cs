@@ -20,6 +20,7 @@ namespace caca
         public CanvasGroup _canvasGroup;
         public TMP_Text _goldText;
         public TMP_Text _chestCounter;
+        public Game_Manager_Scriptable _gameManagerScriptable;
 
         [Header("Game Manager")]
         public int _limitTime;
@@ -33,7 +34,7 @@ namespace caca
 
         #region Hidden
 
-        private int _gold = 0;
+        private int _gold;
         private int _nbChest = 0;
         private float _startTime;
         private float _tempLimitTime;
@@ -50,6 +51,7 @@ namespace caca
             _startTime = Time.realtimeSinceStartup;
             _tempLimitTime = (float)_limitTime;
             _tempDisappearingTime = (float)_disappearingTime;
+            _gold = _gameManagerScriptable._gold;
             _goldText.text = _gold.ToString();
             _chestCounter.text = _nbChest.ToString() + " / 3";
         }
@@ -120,6 +122,7 @@ namespace caca
 
                 item._maxHealth *= _buffMultiplier;
                 item._currentHealth = item._maxHealth;
+                item._healthSlider.value = item._currentHealth / item._maxHealth;
                 item._damage *= _buffMultiplier;
                 item._movementSpeed *= _buffMultiplier;
 
@@ -134,6 +137,7 @@ namespace caca
 
         public void LoadMainMenu()
         {
+            _gameManagerScriptable._gold = _gold;
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
 
@@ -155,6 +159,17 @@ namespace caca
         public void RemoveChestFromTable(Chest chest)
         {
             _listChest.Remove(chest);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("player"))
+            {
+                if (_nbChest > 0)
+                {
+                    LoadMainMenu();
+                }
+            }
         }
 
         #endregion
