@@ -8143,9 +8143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cb86d35f9ac9449ba66894a10b05d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _camera: {fileID: 6448314404018533076}
   _abilitiesClone: {fileID: 1360621360}
   _graphics: {fileID: 297549443}
+  _healthImage: {fileID: 0}
   _rightMouseButtonLayerMask:
     serializedVersion: 2
     m_Bits: 257
@@ -8153,6 +8155,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2049
   _movementSpeed: 5
+  _maxHealth: 0
+  _slowIntensity: 0
+  _slowDuration: 0
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 1923795446}
@@ -13509,6 +13514,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1099916427
@@ -16136,6 +16142,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &1337142542
@@ -17166,6 +17173,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1480814036
@@ -18359,6 +18367,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1548163454
@@ -19467,10 +19476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b6d57d90da9484a839afa62cd284fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerLeft: {fileID: 0}
-  _timerRight: {fileID: 0}
-  _timer: {fileID: 0}
-  _eye: {fileID: 0}
+  _sliderLeft: {fileID: 0}
+  _sliderRight: {fileID: 0}
+  _timerImage: {fileID: 0}
+  _eyeImage: {fileID: 0}
   _gradientTimer:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19836,6 +19845,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 3
   _spawnAreaRange: 5
 --- !u!135 &1660600633
@@ -22600,6 +22610,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 7
   _spawnAreaRange: 5
 --- !u!135 &1897732086
@@ -23291,6 +23302,7 @@ MonoBehaviour:
     type: 3}
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
+  _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
 --- !u!135 &1986648545
