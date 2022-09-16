@@ -20,18 +20,24 @@ namespace caca
         public Transform _playerTransform;
         public Transform _cameraTransform;
         public Transform _attackDetection;
+        public Transform _transform;
+        public NavMeshAgent _navMeshAgent;
         public Slider _healthSlider;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
+        public Enemy_Pack _enemyPack;
         public Vector3 _initialPosition;
         public bool _isPlayerInDetectionRange = false;
 
         [Header("Enemy")]
         public EnemyType _enemyType;
-        public int _movementSpeed;
-        public int _maxHealth;
+        public float _movementSpeed;
+        public float _maxHealth;
+        public float _currentHealth;
+        public float _damage;
         public float _attackPerSecond;
-        public int _damage;
+
+        public bool _isAlive = true;
 
         #endregion
 
@@ -39,14 +45,11 @@ namespace caca
         #region Hidden
 
         private Player _player;
-        private Transform _transform;
         private Transform _healthSliderTransform;
-        private NavMeshAgent _navMeshAgent;
         private MeshRenderer _meshRenderer;
 
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
-        private int _currentHealth;
         
         #endregion
 
@@ -72,13 +75,13 @@ namespace caca
             if (_enemyType == EnemyType.Melee)
             {
                 _meleeModel.SetActive(true);
-                _meshRenderer = _meleeModel.GetComponent<MeshRenderer>();
+                _meshRenderer = _meleeModel.GetComponentInChildren<MeshRenderer>();
             }
 
             if (_enemyType == EnemyType.Ranged)
             {
                 _rangedModel.SetActive(true);
-                _meshRenderer = _rangedModel.GetComponent<MeshRenderer>();
+                _meshRenderer = _rangedModel.GetComponentInChildren<MeshRenderer>();
             }
         }
 
@@ -96,94 +99,99 @@ namespace caca
 
         public void Movement()
         {
-            if (_isPlayerInDetectionRange == true)
+            if (_isAlive == true)
             {
-                if (_enemyType == EnemyType.Melee)
+                if (_isPlayerInDetectionRange == true)
                 {
-                    if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
+                    if (_enemyType == EnemyType.Melee)
                     {
-                        _isPlayerInAttackRange = false;
-                        _isAttacking = false;
-                        _navMeshAgent.SetDestination(_playerTransform.position);
-                    }
-                    else
-                    {
-                        _transform.LookAt(_playerTransform);
-
-                        _navMeshAgent.SetDestination(_transform.position);
-                        _isPlayerInAttackRange = true;
-
-                        if (_isAttacking == false)
+                        if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
                         {
-                            Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+                            _isPlayerInAttackRange = false;
+                            _isAttacking = false;
+                            _navMeshAgent.SetDestination(_playerTransform.position);
+                        }
+                        else
+                        {
+                            _transform.LookAt(_playerTransform);
 
-                            foreach (var hitCollider in hitColliders)
+                            _navMeshAgent.SetDestination(_transform.position);
+                            _isPlayerInAttackRange = true;
+
+                            if (_isAttacking == false)
                             {
-                                if (hitCollider.transform.CompareTag("player"))
-                                {
-                                    StartCoroutine(AttackCoroutine());
-                                }
-                            }
+                                Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
 
-                            _isAttacking = true;
+                                foreach (var hitCollider in hitColliders)
+                                {
+                                    if (hitCollider.transform.CompareTag("player"))
+                                    {
+                                        StartCoroutine(AttackCoroutine());
+                                    }
+                                }
+
+                                _isAttacking = true;
+                            }
+                        }
+                    }
+
+                    if (_enemyType == EnemyType.Ranged)
+                    {
+                        if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                        {
+                            _isPlayerInAttackRange = false;
+                            _isAttacking = false;
+                            _navMeshAgent.SetDestination(_playerTransform.position);
+                        }
+                        else
+                        {
+                            _transform.LookAt(_playerTransform);
+
+                            _navMeshAgent.SetDestination(_transform.position);
+                            _isPlayerInAttackRange = true;
+
+                            //if (_isAttacking == false)
+                            //{
+                            //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+
+                            //    foreach (var hitCollider in hitColliders)
+                            //    {
+                            //        if (hitCollider.transform.CompareTag("player"))
+                            //        {
+                            //            StartCoroutine(AttackCoroutine());
+                            //        }
+                            //    }
+
+                            //    _isAttacking = true;
+                            //}
                         }
                     }
                 }
-
-                if (_enemyType == EnemyType.Ranged)
+                else
                 {
-                    if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                    if (Vector3.Distance(_initialPosition, _transform.position) > 0.5f)
                     {
                         _isPlayerInAttackRange = false;
                         _isAttacking = false;
-                        _navMeshAgent.SetDestination(_playerTransform.position);
+                        _navMeshAgent.SetDestination(_initialPosition);
                     }
-                    else
-                    {
-                        _transform.LookAt(_playerTransform);
-
-                        _navMeshAgent.SetDestination(_transform.position);
-                        _isPlayerInAttackRange = true;
-
-                        //if (_isAttacking == false)
-                        //{
-                        //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
-
-                        //    foreach (var hitCollider in hitColliders)
-                        //    {
-                        //        if (hitCollider.transform.CompareTag("player"))
-                        //        {
-                        //            StartCoroutine(AttackCoroutine());
-                        //        }
-                        //    }
-
-                        //    _isAttacking = true;
-                        //}
-                    }
-                }
-            }
-            else
-            {
-                if (Vector3.Distance(_initialPosition, _transform.position) > 0.5f)
-                {
-                    _isPlayerInAttackRange = false;
-                    _isAttacking = false;
-                    _navMeshAgent.SetDestination(_initialPosition);
                 }
             }
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             if (_currentHealth - damage > 0)
             {
                 StartCoroutine(DamageFeedback());
                 _currentHealth -= damage;
-                _healthSlider.value = ((float)_currentHealth/(float)_maxHealth);
+                _healthSlider.value = (_currentHealth/_maxHealth);
             }
             else
             {
-                Destroy(gameObject);
+                _isAlive = false;
+                _navMeshAgent.enabled = false;
+                _transform.position = new Vector3(_initialPosition.x,-5.0f,_initialPosition.z);
             }
         }
 
@@ -194,7 +202,7 @@ namespace caca
 
         IEnumerator AttackCoroutine()
         {
-            while (_isPlayerInAttackRange == true)
+            while (_isAlive == true && _isPlayerInAttackRange == true)
             {
                 _player.TakeDamage(_damage);
 

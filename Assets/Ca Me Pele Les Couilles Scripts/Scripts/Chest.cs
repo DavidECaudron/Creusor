@@ -6,6 +6,12 @@ namespace caca
 {
     public class Chest : MonoBehaviour
     {
-        
+        #region Inspector
+
+        public bool _isTaken = false;
+        public int _gold;
+        public int _nbChest;
+
+        #endregion
     }
 }
