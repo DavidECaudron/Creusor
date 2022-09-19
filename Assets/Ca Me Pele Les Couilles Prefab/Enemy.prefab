@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 6210558268499514104}
   - component: {fileID: 6210558268499514106}
   - component: {fileID: 6210558268499514105}
+  - component: {fileID: 2120911041552032690}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -267,6 +268,7 @@ MonoBehaviour:
   _transform: {fileID: 0}
   _navMeshAgent: {fileID: 0}
   _healthSlider: {fileID: 3456304991499210290}
+  _graphics: {fileID: 6210558270163703876}
   _body: {fileID: 7744243912390240525}
   _meleeModel: {fileID: 7744243911520967659}
   _rangedModel: {fileID: 7744243911457334323}
@@ -279,6 +281,22 @@ MonoBehaviour:
   _damage: 20
   _attackPerSecond: 1
   _isAlive: 1
+--- !u!54 &2120911041552032690
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210558268499513863}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6210558269752369396
 GameObject:
   m_ObjectHideFlags: 0

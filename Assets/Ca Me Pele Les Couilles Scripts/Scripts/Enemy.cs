@@ -23,6 +23,7 @@ namespace caca
         public Transform _transform;
         public NavMeshAgent _navMeshAgent;
         public Slider _healthSlider;
+        public GameObject _graphics;
         public GameObject _body;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
@@ -50,7 +51,8 @@ namespace caca
 
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
-        
+        private int _heightIndex = 0;
+
         #endregion
 
 
@@ -100,6 +102,17 @@ namespace caca
         {
             if (_isAlive == true)
             {
+                Vector3 graphicsPosition = _graphics.transform.position;
+
+                if (_heightIndex > 0)
+                {
+                    _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
+                }
+                else
+                {
+                    _graphics.transform.position = new Vector3(graphicsPosition.x, 1.0f, graphicsPosition.z);
+                }
+
                 if (_isPlayerInDetectionRange == true)
                 {
                     if (_enemyType == EnemyType.Melee)
@@ -216,6 +229,32 @@ namespace caca
             yield return new WaitForSecondsRealtime(0.10f);
 
             _meshRenderer.material.SetFloat("_DamageColorAmount", 0.0f);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("digMask"))
+            {
+                _heightIndex += 1;
+            }
+
+            if (other.CompareTag("shockwaveMask"))
+            {
+                _heightIndex += 1;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("digMask"))
+            {
+                _heightIndex -= 1;
+            }
+
+            if (other.CompareTag("shockwaveMask"))
+            {
+                _heightIndex -= 1;
+            }
         }
 
         #endregion
