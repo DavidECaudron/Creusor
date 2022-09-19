@@ -8,6 +8,8 @@ TagManager:
   - enemy
   - player
   - chest
+  - digMask
+  - shockwaveMask
   layers:
   - Default
   - TransparentFX

@@ -30574,6 +30574,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 0
+  _maxHealth: 0
+  _damage: 0
+  _attackPerSecond: 0
 --- !u!135 &582211646
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -48135,6 +48139,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 0
+  _maxHealth: 0
+  _damage: 0
+  _attackPerSecond: 0
 --- !u!135 &883210584
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56341,6 +56349,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 0
+  _maxHealth: 0
+  _damage: 0
+  _attackPerSecond: 0
 --- !u!135 &1060411482
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58016,6 +58028,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 5
+  _maxHealth: 500
+  _damage: 10
+  _attackPerSecond: 1
 --- !u!135 &1098226573
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -83174,6 +83190,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 0
+  _maxHealth: 0
+  _damage: 0
+  _attackPerSecond: 0
 --- !u!135 &1536588899
 SphereCollider:
   m_ObjectHideFlags: 0

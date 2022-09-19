@@ -62,6 +62,7 @@ namespace caca
         private float _timeCheckRightButton = 0.0f;
         private float _timeCheckShockwave = 0.0f;
         private float _currentHealth;
+        private int _heightIndex = 0;
 
         #endregion
 
@@ -114,6 +115,17 @@ namespace caca
             if (_rigidbody.velocity != Vector3.zero)
             {
                 _rigidbody.velocity = Vector3.zero;
+            }
+
+            Vector3 graphicsPosition = _graphics.transform.position;
+
+            if (_heightIndex > 0)
+            {
+                _graphics.transform.position = new Vector3(graphicsPosition.x, -1.0f, graphicsPosition.z);
+            }
+            else
+            {
+                _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
             }
 
             Vector3 direction;
@@ -426,6 +438,32 @@ namespace caca
                 _movementSpeed += _slowIntensity;
 
                 _hasBeenHit = false;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("digMask"))
+            {
+                _heightIndex += 1;
+            }
+
+            if (other.CompareTag("shockwaveMask"))
+            {
+                _heightIndex += 1;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("digMask"))
+            {
+                _heightIndex -= 1;
+            }
+
+            if (other.CompareTag("shockwaveMask"))
+            {
+                _heightIndex -= 1;
             }
         }
 
