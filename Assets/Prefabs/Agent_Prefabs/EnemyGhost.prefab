@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4128032108900188958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Masks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1849877596338770218}
   - component: {fileID: 1849877596338770196}
   - component: {fileID: 1849877596338770197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 648492583199822931}
   - component: {fileID: 6790537504335942720}
   - component: {fileID: 3031031129908283211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyGhost_Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4939,7 +4939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2902546462336591189}
   - component: {fileID: 2902546462336591185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4994,7 +4994,7 @@ GameObject:
   - component: {fileID: 2902546463426628769}
   - component: {fileID: 2902546463426628775}
   - component: {fileID: 2902546463426628768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyGhost_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5078,7 +5078,7 @@ GameObject:
   - component: {fileID: 2902546463430682670}
   - component: {fileID: 2902546463430682668}
   - component: {fileID: 2902546463430682669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_01_Teeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5161,7 +5161,7 @@ GameObject:
   - component: {fileID: 2902546463431349053}
   - component: {fileID: 2902546463431349027}
   - component: {fileID: 2902546463431349052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_1_RightEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5244,7 +5244,7 @@ GameObject:
   - component: {fileID: 2902546463498096042}
   - component: {fileID: 2902546463498096040}
   - component: {fileID: 2902546463498096041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_1_LeftEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5327,7 +5327,7 @@ GameObject:
   - component: {fileID: 2902546463763234379}
   - component: {fileID: 2902546463763234377}
   - component: {fileID: 2902546463763234378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_01_Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5413,7 +5413,7 @@ GameObject:
   - component: {fileID: 2902546463835373955}
   - component: {fileID: 2902546463835373953}
   - component: {fileID: 2902546463835373954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_2_Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5497,7 +5497,7 @@ GameObject:
   - component: {fileID: 2902546463979266215}
   - component: {fileID: 2902546463979266213}
   - component: {fileID: 2902546463979266214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: M_EnemyGhost_02_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
