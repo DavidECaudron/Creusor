@@ -8,8 +8,8 @@ namespace caca
         public void StartButton()
         {
             SceneManager.LoadScene("LevelDesign", LoadSceneMode.Single);
-            //SceneManager.LoadScene("CommonScene", LoadSceneMode.Additive);
-            SceneManager.LoadScene("Developpeur", LoadSceneMode.Additive);
+            SceneManager.LoadScene("CommonScene", LoadSceneMode.Additive);
+            //SceneManager.LoadScene("Developpeur", LoadSceneMode.Additive);
         }
     }
 }
