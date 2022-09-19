@@ -190,7 +190,7 @@ namespace caca
             {
                 _isAlive = false;
                 _navMeshAgent.enabled = false;
-                _transform.position = new Vector3(_initialPosition.x,-5.0f,_initialPosition.z);
+                _transform.position = new Vector3(-100.0f,-5.0f,-100.0f);
             }
         }
 
