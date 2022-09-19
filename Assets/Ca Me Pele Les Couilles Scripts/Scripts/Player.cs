@@ -244,6 +244,11 @@ namespace caca
                             hit.transform.parent.parent.GetComponent<Enemy>().TakeDamage(_rightButtonDamage);
                         }
 
+                        if (hit.CompareTag("destructible"))
+                        {
+                            hit.enabled = false;
+                        }
+
                         //if (hit.CompareTag("ground"))
                         //{
                         //    Debug.Log("ground");
@@ -333,6 +338,11 @@ namespace caca
                         if (hit.CompareTag("enemy"))
                         {
                             hit.transform.parent.parent.GetComponent<Enemy>().TakeDamage(_shockwaveDamage);
+                        }
+
+                        if (hit.CompareTag("destructible"))
+                        {
+                            hit.enabled = false;
                         }
 
                         //if (hit.CompareTag("ground"))
