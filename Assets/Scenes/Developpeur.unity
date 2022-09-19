@@ -115083,6 +115083,11 @@ PrefabInstance:
       objectReference: {fileID: 504390766}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
+      propertyPath: _limitTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
+        type: 3}
       propertyPath: _sliderLeft
       value: 
       objectReference: {fileID: 2103233287}
@@ -115090,7 +115095,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _timerImage
       value: 
-      objectReference: {fileID: 537968818}
+      objectReference: {fileID: 2037440478}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
       propertyPath: _canvasGroup
