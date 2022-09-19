@@ -10016,7 +10016,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2049
   _movementSpeed: 5
-  _maxHealth: 4000
+  _maxHealth: 100
   _slowIntensity: 0
   _slowDuration: 0
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
@@ -10024,14 +10024,14 @@ MonoBehaviour:
   _rightButtonPivot: {fileID: 1923795446}
   _rightButtonSpawn: {fileID: 3576221172183876836}
   _rightButtonCooldownImage: {fileID: 546217347}
-  _rightButtonDamage: 20
+  _rightButtonDamage: 10
   _rightButtonCooldown: 0.5
   _shockwavePrefab: {fileID: 1548516181378587945, guid: 12346f219f059914ebc297c3ffe122f4,
     type: 3}
   _shockwaveSpawn: {fileID: 3191802183152756289}
   _shockwaveCooldownImage: {fileID: 897425938}
-  _shockwaveDamage: 60
-  _shockwaveCooldown: 20
+  _shockwaveDamage: 25
+  _shockwaveCooldown: 10
 --- !u!54 &649747327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14943,7 +14943,7 @@ PrefabInstance:
     - target: {fileID: 7650414242335021335, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.6
+      value: -49.08
       objectReference: {fileID: 0}
     - target: {fileID: 7650414242335021335, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
@@ -14953,7 +14953,7 @@ PrefabInstance:
     - target: {fileID: 7650414242335021335, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.2
+      value: -25.12
       objectReference: {fileID: 0}
     - target: {fileID: 7650414242335021335, guid: ae6ae848f9eca6c4caf6a17693bb3c1a,
         type: 3}
@@ -16288,8 +16288,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
   _enemyType: 0
-  _numberOfEnemy: 7
+  _numberOfEnemy: 4
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1099916427
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20016,6 +20020,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1337142542
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21246,7 +21254,7 @@ PrefabInstance:
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
       propertyPath: _limitTime
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
@@ -21394,8 +21402,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
   _enemyType: 0
-  _numberOfEnemy: 7
+  _numberOfEnemy: 5
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1480814036
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22589,8 +22601,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
   _enemyType: 0
-  _numberOfEnemy: 7
+  _numberOfEnemy: 4
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1548163454
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24326,6 +24342,10 @@ MonoBehaviour:
   _enemyType: 0
   _numberOfEnemy: 3
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1660600633
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27523,8 +27543,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
   _enemyType: 0
-  _numberOfEnemy: 7
+  _numberOfEnemy: 2
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1897732086
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28308,8 +28332,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 649747324}
   _cameraTransform: {fileID: 1094488819}
   _enemyType: 0
-  _numberOfEnemy: 5
+  _numberOfEnemy: 3
   _spawnAreaRange: 5
+  _movementSpeed: 4
+  _maxHealth: 50
+  _damage: 2
+  _attackPerSecond: 1
 --- !u!135 &1986648545
 SphereCollider:
   m_ObjectHideFlags: 0
