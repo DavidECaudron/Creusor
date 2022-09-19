@@ -246,7 +246,7 @@ namespace caca
 
                         if (hit.CompareTag("destructible"))
                         {
-                            hit.enabled = false;
+                            hit.gameObject.SetActive(false);
                         }
 
                         //if (hit.CompareTag("ground"))
@@ -342,7 +342,7 @@ namespace caca
 
                         if (hit.CompareTag("destructible"))
                         {
-                            hit.enabled = false;
+                            hit.gameObject.SetActive(false);
                         }
 
                         //if (hit.CompareTag("ground"))
