@@ -166,7 +166,7 @@ namespace caca
             }
             else
             {
-                _gameManager.LoadMainMenu();
+                _gameManager.LoadMainMenuDead();
             }
         }
 

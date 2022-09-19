@@ -16,6 +16,10 @@ namespace caca
         public EnemyType _enemyType;
         [Range(0, 10)] public int _numberOfEnemy;
         [Range(0, 5)] public int _spawnAreaRange;
+        public float _movementSpeed;
+        public float _maxHealth;
+        public float _damage;
+        public float _attackPerSecond;
 
         #endregion
 
@@ -66,6 +70,10 @@ namespace caca
                 enemyClone._playerTransform = _playerTransform;
                 enemyClone._cameraTransform = _cameraTransform;
                 enemyClone._enemyType = _enemyType;
+                enemyClone._movementSpeed = _movementSpeed;
+                enemyClone._maxHealth = _maxHealth;
+                enemyClone._damage = _damage;
+                enemyClone._attackPerSecond = _attackPerSecond;
 
                 _gameManager.AddEnemyInTable(enemyClone);
 

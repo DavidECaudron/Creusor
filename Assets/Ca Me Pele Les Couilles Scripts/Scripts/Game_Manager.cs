@@ -134,9 +134,14 @@ namespace caca
 
         #region Utils
 
-        public void LoadMainMenu()
+        public void LoadMainMenuAlive()
         {
             PlayerPrefs.SetInt("Gold", _gold);
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
+
+        public void LoadMainMenuDead()
+        {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
 
@@ -166,7 +171,7 @@ namespace caca
             {
                 if (_nbChest > 0)
                 {
-                    LoadMainMenu();
+                    LoadMainMenuAlive();
                 }
             }
         }
