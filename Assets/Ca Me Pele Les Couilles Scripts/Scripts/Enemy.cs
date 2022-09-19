@@ -23,6 +23,7 @@ namespace caca
         public Transform _transform;
         public NavMeshAgent _navMeshAgent;
         public Slider _healthSlider;
+        public GameObject _body;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
         public Vector3 _initialPosition;
@@ -70,17 +71,16 @@ namespace caca
             _navMeshAgent.acceleration = _movementSpeed;
             _currentHealth = _maxHealth;
             _initialPosition = _transform.position;
+            _meshRenderer = _body.GetComponentInChildren<MeshRenderer>();
 
             if (_enemyType == EnemyType.Melee)
             {
                 _meleeModel.SetActive(true);
-                _meshRenderer = _meleeModel.GetComponentInChildren<MeshRenderer>();
             }
 
             if (_enemyType == EnemyType.Ranged)
             {
                 _rangedModel.SetActive(true);
-                _meshRenderer = _rangedModel.GetComponentInChildren<MeshRenderer>();
             }
         }
 

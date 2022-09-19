@@ -267,9 +267,9 @@ MonoBehaviour:
   _transform: {fileID: 0}
   _navMeshAgent: {fileID: 0}
   _healthSlider: {fileID: 3456304991499210290}
+  _body: {fileID: 7744243912390240525}
   _meleeModel: {fileID: 7744243911520967659}
   _rangedModel: {fileID: 7744243911457334323}
-  _enemyPack: {fileID: 0}
   _initialPosition: {x: 0, y: 0, z: 0}
   _isPlayerInDetectionRange: 0
   _enemyType: 0
@@ -688,6 +688,12 @@ GameObject:
 --- !u!1 &7744243911520967659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2902546463763234372, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4845590005761713583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7744243912390240525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2902546463426628770, guid: 32afb922b692bd840b247b0dc8a8bc2c,
     type: 3}
   m_PrefabInstance: {fileID: 4845590005761713583}
   m_PrefabAsset: {fileID: 0}
