@@ -15,7 +15,8 @@ namespace caca
         public Transform _abilitiesClone;
         public Transform _graphics;
         public Image _healthImage;
-        public LayerMask _rightMouseButtonLayerMask;
+        public Animator _animator;
+        public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
 
         [Header("Player")]
@@ -132,9 +133,15 @@ namespace caca
 
             if (_isTargetingGround == true && Vector3.Distance(_transform.position, _nextPosition) > 1.0f)
             {
+                _animator.SetBool("_isRunning", true);
+
                 direction = _nextPosition - _transform.position;
 
                 _transform.Translate(direction.normalized * _movementSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _animator.SetBool("_isRunning", false);
             }
 
             if (_isTargetingEnemy == true)
@@ -147,9 +154,15 @@ namespace caca
 
                 if (Vector3.Distance(_transform.position, _nextPosition) > 2.0f)
                 {
+                    _animator.SetBool("_isRunning", true);
+
                     direction = _nextPosition - _transform.position;
 
                     _transform.Translate(direction.normalized * _movementSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    _animator.SetBool("_isRunning", false);
                 }
             }
 
@@ -381,7 +394,7 @@ namespace caca
                 RaycastHit value;
 
                 _ray = _camera.ScreenPointToRay(_mousePosition);
-                Physics.Raycast(_ray, out value, Mathf.Infinity, _rightMouseButtonLayerMask);
+                Physics.Raycast(_ray, out value, Mathf.Infinity, _leftMouseButtonLayerMask);
 
                 _hit = value;
 

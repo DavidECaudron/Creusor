@@ -37,7 +37,6 @@ namespace caca
         public float _currentHealth;
         public float _damage;
         public float _attackPerSecond;
-
         public bool _isAlive = true;
 
         #endregion
@@ -48,7 +47,6 @@ namespace caca
         private Player _player;
         private Transform _healthSliderTransform;
         private MeshRenderer _meshRenderer;
-
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
@@ -68,7 +66,6 @@ namespace caca
         private void Start()
         {
             _player = _playerTransform.GetComponent<Player>();
-
             _navMeshAgent.speed = _movementSpeed;
             _navMeshAgent.acceleration = _movementSpeed;
             _currentHealth = _maxHealth;
