@@ -67,7 +67,6 @@ namespace caca
 
                 chestClone.transform.localScale *= 0.75f;
 
-
                 _gameManager.AddChestInTable(chestClone);
 
                 _chestTable[i] = chestClone;

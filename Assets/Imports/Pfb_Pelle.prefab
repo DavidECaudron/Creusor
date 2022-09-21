@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 328355556285874083}
+  - {fileID: 1484388450078738778}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,10 +95,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 34fd55963dddb4f41b2076e3958e3bf7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85c6a6f9a7b12db4e82bdc4d46a9690d, type: 2}
     - target: {fileID: 919132149155446097, guid: 34fd55963dddb4f41b2076e3958e3bf7,
         type: 3}
       propertyPath: m_Name
       value: Pelle_refonte1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 34fd55963dddb4f41b2076e3958e3bf7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fd55963dddb4f41b2076e3958e3bf7, type: 3}
@@ -106,4 +117,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 34fd55963dddb4f41b2076e3958e3bf7,
     type: 3}
   m_PrefabInstance: {fileID: 217356814315722824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1374479777303342769
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8132937999789400078}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 90af8adae8b6b4747bf9e86dd7dbd03f, type: 2}
+    - target: {fileID: 919132149155446097, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+        type: 3}
+      propertyPath: m_Name
+      value: M_Pelle_Simple_color01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3f2b40f4a451ec41a444c21cac02c2b, type: 3}
+--- !u!4 &1484388450078738778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3f2b40f4a451ec41a444c21cac02c2b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374479777303342769}
   m_PrefabAsset: {fileID: 0}
