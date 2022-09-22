@@ -91,7 +91,6 @@ namespace caca
             foreach (Transform item in _positions.transform)
             {
                 _chestPackPositions[index] = item.gameObject.GetComponent<ChestPosition>();
-                _chestPackPositions[index]._index = index;
 
                 index += 1;
             }
@@ -106,6 +105,8 @@ namespace caca
                 if (_chestPackPositions[random]._hasBeenUsed == false)
                 {
                     Chest_Pack clone = Instantiate(_chestPack, _chestPackPositions[random]._transform.position, Quaternion.identity, this.transform);
+
+                    _chestPackPositions[random]._index = i;
 
                     _chestPackTable[i] = clone;
 
@@ -135,7 +136,6 @@ namespace caca
             for (int i = 0; i < _nbEnemyPack; i++)
             {
                 int random = Random.Range(0, _enemyPackPositions.Length);
-                int indexChestPack = 0;
 
                 _enemyPack._numberOfEnemy = _enemyPackPositions[random]._nbEnemy;
                 _enemyPack._spawnAreaRange = _enemyPackPositions[random]._spawnAreaRange;
