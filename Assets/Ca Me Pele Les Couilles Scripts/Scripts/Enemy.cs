@@ -38,6 +38,7 @@ namespace caca
         public float _damage;
         public float _attackPerSecond;
         public bool _isAlive = true;
+        public bool _isHidden = false;
 
         #endregion
 
@@ -97,7 +98,7 @@ namespace caca
 
         public void Movement()
         {
-            if (_isAlive == true)
+            if (_isAlive == true || _isHidden == false)
             {
                 Vector3 graphicsPosition = _graphics.transform.position;
 
@@ -199,8 +200,7 @@ namespace caca
             else
             {
                 _isAlive = false;
-                _navMeshAgent.enabled = false;
-                _transform.position = new Vector3(-100.0f,-5.0f,-100.0f);
+                HideEnemy();
             }
         }
 
@@ -208,6 +208,20 @@ namespace caca
 
 
         #region Utils
+
+        public void HideEnemy()
+        {
+            _isHidden = true;
+            _navMeshAgent.enabled = false;
+            _transform.position = new Vector3(-100.0f, -5.0f, -100.0f);
+        }
+
+        public void ShowEnemy()
+        {
+            _transform.position = _initialPosition;
+            _navMeshAgent.enabled = true;
+            _isHidden = false;
+        }
 
         IEnumerator AttackCoroutine()
         {

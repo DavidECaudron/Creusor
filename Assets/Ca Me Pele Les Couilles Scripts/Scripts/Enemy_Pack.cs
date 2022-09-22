@@ -14,7 +14,7 @@ namespace caca
 
         [Header("Enemy Pack")]
         public EnemyType _enemyType;
-        [Range(0, 10)] public int _numberOfEnemy;
+        public int _numberOfEnemy;
         [Range(0, 5)] public int _spawnAreaRange;
         public float _movementSpeed;
         public float _maxHealth;
@@ -39,10 +39,7 @@ namespace caca
         {
             _transform = gameObject.GetComponent<Transform>();
             _sphereCollider = GetComponent<SphereCollider>();
-        }
 
-        private void Start()
-        {
             _sphereCollider.radius = _spawnAreaRange * 3;
 
             SpawnEnemies();
@@ -105,6 +102,22 @@ namespace caca
                 {
                     _enemyTable[i]._isPlayerInDetectionRange = false;
                 }
+            }
+        }
+
+        public void HideEnemy()
+        {
+            for (int i = 0; i < _enemyTable.Length; i++)
+            {
+                _enemyTable[i].HideEnemy();
+            }
+        }
+
+        public void ShowEnemy()
+        {
+            for (int i = 0; i < _enemyTable.Length; i++)
+            {
+                _enemyTable[i].ShowEnemy();
             }
         }
 
