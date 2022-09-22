@@ -9025,9 +9025,9 @@ GameObject:
   - component: {fileID: 222191429}
   - component: {fileID: 222191428}
   - component: {fileID: 222191427}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Area_RockSkull
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84750,7 +84750,7 @@ GameObject:
   - component: {fileID: 2120339315}
   m_Layer: 6
   m_Name: NoDigArea
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86417,7 +86417,7 @@ GameObject:
   - component: {fileID: 1711813856084220109}
   m_Layer: 0
   m_Name: 'Water_plane '
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87994,7 +87994,7 @@ GameObject:
   - component: {fileID: 1551218103}
   m_Layer: 0
   m_Name: Area_RockBridge
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88081,7 +88081,7 @@ GameObject:
   - component: {fileID: 4496493464263664579}
   m_Layer: 0
   m_Name: RockSkull
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98122,6 +98122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area_Dolmen
       objectReference: {fileID: 0}
+    - target: {fileID: 5481921194118151724, guid: 429c270729d394a7e9e317a555615f65,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 429c270729d394a7e9e317a555615f65, type: 3}
 --- !u!33 &5781526715622752145
@@ -102329,7 +102334,7 @@ GameObject:
   - component: {fileID: 1246967048}
   m_Layer: 0
   m_Name: Area_BrokenBoat
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

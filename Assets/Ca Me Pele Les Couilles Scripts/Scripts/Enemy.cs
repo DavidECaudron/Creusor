@@ -68,11 +68,11 @@ namespace caca
 
         private void Start()
         {
+            _initialPosition = _transform.position;
             _player = _playerTransform.GetComponent<Player>();
             _navMeshAgent.speed = _movementSpeed;
             _navMeshAgent.acceleration = _movementSpeed;
             _currentHealth = _maxHealth;
-            _initialPosition = _transform.position;
             _meshRenderer = _body.GetComponentInChildren<MeshRenderer>();
 
             if (_enemyType == EnemyType.Melee)
@@ -105,14 +105,17 @@ namespace caca
                 if (_isAlive == true)
                 {
                     Vector3 graphicsPosition = _graphics.transform.position;
+                    Vector3 canvasPosition = _canvas.transform.position;
 
                     if (_heightIndex > 0)
                     {
                         _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
+                        _canvas.transform.position = new Vector3(canvasPosition.x, 2.5f, canvasPosition.z);
                     }
                     else
                     {
                         _graphics.transform.position = new Vector3(graphicsPosition.x, 1.0f, graphicsPosition.z);
+                        _canvas.transform.position = new Vector3(canvasPosition.x, 3.5f, canvasPosition.z);
                     }
 
                     if (_isPlayerInDetectionRange == true)
@@ -216,20 +219,20 @@ namespace caca
 
         public void HideEnemy()
         {
-            _isHidden = true;
+            _graphics.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
+            _physics.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
+            _canvas.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
             _navMeshAgent.enabled = false;
-            _graphics.SetActive(false);
-            _physics.SetActive(false);
-            _canvas.SetActive(false);
-            _transform.position = _initialPosition;
+            _isHidden = true;
         }
 
         public void ShowEnemy()
         {
+            _transform.position = _initialPosition;
+            _graphics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            _physics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            _canvas.transform.localPosition = new Vector3(0.0f, 3.5f, 0.0f);
             _navMeshAgent.enabled = true;
-            _graphics.SetActive(true);
-            _physics.SetActive(true);
-            _canvas.SetActive(true);
             _isHidden = false;
         }
 
