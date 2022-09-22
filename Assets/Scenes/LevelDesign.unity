@@ -58854,9 +58854,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1443757588}
   - component: {fileID: 1443757589}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider_dock (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64802,9 +64802,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1612500169}
   - component: {fileID: 1612500170}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider_dock (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76001,9 +76001,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1894128513}
   - component: {fileID: 1894128514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider_dock
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
