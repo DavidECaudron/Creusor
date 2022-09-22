@@ -219,20 +219,20 @@ namespace caca
 
         public void HideEnemy()
         {
-            _graphics.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
-            _physics.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
-            _canvas.transform.localPosition = new Vector3(100.0f, 0.0f, 100.0f);
             _navMeshAgent.enabled = false;
+            _graphics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _physics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _canvas.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
             _isHidden = true;
         }
 
         public void ShowEnemy()
         {
             _transform.position = _initialPosition;
+            _navMeshAgent.enabled = true;
             _graphics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
             _physics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
             _canvas.transform.localPosition = new Vector3(0.0f, 3.5f, 0.0f);
-            _navMeshAgent.enabled = true;
             _isHidden = false;
         }
 

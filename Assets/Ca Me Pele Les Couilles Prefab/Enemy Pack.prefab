@@ -58,9 +58,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff01ec034a3b96d49a35396d6540b7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _enemyPrefab: {fileID: 6210558268499513863, guid: a24a2c6416199fc458103c8d17e27679,
     type: 3}
   _playerTransform: {fileID: 0}
   _cameraTransform: {fileID: 0}
-  _numberOfEnemy: 5
-  _spawnAreaRange: 5
+  _enemyType: 0
+  _numberOfEnemy: 0
+  _spawnAreaRange: 0
+  _movementSpeed: 5
+  _maxHealth: 100
+  _damage: 20
+  _attackPerSecond: 1

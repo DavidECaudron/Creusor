@@ -12,6 +12,7 @@ namespace caca
 
         [Header("Others")]
         public GameObject _positions;
+        public GameObject _player;
         public Slider _sliderLeft;
         public Slider _sliderRight;
         public Image _timerImage;
@@ -83,6 +84,8 @@ namespace caca
 
         public void ChestSpawn()
         {
+            _chestPack._gameManager = this;
+
             int index = 0;
 
             _chestPackPositions = new ChestPosition[_positions.transform.childCount];
@@ -121,6 +124,10 @@ namespace caca
 
         public void EnemySpawn()
         {
+            _enemyPack._gameManager = this;
+            _enemyPack._playerTransform = _player.GetComponent<Transform>();
+            _enemyPack._cameraTransform = _player.GetComponent<Player>()._camera.transform;
+
             int index = 0;
 
             _enemyPackPositions = new EnemyPosition[_positions.transform.childCount];
