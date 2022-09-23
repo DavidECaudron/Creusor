@@ -12919,10 +12919,12 @@ MonoBehaviour:
   _abilitiesLayerMask:
     serializedVersion: 2
     m_Bits: 2049
+  _nbCoconut: 0
+  _healthRegenPercentile: 0
   _movementSpeed: 5
   _maxHealth: 100
-  _slowIntensity: 0
-  _slowDuration: 0
+  _slowIntensity: 1
+  _slowDuration: 2
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 1923795446}
@@ -27272,12 +27274,12 @@ PrefabInstance:
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
       propertyPath: _nbChestPack
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
       propertyPath: _nbEnemyPack
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}

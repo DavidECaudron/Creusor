@@ -61,15 +61,15 @@ namespace caca
 
         private void Start()
         {
+            ChestSpawn();
+            EnemySpawn();
+
             _startTime = Time.realtimeSinceStartup;
             _tempLimitTime = (float)_limitTime;
             _tempDisappearingTime = (float)_disappearingTime;
             _gold = PlayerPrefs.GetInt("Gold");
             _goldText.text = _gold.ToString();
-            _chestCounter.text = _nbChest.ToString() + " / 3";
-
-            ChestSpawn();
-            EnemySpawn();
+            _chestCounter.text = _nbChest.ToString() + "/" + _listChest.Count;
         }
 
         private void Update()
