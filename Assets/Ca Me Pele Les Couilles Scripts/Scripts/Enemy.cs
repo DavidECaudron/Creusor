@@ -24,6 +24,8 @@ namespace caca
         public NavMeshAgent _navMeshAgent;
         public Slider _healthSlider;
         public GameObject _graphics;
+        public GameObject _physics;
+        public GameObject _canvas;
         public GameObject _body;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
@@ -38,6 +40,7 @@ namespace caca
         public float _damage;
         public float _attackPerSecond;
         public bool _isAlive = true;
+        public bool _isHidden = false;
 
         #endregion
 
@@ -65,11 +68,11 @@ namespace caca
 
         private void Start()
         {
+            _initialPosition = _transform.position;
             _player = _playerTransform.GetComponent<Player>();
             _navMeshAgent.speed = _movementSpeed;
             _navMeshAgent.acceleration = _movementSpeed;
             _currentHealth = _maxHealth;
-            _initialPosition = _transform.position;
             _meshRenderer = _body.GetComponentInChildren<MeshRenderer>();
 
             if (_enemyType == EnemyType.Melee)
@@ -97,92 +100,98 @@ namespace caca
 
         public void Movement()
         {
-            if (_isAlive == true)
+            if (_isHidden == false)
             {
-                Vector3 graphicsPosition = _graphics.transform.position;
+                if (_isAlive == true)
+                {
+                    Vector3 graphicsPosition = _graphics.transform.position;
+                    Vector3 canvasPosition = _canvas.transform.position;
 
-                if (_heightIndex > 0)
-                {
-                    _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
-                }
-                else
-                {
-                    _graphics.transform.position = new Vector3(graphicsPosition.x, 1.0f, graphicsPosition.z);
-                }
-
-                if (_isPlayerInDetectionRange == true)
-                {
-                    if (_enemyType == EnemyType.Melee)
+                    if (_heightIndex > 0)
                     {
-                        if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
-                        {
-                            _isPlayerInAttackRange = false;
-                            _isAttacking = false;
-                            _navMeshAgent.SetDestination(_playerTransform.position);
-                        }
-                        else
-                        {
-                            _transform.LookAt(_playerTransform);
+                        _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
+                        _canvas.transform.position = new Vector3(canvasPosition.x, 2.5f, canvasPosition.z);
+                    }
+                    else
+                    {
+                        _graphics.transform.position = new Vector3(graphicsPosition.x, 1.0f, graphicsPosition.z);
+                        _canvas.transform.position = new Vector3(canvasPosition.x, 3.5f, canvasPosition.z);
+                    }
 
-                            _navMeshAgent.SetDestination(_transform.position);
-                            _isPlayerInAttackRange = true;
-
-                            if (_isAttacking == false)
+                    if (_isPlayerInDetectionRange == true)
+                    {
+                        if (_enemyType == EnemyType.Melee)
+                        {
+                            if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
                             {
-                                Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+                                _isPlayerInAttackRange = false;
+                                _isAttacking = false;
+                                _navMeshAgent.SetDestination(_playerTransform.position);
+                            }
+                            else
+                            {
+                                _transform.LookAt(_playerTransform);
 
-                                foreach (var hitCollider in hitColliders)
+                                _navMeshAgent.SetDestination(_transform.position);
+                                _isPlayerInAttackRange = true;
+
+                                if (_isAttacking == false)
                                 {
-                                    if (hitCollider.transform.CompareTag("player"))
-                                    {
-                                        StartCoroutine(AttackCoroutine());
-                                    }
-                                }
+                                    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
 
-                                _isAttacking = true;
+                                    foreach (var hitCollider in hitColliders)
+                                    {
+                                        if (hitCollider.transform.CompareTag("player"))
+                                        {
+                                            StartCoroutine(AttackCoroutine());
+                                        }
+                                    }
+
+                                    _isAttacking = true;
+                                }
+                            }
+                        }
+
+                        if (_enemyType == EnemyType.Ranged)
+                        {
+                            if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                            {
+                                _isPlayerInAttackRange = false;
+                                _isAttacking = false;
+                                _navMeshAgent.SetDestination(_playerTransform.position);
+                            }
+                            else
+                            {
+                                _transform.LookAt(_playerTransform);
+
+                                _navMeshAgent.SetDestination(_transform.position);
+                                _isPlayerInAttackRange = true;
+
+                                //if (_isAttacking == false)
+                                //{
+                                //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+
+                                //    foreach (var hitCollider in hitColliders)
+                                //    {
+                                //        if (hitCollider.transform.CompareTag("player"))
+                                //        {
+                                //            StartCoroutine(AttackCoroutine());
+                                //        }
+                                //    }
+
+                                //    _isAttacking = true;
+                                //}
                             }
                         }
                     }
-
-                    if (_enemyType == EnemyType.Ranged)
+                    else
                     {
-                        if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                        if (Vector3.Distance(_initialPosition, _transform.position) > 0.5f)
                         {
                             _isPlayerInAttackRange = false;
                             _isAttacking = false;
-                            _navMeshAgent.SetDestination(_playerTransform.position);
+                            _navMeshAgent.SetDestination(_initialPosition);
                         }
-                        else
-                        {
-                            _transform.LookAt(_playerTransform);
-
-                            _navMeshAgent.SetDestination(_transform.position);
-                            _isPlayerInAttackRange = true;
-
-                            //if (_isAttacking == false)
-                            //{
-                            //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
-
-                            //    foreach (var hitCollider in hitColliders)
-                            //    {
-                            //        if (hitCollider.transform.CompareTag("player"))
-                            //        {
-                            //            StartCoroutine(AttackCoroutine());
-                            //        }
-                            //    }
-
-                            //    _isAttacking = true;
-                            //}
-                        }
-                    }
-                }
-                else
-                {
-                    if (Vector3.Distance(_initialPosition, _transform.position) > 0.5f)
-                    {
-                        _isPlayerInAttackRange = false;
-                        _isAttacking = false;
-                        _navMeshAgent.SetDestination(_initialPosition);
                     }
                 }
             }
@@ -199,8 +208,7 @@ namespace caca
             else
             {
                 _isAlive = false;
-                _navMeshAgent.enabled = false;
-                _transform.position = new Vector3(-100.0f,-5.0f,-100.0f);
+                HideEnemy();
             }
         }
 
@@ -208,6 +216,25 @@ namespace caca
 
 
         #region Utils
+
+        public void HideEnemy()
+        {
+            _navMeshAgent.enabled = false;
+            _graphics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _physics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _canvas.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _isHidden = true;
+        }
+
+        public void ShowEnemy()
+        {
+            _transform.position = _initialPosition;
+            _navMeshAgent.enabled = true;
+            _graphics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            _physics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
+            _canvas.transform.localPosition = new Vector3(0.0f, 3.5f, 0.0f);
+            _isHidden = false;
+        }
 
         IEnumerator AttackCoroutine()
         {

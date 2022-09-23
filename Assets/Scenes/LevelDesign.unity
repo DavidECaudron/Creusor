@@ -91192,7 +91192,7 @@ GameObject:
   - component: {fileID: 901587991}
   m_Layer: 10
   m_Name: Water_plane_extrude
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -92806,7 +92806,7 @@ GameObject:
   - component: {fileID: 1551218103}
   m_Layer: 0
   m_Name: Area_RockBridge
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92893,7 +92893,7 @@ GameObject:
   - component: {fileID: 4496493464263664579}
   m_Layer: 0
   m_Name: RockSkull
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107141,7 +107141,7 @@ GameObject:
   - component: {fileID: 1246967048}
   m_Layer: 0
   m_Name: Area_BrokenBoat
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

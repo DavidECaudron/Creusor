@@ -246,6 +246,12 @@ namespace caca
                                 _gameManager.AddGold(chest._gold);
                                 _gameManager.AddChest(chest._nbChest);
 
+                                if (chest._isTrapped == true)
+                                {
+                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
+                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
+                                }
+
                                 chest._isTaken = true;
 
                                 Destroy(chest.gameObject, 2.0f);
@@ -342,9 +348,15 @@ namespace caca
                                 _gameManager.AddGold(chest._gold);
                                 _gameManager.AddChest(chest._nbChest);
 
+                                if (chest._isTrapped == true)
+                                {
+                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
+                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
+                                }
+
                                 chest._isTaken = true;
 
-                                Destroy(chest.gameObject, 2.0f);
+                                //Destroy(chest.gameObject, 2.0f);
                             }
                         }
 

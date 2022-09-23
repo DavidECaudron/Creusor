@@ -12,8 +12,8 @@ namespace caca
         public Transform _areaTransform;
 
         [Header("Enemy Pack")]
-        [Range(0, 10)] public int _numberOfChest;
-        [Range(0, 5)] public int _spawnAreaRange;
+        public int _numberOfChest;
+        [Range(0, 10)] public int _spawnAreaRange;
 
         #endregion
 
@@ -33,13 +33,10 @@ namespace caca
         {
             _transform = gameObject.GetComponent<Transform>();
             _sphereCollider = GetComponent<SphereCollider>();
-        }
 
-        private void Start()
-        {
-            _sphereCollider.radius = _spawnAreaRange * 3;
+            _sphereCollider.radius = _spawnAreaRange;
 
-            float tempSize = _sphereCollider.radius / 5;
+            float tempSize = (_sphereCollider.radius / 3) + 0.5f;
 
             _areaTransform.localScale = new Vector3(tempSize, _areaTransform.localScale.y, tempSize);
 
@@ -70,6 +67,29 @@ namespace caca
                 _gameManager.AddChestInTable(chestClone);
 
                 _chestTable[i] = chestClone;
+            }
+        }
+
+        #endregion
+
+
+        #region Util
+
+        public void TrapChest(int indexChestPack, int indexEnemyPack)
+        {
+            for (int i = 0; i < _chestTable.Length; i++)
+            {
+                _chestTable[i]._isTrapped = true;
+                _chestTable[i]._indexChestPack = indexChestPack;
+                _chestTable[i]._indexEnemyPack = indexEnemyPack;
+            }
+        }
+
+        public void UnTrapChest()
+        {
+            for (int i = 0; i < _chestTable.Length; i++)
+            {
+                _chestTable[i]._isTrapped = false;
             }
         }
 

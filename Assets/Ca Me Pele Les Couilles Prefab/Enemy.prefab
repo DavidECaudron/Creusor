@@ -269,6 +269,8 @@ MonoBehaviour:
   _navMeshAgent: {fileID: 0}
   _healthSlider: {fileID: 3456304991499210290}
   _graphics: {fileID: 6210558270163703876}
+  _physics: {fileID: 6210558269752369396}
+  _canvas: {fileID: 3302524708769165587}
   _body: {fileID: 7744243912390240525}
   _meleeModel: {fileID: 7744243911520967659}
   _rangedModel: {fileID: 7744243911457334323}
@@ -281,6 +283,7 @@ MonoBehaviour:
   _damage: 20
   _attackPerSecond: 1
   _isAlive: 1
+  _isHidden: 0
 --- !u!54 &2120911041552032690
 Rigidbody:
   m_ObjectHideFlags: 0

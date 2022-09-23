@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c2c9ecb24ece64ebd8b77988b7815b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _chestPrefab: {fileID: 4631688490005184602, guid: 0fb356eafddb07f4c9427f4b8dc837bf,
     type: 3}
   _areaTransform: {fileID: 1670895319688011358}
