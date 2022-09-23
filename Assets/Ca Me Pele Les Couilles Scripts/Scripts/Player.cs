@@ -356,7 +356,7 @@ namespace caca
 
                                 chest._isTaken = true;
 
-                                //Destroy(chest.gameObject, 2.0f);
+                                Destroy(chest.gameObject, 2.0f);
                             }
                         }
 
