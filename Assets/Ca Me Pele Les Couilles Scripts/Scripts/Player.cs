@@ -20,6 +20,8 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
 
         [Header("Player")]
+        public int _nbCoconut = 0;
+        [Range(0.0f, 1.0f)] public float _healthRegenPercentile;
         public float _movementSpeed;
         public float _maxHealth;
         public float _slowIntensity;
@@ -385,7 +387,11 @@ namespace caca
         {
             if (context.performed)
             {
-
+                if (_nbCoconut > 0)
+                {
+                    _nbCoconut -= 1;
+                    _currentHealth *= _healthRegenPercentile;
+                }
             }
 
             if (context.canceled)
