@@ -51,9 +51,9 @@ namespace caca
         private Transform _transform;
         private Transform _enemyTransform;
 
-        private Vector2 _mousePosition = new Vector2(0.0f, 0.0f);
-        private Vector3 _nextPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        private Vector3 _lookPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        private Vector2 _mousePosition = new (0.0f, 0.0f);
+        private Vector3 _nextPosition = new (0.0f, 0.0f, 0.0f);
+        private Vector3 _lookPosition = new (0.0f, 0.0f, 0.0f);
         private Ray _ray;
         private RaycastHit _hit;
 
@@ -139,7 +139,7 @@ namespace caca
 
                 direction = _nextPosition - _transform.position;
 
-                _transform.Translate(direction.normalized * _movementSpeed * Time.deltaTime);
+                _transform.Translate(_movementSpeed * Time.deltaTime * direction.normalized);
             }
             else
             {
@@ -160,7 +160,7 @@ namespace caca
 
                     direction = _nextPosition - _transform.position;
 
-                    _transform.Translate(direction.normalized * _movementSpeed * Time.deltaTime);
+                    _transform.Translate(_movementSpeed * Time.deltaTime * direction.normalized);
                 }
                 else
                 {
@@ -409,10 +409,8 @@ namespace caca
         {
             while (_isLeftClicking == true)
             {
-                RaycastHit value;
-
                 _ray = _camera.ScreenPointToRay(_mousePosition);
-                Physics.Raycast(_ray, out value, Mathf.Infinity, _leftMouseButtonLayerMask);
+                Physics.Raycast(_ray, out RaycastHit value, Mathf.Infinity, _leftMouseButtonLayerMask);
 
                 _hit = value;
 
@@ -446,10 +444,8 @@ namespace caca
         {
             while (_isUsingAbility == true)
             {
-                RaycastHit value;
-
                 _ray = _camera.ScreenPointToRay(_mousePosition);
-                Physics.Raycast(_ray, out value, Mathf.Infinity, _abilitiesLayerMask);
+                Physics.Raycast(_ray, out RaycastHit value, Mathf.Infinity, _abilitiesLayerMask);
 
                 _hit = value;
 

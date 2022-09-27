@@ -59,7 +59,7 @@ namespace caca
                 int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
                 int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
 
-                Vector3 randomPos = new Vector3(_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
+                Vector3 randomPos = new (_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
 
                 GameObject clone = Instantiate(_enemyPrefab, randomPos, _transform.rotation, _transform);
                 Enemy enemyClone = clone.GetComponent<Enemy>();

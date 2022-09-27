@@ -25,7 +25,7 @@ namespace caca
         public Slider _healthSlider;
         public GameObject _graphics;
         public GameObject _physics;
-        public GameObject _canvas;
+        public GameObject _healthBar;
         public GameObject _body;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
@@ -88,7 +88,8 @@ namespace caca
 
         private void LateUpdate()
         {
-            _healthSliderTransform.LookAt(new Vector3(_transform.position.x, _cameraTransform.position.y, _cameraTransform.position.z));
+            Vector3 lookAtPosition = new (_transform.position.x, _cameraTransform.position.y, _cameraTransform.position.z);
+            _healthSliderTransform.LookAt(lookAtPosition);
 
             Movement();
         }
@@ -105,17 +106,17 @@ namespace caca
                 if (_isAlive == true)
                 {
                     Vector3 graphicsPosition = _graphics.transform.position;
-                    Vector3 canvasPosition = _canvas.transform.position;
+                    Vector3 healthBarPosition = _healthBar.transform.position;
 
                     if (_heightIndex > 0)
                     {
-                        _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
-                        _canvas.transform.position = new Vector3(canvasPosition.x, 2.5f, canvasPosition.z);
+                        _graphics.transform.position = new (graphicsPosition.x, 0.0f, graphicsPosition.z);
+                        _healthBar.transform.position = new (healthBarPosition.x, 2.5f, healthBarPosition.z);
                     }
                     else
                     {
-                        _graphics.transform.position = new Vector3(graphicsPosition.x, 1.0f, graphicsPosition.z);
-                        _canvas.transform.position = new Vector3(canvasPosition.x, 3.5f, canvasPosition.z);
+                        _graphics.transform.position = new (graphicsPosition.x, 1.0f, graphicsPosition.z);
+                        _healthBar.transform.position = new (healthBarPosition.x, 3.5f, healthBarPosition.z);
                     }
 
                     if (_isPlayerInDetectionRange == true)
@@ -220,9 +221,9 @@ namespace caca
         public void HideEnemy()
         {
             _navMeshAgent.enabled = false;
-            _graphics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
-            _physics.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
-            _canvas.transform.position = new Vector3(100.0f, 0.0f, 100.0f);
+            _graphics.transform.position = new (100.0f, 0.0f, 100.0f);
+            _physics.transform.position = new (100.0f, 0.0f, 100.0f);
+            _healthBar.transform.position = new (100.0f, 0.0f, 100.0f);
             _isHidden = true;
         }
 
@@ -230,9 +231,9 @@ namespace caca
         {
             _transform.position = _initialPosition;
             _navMeshAgent.enabled = true;
-            _graphics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
-            _physics.transform.localPosition = new Vector3(0.0f, 1.0f, 0.0f);
-            _canvas.transform.localPosition = new Vector3(0.0f, 3.5f, 0.0f);
+            _graphics.transform.localPosition = new (0.0f, 1.0f, 0.0f);
+            _physics.transform.localPosition = new (0.0f, 1.0f, 0.0f);
+            _healthBar.transform.localPosition = new (0.0f, 3.5f, 0.0f);
             _isHidden = false;
         }
 

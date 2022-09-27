@@ -28,8 +28,8 @@ namespace caca
         [Header("Game Manager")]
         public int _limitTime;
         public int _disappearingTime;
-        public List<Chest> _listChest = new List<Chest>();
-        public List<Enemy> _listEnemy = new List<Enemy>();
+        public List<Chest> _listChest = new ();
+        public List<Enemy> _listEnemy = new ();
         public float _buffMultiplier;
 
         [Header("Enemy Pack")]

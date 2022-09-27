@@ -3486,6 +3486,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dock_B
       objectReference: {fileID: 0}
+    - target: {fileID: 5559703248712656790, guid: 521cf851b2572427ab9e9010ae90db9f,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521cf851b2572427ab9e9010ae90db9f, type: 3}
 --- !u!1001 &205743406
@@ -4384,6 +4389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dock_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559703248712656790, guid: 521cf851b2572427ab9e9010ae90db9f,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521cf851b2572427ab9e9010ae90db9f, type: 3}
@@ -27757,6 +27767,8 @@ MonoBehaviour:
   _abilitiesLayerMask:
     serializedVersion: 2
     m_Bits: 2049
+  _nbCoconut: 0
+  _healthRegenPercentile: 0
   _movementSpeed: 5
   _maxHealth: 1000
   _slowIntensity: 1
