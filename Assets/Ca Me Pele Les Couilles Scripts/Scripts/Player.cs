@@ -15,6 +15,7 @@ namespace caca
         public Transform _abilitiesClone;
         public Transform _graphics;
         public Image _healthImage;
+        public Image _healthImageBackground;
         public Animator _animator;
         public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
@@ -61,6 +62,7 @@ namespace caca
         private bool _isUsingAbility = false;
         private bool _isTargetingGround = false;
         private bool _isTargetingEnemy = false;
+        private bool _isCalculatingHealth = false;
         private bool _hasBeenHit = false;
         private float _timeCheckRightButton = 0.0f;
         private float _timeCheckShockwave = 0.0f;
@@ -188,6 +190,7 @@ namespace caca
                 _currentHealth -= damage;
 
                 StartCoroutine(SlowCoroutine());
+                StartCoroutine(HealthBarCoroutine());
 
                 _hasBeenHit = true;
             }
@@ -475,6 +478,25 @@ namespace caca
                 _movementSpeed += _slowIntensity;
 
                 _hasBeenHit = false;
+            }
+        }
+
+        IEnumerator HealthBarCoroutine()
+        {
+            if (_isCalculatingHealth == false)
+            {
+                _isCalculatingHealth = true;
+
+                yield return new WaitForSecondsRealtime(3.0f);
+
+                while (_healthImageBackground.fillAmount > _healthImage.fillAmount)
+                {
+                    _healthImageBackground.fillAmount -= 0.05f * Time.deltaTime;
+
+                    yield return new WaitForSecondsRealtime(0.01f);
+                }
+
+                _isCalculatingHealth = false;
             }
         }
 

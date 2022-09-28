@@ -190,6 +190,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &4112172745391424699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6377600677895957852}
+  m_Layer: 8
+  m_Name: Projectile Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6377600677895957852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112172745391424699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6210558268499514104}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5175197439996567493
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +302,8 @@ Transform:
   - {fileID: 6210558269752369397}
   - {fileID: 5872404319752127190}
   - {fileID: 6420050357027672290}
-  - {fileID: 5993004487710316281}
+  - {fileID: 6377600677895957852}
+  - {fileID: 6629121594291238708}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 0}
   _cameraTransform: {fileID: 0}
-  _attackDetection: {fileID: 5993004487710316281}
+  _attackDetection: {fileID: 6629121594291238708}
   _transform: {fileID: 0}
   _navMeshAgent: {fileID: 0}
   _healthSlider: {fileID: 3456304991499210290}
@@ -321,6 +353,10 @@ MonoBehaviour:
   _body: {fileID: 7744243912390240525}
   _meleeModel: {fileID: 7744243911520967659}
   _rangedModel: {fileID: 7744243911457334323}
+  _enemyProjectile: {fileID: 7318216793362743927, guid: 9adc8c2951bf21042a175ff7555c2607,
+    type: 3}
+  _projectileBin: {fileID: 0}
+  _projectileSpawn: {fileID: 6377600677895957852}
   _initialPosition: {x: 0, y: 0, z: 0}
   _isPlayerInDetectionRange: 0
   _enemyType: 0
@@ -328,7 +364,8 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 0
   _damage: 20
-  _attackPerSecond: 1
+  _attackPerSecondMelee: 0
+  _attackPerSecondRanged: 0
   _isAlive: 1
   _isHidden: 0
 --- !u!54 &2120911041552032690
@@ -457,37 +494,6 @@ Transform:
   m_Father: {fileID: 6210558268499514104}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6252264536899911004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5993004487710316281}
-  m_Layer: 8
-  m_Name: AttackDetection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5993004487710316281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6252264536899911004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6210558268499514104}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6459859203190075737
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +608,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 12.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7792771777136161088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6629121594291238708}
+  m_Layer: 8
+  m_Name: Attack Detection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6629121594291238708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792771777136161088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6210558268499514104}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9053705539360152014
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +781,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463763234372, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463835373980, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32afb922b692bd840b247b0dc8a8bc2c, type: 3}

@@ -14,12 +14,15 @@ namespace caca
 
         [Header("Enemy Pack")]
         public EnemyType _enemyType;
-        public int _numberOfEnemy;
+        public int _numberOfEnemyMelee;
+        public int _numberOfEnemyRanged;
         [Range(0, 5)] public int _spawnAreaRange;
         public float _movementSpeed;
         public float _maxHealth;
-        public float _damage;
-        public float _attackPerSecond;
+        public float _damageMelee;
+        public float _damageRanged;
+        public float _attackPerSecondMelee;
+        public float _attackPerSecondRanged;
 
         #endregion
 
@@ -52,9 +55,13 @@ namespace caca
 
         public void SpawnEnemies()
         {
-            _enemyTable = new Enemy[_numberOfEnemy];
+            int temp = _numberOfEnemyMelee + _numberOfEnemyRanged;
 
-            for (int i = 0; i < _numberOfEnemy; i += 1)
+            _enemyTable = new Enemy[temp];
+
+            _enemyType = EnemyType.Melee;
+
+            for (int i = 0; i < _numberOfEnemyMelee; i += 1)
             {
                 int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
                 int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
@@ -69,12 +76,39 @@ namespace caca
                 enemyClone._enemyType = _enemyType;
                 enemyClone._movementSpeed = _movementSpeed;
                 enemyClone._maxHealth = _maxHealth;
-                enemyClone._damage = _damage;
-                enemyClone._attackPerSecond = _attackPerSecond;
+                enemyClone._damageMelee = _damageMelee;
+                enemyClone._attackPerSecondMelee = _attackPerSecondMelee;
 
                 _gameManager.AddEnemyInTable(enemyClone);
 
                 _enemyTable[i] = enemyClone;
+            }
+
+            _enemyType = EnemyType.Ranged;
+
+            for (int i = 0; i < _numberOfEnemyRanged; i += 1)
+            {
+                int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
+                int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
+
+                Vector3 randomPos = new(_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
+
+                GameObject clone = Instantiate(_enemyPrefab, randomPos, _transform.rotation, _transform);
+                Enemy enemyClone = clone.GetComponent<Enemy>();
+
+                enemyClone._playerTransform = _playerTransform;
+                enemyClone._cameraTransform = _cameraTransform;
+                enemyClone._enemyType = _enemyType;
+                enemyClone._movementSpeed = _movementSpeed;
+                enemyClone._maxHealth = _maxHealth;
+                enemyClone._damageRanged = _damageRanged;
+                enemyClone._attackPerSecondRanged = _attackPerSecondRanged;
+
+                _gameManager.AddEnemyInTable(enemyClone);
+
+                int tempI = i + _numberOfEnemyMelee;
+
+                _enemyTable[tempI] = enemyClone;
             }
         }
 

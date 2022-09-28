@@ -144,7 +144,8 @@ namespace caca
             {
                 int random = Random.Range(0, _enemyPackPositions.Length);
 
-                _enemyPack._numberOfEnemy = _enemyPackPositions[random]._nbEnemy;
+                _enemyPack._numberOfEnemyRanged = _enemyPackPositions[random]._nbEnemyMelee;
+                _enemyPack._numberOfEnemyMelee = _enemyPackPositions[random]._nbEnemyRanged;
                 _enemyPack._spawnAreaRange = _enemyPackPositions[random]._spawnAreaRange;
 
                 if (_enemyPackPositions[random]._hasBeenUsed == false)
@@ -227,7 +228,8 @@ namespace caca
                 item._maxHealth *= _buffMultiplier;
                 item._currentHealth = item._maxHealth;
                 item._healthSlider.value = item._currentHealth / item._maxHealth;
-                item._damage *= _buffMultiplier;
+                item._damageMelee *= _buffMultiplier;
+                item._damageRanged *= _buffMultiplier;
                 item._movementSpeed *= _buffMultiplier;
 
                 _hasBeenBuff = true;

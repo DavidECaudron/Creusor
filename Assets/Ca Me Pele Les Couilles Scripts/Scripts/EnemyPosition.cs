@@ -13,7 +13,8 @@ namespace caca
         public Transform _transform;
 
         [Header("Enemy Pack")]
-        public int _nbEnemy = 0;
+        public int _nbEnemyMelee = 0;
+        public int _nbEnemyRanged = 0;
         [Range(0, 10)] public int _spawnAreaRange;
 
         #endregion

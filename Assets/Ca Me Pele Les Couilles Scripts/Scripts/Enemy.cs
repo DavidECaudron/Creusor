@@ -29,6 +29,9 @@ namespace caca
         public GameObject _body;
         public GameObject _meleeModel;
         public GameObject _rangedModel;
+        public GameObject _enemyProjectile;
+        public Transform _projectileBin;
+        public Transform _projectileSpawn;
         public Vector3 _initialPosition;
         public bool _isPlayerInDetectionRange = false;
 
@@ -37,8 +40,10 @@ namespace caca
         public float _movementSpeed;
         public float _maxHealth;
         public float _currentHealth;
-        public float _damage;
-        public float _attackPerSecond;
+        public float _damageMelee;
+        public float _damageRanged;
+        public float _attackPerSecondMelee;
+        public float _attackPerSecondRanged;
         public bool _isAlive = true;
         public bool _isHidden = false;
 
@@ -53,6 +58,7 @@ namespace caca
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
+        private int _attackIndex;
 
         #endregion
 
@@ -138,17 +144,17 @@ namespace caca
 
                                 if (_isAttacking == false)
                                 {
+                                    _isAttacking = true;
+
                                     Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
 
                                     foreach (var hitCollider in hitColliders)
                                     {
                                         if (hitCollider.transform.CompareTag("player"))
                                         {
-                                            StartCoroutine(AttackCoroutine());
+                                            StartCoroutine(AttackCoroutineMelee());
                                         }
                                     }
-
-                                    _isAttacking = true;
                                 }
                             }
                         }
@@ -168,20 +174,12 @@ namespace caca
                                 _navMeshAgent.SetDestination(_transform.position);
                                 _isPlayerInAttackRange = true;
 
-                                //if (_isAttacking == false)
-                                //{
-                                //    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+                                if (_isAttacking == false)
+                                {
+                                    _isAttacking = true;
 
-                                //    foreach (var hitCollider in hitColliders)
-                                //    {
-                                //        if (hitCollider.transform.CompareTag("player"))
-                                //        {
-                                //            StartCoroutine(AttackCoroutine());
-                                //        }
-                                //    }
-
-                                //    _isAttacking = true;
-                                //}
+                                    StartCoroutine(AttackCoroutineRanged());
+                                }
                             }
                         }
                     }
@@ -237,14 +235,40 @@ namespace caca
             _isHidden = false;
         }
 
-        IEnumerator AttackCoroutine()
+        IEnumerator AttackCoroutineMelee()
         {
-            while (_isAlive == true && _isPlayerInAttackRange == true)
+            if (_attackIndex == 0)
             {
-                _player.TakeDamage(_damage);
+                _attackIndex += 1;
 
-                yield return new WaitForSecondsRealtime(1 / _attackPerSecond);
+                while (_isAlive == true && _isPlayerInAttackRange == true)
+                {
+                    _player.TakeDamage(_damageMelee);
+
+                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondMelee);
+                }
             }
+
+            _attackIndex -= 1;
+        }
+
+        IEnumerator AttackCoroutineRanged()
+        {
+            if (_attackIndex == 0)
+            {
+                _attackIndex += 1;
+
+                while (_isAlive == true && _isPlayerInAttackRange == true)
+                {
+                    GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
+
+                    clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
+
+                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondRanged);
+                }
+            }
+
+            _attackIndex -= 1;
         }
 
         IEnumerator DamageFeedback()
@@ -267,6 +291,16 @@ namespace caca
             {
                 _heightIndex += 1;
             }
+
+            //if (other.CompareTag("player"))
+            //{
+            //    if (_isAttacking == false)
+            //    {
+            //        StartCoroutine(AttackCoroutineRanged());
+
+            //        _isAttacking = true;
+            //    }
+            //}
         }
 
         private void OnTriggerExit(Collider other)
@@ -280,6 +314,11 @@ namespace caca
             {
                 _heightIndex -= 1;
             }
+
+            //if (other.CompareTag("player"))
+            //{
+            //    _isAttacking = false;
+            //}
         }
 
         #endregion
