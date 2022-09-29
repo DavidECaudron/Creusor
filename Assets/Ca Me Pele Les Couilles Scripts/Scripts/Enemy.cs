@@ -207,6 +207,7 @@ namespace caca
             else
             {
                 _isAlive = false;
+                _player._isInAttackRange = false;
                 HideEnemy();
             }
         }

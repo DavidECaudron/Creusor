@@ -19,14 +19,21 @@ namespace caca
         public Animator _animator;
         public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
+        public bool _isInAttackRange = false;
 
         [Header("Player")]
         public int _nbCoconut = 0;
         [Range(0.0f, 1.0f)] public float _healthRegenPercentile;
         public float _movementSpeed;
         public float _maxHealth;
+        public float _healthTimeBeforeUpdate;
         public float _slowIntensity;
         public float _slowDuration;
+
+        [Header("Left Button")]
+        public Image _leftButtonCooldownImage;
+        public int _leftButtonDamage;
+        public float _leftButtonCooldown;
 
         [Header("Right Button")]
         public GameObject _rightButtonPrefab;
@@ -64,6 +71,7 @@ namespace caca
         private bool _isTargetingEnemy = false;
         private bool _isCalculatingHealth = false;
         private bool _hasBeenHit = false;
+        private float _timeCheckLeftButton = 0.0f;
         private float _timeCheckRightButton = 0.0f;
         private float _timeCheckShockwave = 0.0f;
         private float _currentHealth;
@@ -82,6 +90,7 @@ namespace caca
 
         private void Start()
         {
+            _timeCheckLeftButton = -_leftButtonCooldown;
             _timeCheckRightButton = -_rightButtonCooldown;
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
@@ -91,7 +100,16 @@ namespace caca
         {
             Movement();
 
-            if ((Time.time - _timeCheckRightButton) / _rightButtonCooldown <= 1.1f)
+            if ((Time.time - _timeCheckLeftButton) / _leftButtonCooldown <= 1.05f)
+            {
+                _leftButtonCooldownImage.fillAmount = (Time.time - _timeCheckLeftButton) / _leftButtonCooldown;
+            }
+            else
+            {
+                _leftButtonCooldownImage.fillAmount = 0.0f;
+            }
+
+            if ((Time.time - _timeCheckRightButton) / _rightButtonCooldown <= 1.05f)
             {
                 _rightButtonCooldownImage.fillAmount = (Time.time - _timeCheckRightButton) / _rightButtonCooldown;
             }
@@ -100,7 +118,7 @@ namespace caca
                 _rightButtonCooldownImage.fillAmount = 0.0f;
             }
 
-            if ((Time.time - _timeCheckShockwave) / _shockwaveCooldown <= 1.1f)
+            if ((Time.time - _timeCheckShockwave) / _shockwaveCooldown <= 1.05f)
             {
                 _shockwaveCooldownImage.fillAmount = (Time.time - _timeCheckShockwave) / _shockwaveCooldown;
             }
@@ -158,6 +176,8 @@ namespace caca
 
                 if (Vector3.Distance(_transform.position, _nextPosition) > 2.0f)
                 {
+                    _isInAttackRange = false;
+
                     _animator.SetBool("_isRunning", true);
 
                     direction = _nextPosition - _transform.position;
@@ -166,6 +186,8 @@ namespace caca
                 }
                 else
                 {
+                    _isInAttackRange = true;
+
                     _animator.SetBool("_isRunning", false);
                 }
             }
@@ -200,6 +222,11 @@ namespace caca
             }
         }
 
+        public void AttackEnemy()
+        {
+
+        }
+
         #endregion
 
 
@@ -210,7 +237,20 @@ namespace caca
             if (context.performed)
             {
                 _isLeftClicking = true;
+
                 StartCoroutine(CastNextPositionCoroutine());
+
+                if (_isInAttackRange == true)
+                {
+                    if (Time.time >= _leftButtonCooldown + _timeCheckLeftButton)
+                    {
+                        StartCoroutine(AttackAnimationCoroutine());
+
+                        _enemyTransform.GetComponent<Enemy>().TakeDamage(_leftButtonDamage);
+
+                        _timeCheckLeftButton = Time.time;
+                    }
+                }
             }
 
             if (context.canceled)
@@ -435,12 +475,21 @@ namespace caca
                         _isTargetingEnemy = true;
                         _isTargetingGround = false;
 
-                        _enemyTransform = _hit.transform.parent.parent;
+                        _enemyTransform = _hit.transform;
                     }
                 }
 
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        IEnumerator AttackAnimationCoroutine()
+        {
+            _animator.SetBool("_isSlashing", true);
+
+            yield return new WaitForSeconds(_leftButtonCooldown);
+
+            _animator.SetBool("_isSlashing", false);
         }
 
         IEnumerator CastLookPositionCoroutine()
@@ -487,7 +536,7 @@ namespace caca
             {
                 _isCalculatingHealth = true;
 
-                yield return new WaitForSecondsRealtime(3.0f);
+                yield return new WaitForSecondsRealtime(_healthTimeBeforeUpdate);
 
                 while (_healthImageBackground.fillAmount > _healthImage.fillAmount)
                 {
@@ -499,6 +548,8 @@ namespace caca
                 _isCalculatingHealth = false;
             }
         }
+
+
 
         private void OnTriggerEnter(Collider other)
         {

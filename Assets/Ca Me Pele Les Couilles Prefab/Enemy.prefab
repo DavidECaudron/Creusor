@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6988065068712154946}
   - component: {fileID: 5380748977006710040}
   - component: {fileID: 2055756473592945163}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2249249384091921751}
   - component: {fileID: 3456304991499210290}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Health Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6377600677895957852}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Projectile Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5872404319752127190}
   - component: {fileID: 9202444322543344936}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: HealthAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,9 +279,9 @@ GameObject:
   - component: {fileID: 6210558268499514106}
   - component: {fileID: 6210558268499514105}
   - component: {fileID: 2120911041552032690}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,7 +363,8 @@ MonoBehaviour:
   _movementSpeed: 7
   _maxHealth: 100
   _currentHealth: 0
-  _damage: 20
+  _damageMelee: 0
+  _damageRanged: 0
   _attackPerSecondMelee: 0
   _attackPerSecondRanged: 0
   _isAlive: 1
@@ -393,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6210558269752369397}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,10 +459,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.8
+  m_Height: 2.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6210558270163703876
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6210558270163703877}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +506,7 @@ GameObject:
   - component: {fileID: 1267023948097222762}
   - component: {fileID: 3840778365383336987}
   - component: {fileID: 5368084498294806885}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Health Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3800470401575102239}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6629121594291238708}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Attack Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +651,7 @@ GameObject:
   - component: {fileID: 4284727368866101333}
   - component: {fileID: 8687698773073104116}
   - component: {fileID: 4334268655482423137}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,6 +723,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6210558270163703877}
     m_Modifications:
+    - target: {fileID: 1670498190594015681, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849877596338770219, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439143957336557688, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2902546462336591189, guid: 32afb922b692bd840b247b0dc8a8bc2c,
         type: 3}
       propertyPath: m_RootOrder
@@ -782,6 +798,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGhost
       objectReference: {fileID: 0}
+    - target: {fileID: 2902546462336591190, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463426628770, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463430682671, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463431349054, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463498096043, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463763234372, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2902546463763234372, guid: 32afb922b692bd840b247b0dc8a8bc2c,
         type: 3}
       propertyPath: m_IsActive
@@ -789,8 +835,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2902546463835373980, guid: 32afb922b692bd840b247b0dc8a8bc2c,
         type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463835373980, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902546463979266208, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32afb922b692bd840b247b0dc8a8bc2c, type: 3}
