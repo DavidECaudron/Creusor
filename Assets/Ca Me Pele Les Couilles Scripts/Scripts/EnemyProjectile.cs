@@ -57,6 +57,7 @@ namespace caca
             if (other.CompareTag("player"))
             {
                 other.transform.parent.parent.GetComponent<Player>().TakeDamage(_damage);
+                Destroy(gameObject);
             }
         }
 

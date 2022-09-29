@@ -81,7 +81,7 @@ MonoBehaviour:
   _nextPosition: {x: 0, y: 0, z: 0}
   _damage: 0
   _movementSpeed: 4
-  _timeBeforeDestroy: 5
+  _timeBeforeDestroy: 3
 --- !u!135 &2062906560796135385
 SphereCollider:
   m_ObjectHideFlags: 0
