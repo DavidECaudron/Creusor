@@ -40651,7 +40651,7 @@ MonoBehaviour:
   _hasBeenUsed: 0
   _transform: {fileID: 0}
   _nbEnemyMelee: 0
-  _nbEnemyRanged: 4
+  _nbEnemyRanged: 2
   _spawnAreaRange: 2
 --- !u!1 &6106567406733906095
 GameObject:
