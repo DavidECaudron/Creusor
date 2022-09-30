@@ -12968,7 +12968,7 @@ MonoBehaviour:
     m_Bits: 2049
   _isInAttackRange: 0
   _nbCoconut: 0
-  _healthRegenPercentile: 0
+  _healthRegenPercentile: 0.35
   _movementSpeed: 5
   _maxHealth: 100
   _healthTimeBeforeUpdate: 0
