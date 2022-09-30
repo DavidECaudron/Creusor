@@ -41027,8 +41027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasBeenUsed: 0
   _transform: {fileID: 0}
-  _nbEnemyMelee: 3
-  _nbEnemyRanged: 3
+  _nbEnemyMelee: 1
+  _nbEnemyRanged: 1
   _spawnAreaRange: 5
 --- !u!1 &6106567407348778925
 GameObject:
