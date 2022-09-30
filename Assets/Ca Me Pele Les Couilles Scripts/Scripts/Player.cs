@@ -436,7 +436,7 @@ namespace caca
             {
                 if (_nbCoconut > 0)
                 {
-                    if (_currentHealth + _maxHealth * _healthRegenPercentile <= _maxHealth)
+                    if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
                     {
                         _currentHealth += _maxHealth * _healthRegenPercentile;
 
@@ -457,8 +457,6 @@ namespace caca
                             _nbCoconut -= 1;
                         }
                     }
-
-                    Debug.Log(_nbCoconut);
                 }
             }
 
