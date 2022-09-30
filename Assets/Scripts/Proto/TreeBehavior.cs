@@ -14,9 +14,6 @@ namespace proto
         GameObject leavesGroup;
         public float thrust = 10f;
 
-        //Change to DigMask Pos (Send as parameter when trigger call "DestroyTree()")
-        public Transform digMask;
-
         bool hideFragments = false;
 
         float timer = 0.5f;
