@@ -297,9 +297,11 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
+                                chest._mask.SetActive(true);
+                                chest._areaMask.SetActive(false);
                                 chest._isTaken = true;
 
-                                Destroy(chest.gameObject, 2.0f);
+                                chest._animator.SetBool("RevealChest", true);
                             }
                         }
 
@@ -399,9 +401,11 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
+                                chest._mask.SetActive(true);
+                                chest._areaMask.SetActive(false);
                                 chest._isTaken = true;
 
-                                Destroy(chest.gameObject, 2.0f);
+                                chest._animator.SetBool("RevealChest", true);
                             }
                         }
 
@@ -432,11 +436,27 @@ namespace caca
             {
                 if (_nbCoconut > 0)
                 {
-                    _nbCoconut -= 1;
-                    _currentHealth += _maxHealth * _healthRegenPercentile;
+                    if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
+                    {
+                        _currentHealth += _maxHealth * _healthRegenPercentile;
 
-                    _healthImage.fillAmount = (_currentHealth / _maxHealth);
-                    _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
+                        _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                        _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
+
+                        _nbCoconut -= 1;
+                    }
+                    else
+                    {
+                        if (_currentHealth < _maxHealth)
+                        {
+                            _currentHealth = _maxHealth;
+
+                            _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+
+                            _nbCoconut -= 1;
+                        }
+                    }
                 }
             }
 

@@ -8,6 +8,9 @@ namespace caca
     {
         #region Inspector
 
+        public Animator _animator;
+        public GameObject _mask;
+        public GameObject _areaMask;
         public bool _isTaken = false;
         public bool _isTrapped = false;
         public int _gold;
