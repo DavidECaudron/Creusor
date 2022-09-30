@@ -63,6 +63,7 @@ namespace caca
                 Chest chestClone = clone.GetComponent<Chest>();
 
                 chestClone.transform.localScale *= 0.75f;
+                chestClone._areaMask = _areaTransform.gameObject;
 
                 _gameManager.AddChestInTable(chestClone);
 

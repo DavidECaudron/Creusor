@@ -297,9 +297,11 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
+                                chest._mask.SetActive(true);
+                                chest._areaMask.SetActive(false);
                                 chest._isTaken = true;
 
-                                Destroy(chest.gameObject, 2.0f);
+                                chest._animator.SetBool("RevealChest", true);
                             }
                         }
 
@@ -399,9 +401,11 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
+                                chest._mask.SetActive(true);
+                                chest._areaMask.SetActive(false);
                                 chest._isTaken = true;
 
-                                Destroy(chest.gameObject, 2.0f);
+                                chest._animator.SetBool("RevealChest", true);
                             }
                         }
 
