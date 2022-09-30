@@ -433,7 +433,7 @@ namespace caca
                 if (_nbCoconut > 0)
                 {
                     _nbCoconut -= 1;
-                    _currentHealth *= _healthRegenPercentile;
+                    _currentHealth += _maxHealth * _healthRegenPercentile;
                 }
             }
 
@@ -561,6 +561,12 @@ namespace caca
             if (other.CompareTag("shockwaveMask"))
             {
                 _heightIndex += 1;
+            }
+
+            if (other.CompareTag("coconut"))
+            {
+                _nbCoconut += 1;
+                Destroy(other.gameObject);
             }
         }
 
