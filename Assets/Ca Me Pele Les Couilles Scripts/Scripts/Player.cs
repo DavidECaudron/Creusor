@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using proto;
 
 namespace caca
 {
@@ -276,7 +277,7 @@ namespace caca
 
                 if (Time.time >= _rightButtonCooldown + _timeCheckRightButton)
                 {
-                    Instantiate(_rightButtonPrefab, _rightButtonSpawn.position, _rightButtonSpawn.rotation, _abilitiesClone);
+                    GameObject clone = Instantiate(_rightButtonPrefab, _rightButtonSpawn.position, _rightButtonSpawn.rotation, _abilitiesClone);
 
                     Collider[] hitColliders = Physics.OverlapSphere(_rightButtonSpawn.position, 1.0f);
 
@@ -297,11 +298,58 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
-                                chest._mask.SetActive(true);
-                                chest._areaMask.SetActive(false);
+                                if(chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
                                 chest._isTaken = true;
 
-                                chest._animator.SetBool("RevealChest", true);
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
+                            }
+                        }
+
+                        if (hit.CompareTag("retrievable"))
+                        {
+                            Chest chest = hit.transform.GetComponent<Chest>();
+
+                            if (chest._isTaken == false)
+                            {
+                                _gameManager.AddGold(chest._gold);
+                                _gameManager.AddChest(chest._nbChest);
+
+                                if (chest._isTrapped == true)
+                                {
+                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
+                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
+                                }
+
+                                if (chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
+                                chest._isTaken = true;
+
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
+
+                                Destroy(hit.gameObject, 2.0f);
                             }
                         }
 
@@ -312,7 +360,14 @@ namespace caca
 
                         if (hit.CompareTag("destructible"))
                         {
-                            hit.gameObject.SetActive(false);
+                            //hit.gameObject.SetActive(false);
+
+                            TreeBehavior treeBehavior = hit.GetComponent<TreeBehavior>();
+
+                            if (treeBehavior != null)
+                            {
+                                treeBehavior.DestroyTree(clone.transform.position);
+                            }
                         }
 
                         //if (hit.CompareTag("ground"))
@@ -380,7 +435,7 @@ namespace caca
 
                 if (Time.time >= _shockwaveCooldown + _timeCheckShockwave)
                 {
-                    Instantiate(_shockwavePrefab, _shockwaveSpawn.position, _shockwaveSpawn.rotation, _abilitiesClone);
+                    GameObject clone = Instantiate(_shockwavePrefab, _shockwaveSpawn.position, _shockwaveSpawn.rotation, _abilitiesClone);
 
                     Collider[] hitColliders = Physics.OverlapSphere(_shockwaveSpawn.position, 4.0f);
 
@@ -401,11 +456,58 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
-                                chest._mask.SetActive(true);
-                                chest._areaMask.SetActive(false);
+                                if (chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
                                 chest._isTaken = true;
 
-                                chest._animator.SetBool("RevealChest", true);
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
+                            }
+                        }
+
+                        if (hit.CompareTag("retrievable"))
+                        {
+                            Chest chest = hit.transform.GetComponent<Chest>();
+
+                            if (chest._isTaken == false)
+                            {
+                                _gameManager.AddGold(chest._gold);
+                                _gameManager.AddChest(chest._nbChest);
+
+                                if (chest._isTrapped == true)
+                                {
+                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
+                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
+                                }
+
+                                if (chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
+                                chest._isTaken = true;
+
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
+
+                                Destroy(hit.gameObject, 2.0f);
                             }
                         }
 
@@ -416,7 +518,14 @@ namespace caca
 
                         if (hit.CompareTag("destructible"))
                         {
-                            hit.gameObject.SetActive(false);
+                            //hit.gameObject.SetActive(false);
+
+                            TreeBehavior treeBehavior = hit.GetComponent<TreeBehavior>();
+
+                            if (treeBehavior != null)
+                            {
+                                treeBehavior.DestroyTree(clone.transform.position);
+                            }
                         }
 
                         //if (hit.CompareTag("ground"))

@@ -12,6 +12,7 @@ TagManager:
   - shockwaveMask
   - destructible
   - coconut
+  - retrievable
   layers:
   - Default
   - TransparentFX

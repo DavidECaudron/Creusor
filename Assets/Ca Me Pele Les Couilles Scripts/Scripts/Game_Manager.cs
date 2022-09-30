@@ -16,9 +16,9 @@ namespace caca
         public Slider _sliderLeft;
         public Slider _sliderRight;
         public Image _timerImage;
-        public Image _eyeImage;
+        public Image _normalMonsterImage;
         public Gradient _gradientTimer;
-        public Gradient _gradientEye;
+        public Gradient _gradientNormalMonster;
         public CanvasGroup _canvasGroup;
         public TMP_Text _goldText;
         public TMP_Text _chestCounter;
@@ -183,7 +183,7 @@ namespace caca
                 _sliderRight.value = 1 - (timeLeft / _tempLimitTime);
 
                 _timerImage.color = _gradientTimer.Evaluate(1 - (timeLeft / _tempLimitTime));
-                _eyeImage.color = _gradientEye.Evaluate(1 - (timeLeft / _tempLimitTime));
+                _normalMonsterImage.color = _gradientNormalMonster.Evaluate(1 - (timeLeft / _tempLimitTime));
             }
             else
             {
