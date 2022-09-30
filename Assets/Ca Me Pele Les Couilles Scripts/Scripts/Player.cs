@@ -433,7 +433,21 @@ namespace caca
                 if (_nbCoconut > 0)
                 {
                     _nbCoconut -= 1;
-                    _currentHealth += _maxHealth * _healthRegenPercentile;
+
+                    if (_currentHealth + (_maxHealth * _healthRegenPercentile) <= _maxHealth)
+                    {
+                        _currentHealth += _maxHealth * _healthRegenPercentile;
+
+                        _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                        _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
+                    }
+                    else
+                    {
+                        _currentHealth = _maxHealth;
+
+                        _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                        _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+                    }
                 }
             }
 
