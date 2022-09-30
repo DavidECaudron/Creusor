@@ -297,11 +297,22 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
-                                chest._mask.SetActive(true);
-                                chest._areaMask.SetActive(false);
+                                if(chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
                                 chest._isTaken = true;
 
-                                chest._animator.SetBool("RevealChest", true);
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
                             }
                         }
 
@@ -401,11 +412,22 @@ namespace caca
                                     _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
                                 }
 
-                                chest._mask.SetActive(true);
-                                chest._areaMask.SetActive(false);
+                                if (chest._mask != null)
+                                {
+                                    chest._mask.SetActive(true);
+                                }
+
+                                if (chest._areaMask != null)
+                                {
+                                    chest._areaMask.SetActive(false);
+                                }
+
                                 chest._isTaken = true;
 
-                                chest._animator.SetBool("RevealChest", true);
+                                if (chest._animator != null)
+                                {
+                                    chest._animator.SetBool("RevealChest", true);
+                                }
                             }
                         }
 
