@@ -64,12 +64,12 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _cameraTransform: {fileID: 0}
   _enemyType: 0
-  _numberOfEnemyMelee: 3
-  _numberOfEnemyRanged: 3
+  _numberOfEnemyMelee: 1
+  _numberOfEnemyRanged: 5
   _spawnAreaRange: 5
   _movementSpeed: 5
   _maxHealth: 75
-  _damageMelee: 20
+  _damageMelee: 5
   _damageRanged: 10
   _attackPerSecondMelee: 1
   _attackPerSecondRanged: 0.25

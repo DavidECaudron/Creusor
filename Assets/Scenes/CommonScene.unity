@@ -12855,12 +12855,17 @@ MonoBehaviour:
   _abilitiesLayerMask:
     serializedVersion: 2
     m_Bits: 2049
+  _isInAttackRange: 0
   _nbCoconut: 0
   _healthRegenPercentile: 0
   _movementSpeed: 20
   _maxHealth: 100
+  _healthTimeBeforeUpdate: 0
   _slowIntensity: 1
   _slowDuration: 2
+  _leftButtonCooldownImage: {fileID: 2100783137}
+  _leftButtonDamage: 5
+  _leftButtonCooldown: 0
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 1923795446}
@@ -21661,7 +21666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.94509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.94509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -45217,7 +45222,7 @@ PrefabInstance:
     - target: {fileID: 5867254699290498923, guid: 7c722125a0928e540a7454e2a518dac4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.043
+      value: 27.64
       objectReference: {fileID: 0}
     - target: {fileID: 5867254699290498923, guid: 7c722125a0928e540a7454e2a518dac4,
         type: 3}
