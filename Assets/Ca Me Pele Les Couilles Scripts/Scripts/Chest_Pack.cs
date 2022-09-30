@@ -57,7 +57,7 @@ namespace caca
                 int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
                 int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
 
-                Vector3 randomPos = new (_transform.position.x + randomX, _transform.position.y - 2.25f, _transform.position.z + randomZ);
+                Vector3 randomPos = new (_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
 
                 GameObject clone = Instantiate(_chestPrefab, randomPos, _chestPrefab.transform.rotation, _transform);
                 Chest chestClone = clone.GetComponent<Chest>();

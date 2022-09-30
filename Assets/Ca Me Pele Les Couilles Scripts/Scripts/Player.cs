@@ -432,22 +432,29 @@ namespace caca
             {
                 if (_nbCoconut > 0)
                 {
-                    _nbCoconut -= 1;
-
-                    if (_currentHealth + (_maxHealth * _healthRegenPercentile) <= _maxHealth)
+                    if (_currentHealth + _maxHealth * _healthRegenPercentile <= _maxHealth)
                     {
                         _currentHealth += _maxHealth * _healthRegenPercentile;
 
                         _healthImage.fillAmount = (_currentHealth / _maxHealth);
                         _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
+
+                        _nbCoconut -= 1;
                     }
                     else
                     {
-                        _currentHealth = _maxHealth;
+                        if (_currentHealth < _maxHealth)
+                        {
+                            _currentHealth = _maxHealth;
 
-                        _healthImage.fillAmount = (_maxHealth / _maxHealth);
-                        _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+
+                            _nbCoconut -= 1;
+                        }
                     }
+
+                    Debug.Log(_nbCoconut);
                 }
             }
 
