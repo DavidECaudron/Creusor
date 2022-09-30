@@ -49,7 +49,7 @@ namespace proto
         }
         void Start()
         {
-            DestroyTree(digMask.transform.position);
+            //DestroyTree(digMask.transform.position);
         }
 
         // Update is called once per frame

@@ -434,6 +434,9 @@ namespace caca
                 {
                     _nbCoconut -= 1;
                     _currentHealth += _maxHealth * _healthRegenPercentile;
+
+                    _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                    _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
                 }
             }
 

@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
-  _chestPrefab: {fileID: 4631688490005184602, guid: 0fb356eafddb07f4c9427f4b8dc837bf,
+  _chestPrefab: {fileID: 2281832434741686302, guid: 8ebb0a67260ee4edda13223146fb6c95,
     type: 3}
   _areaTransform: {fileID: 1670895319688011358}
   _numberOfChest: 0
