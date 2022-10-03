@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 89b5a857386824346b8509b171e59bde, type: 3}
+        m_Texture: {fileID: 2800000, guid: efa2549d5fd56438f80976050edaed48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -100,7 +100,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimLightBrightness: 0.34
+    - _RimLightBrightness: 1.03
     - _RimPower: 0.02
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -108,17 +108,17 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _ToonRampOffset: 1.74
-    - _ToonRampSmoothness: 0.11
+    - _ToonRampSmoothness: 9.3
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.8962264, g: 0.16359688, b: 0, a: 1}
+    - _MainColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TakeDamageColor: {r: 0.7843137, g: 0, b: 0, a: 1}
-    - _ToonRampTinting: {r: 0.6981132, g: 0.09723043, b: 0, a: 1}
+    - _ToonRampTinting: {r: 1, g: 0.93918276, b: 0.9292453, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3011086410785049118
 MonoBehaviour:

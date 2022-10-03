@@ -39,6 +39,43 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &-8169852747645406934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ed82d95253c45ec9b50c4aa4a20761, type: 3}
+  m_Name: Custom Post Processing
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  pass:
+    <renderPassEvent>k__BackingField: 550
+    m_ColorStoreActions: 0000000000000000000000000000000000000000000000000000000000000000
+    m_DepthStoreAction: 0
+    m_OverriddenColorStoreActions: 
+    m_OverriddenDepthStoreAction: 0
+    <overrideCameraTarget>k__BackingField: 0
+    <isBlitRenderPass>k__BackingField: 0
+    <useNativeRenderPass>k__BackingField: 0
+    <renderTargetWidth>k__BackingField: -1
+    <renderTargetHeight>k__BackingField: -1
+    <renderTargetSampleCount>k__BackingField: -1
+    <depthOnly>k__BackingField: 0
+    <isLastPass>k__BackingField: 0
+    <renderPassQueueIndex>k__BackingField: 11
+    <renderTargetFormat>k__BackingField: 0000000000000000000000000000000000000000000000000000000000000000
+    m_InputAttachmentIsTransient: 
+    m_Input: 0
+    m_ClearFlag: 0
+    m_ClearColor:
+      r: 0
+      g: 0
+      b: 0
+      a: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
