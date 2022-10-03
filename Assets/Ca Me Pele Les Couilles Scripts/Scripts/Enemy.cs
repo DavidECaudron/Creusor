@@ -129,58 +129,58 @@ namespace caca
                     {
                         if (_enemyType == EnemyType.Melee)
                         {
-                            //if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
-                            //{
-                            //    _isPlayerInAttackRange = false;
-                            //    _isAttacking = false;
-                            //    _navMeshAgent.SetDestination(_playerTransform.position);
-                            //}
-                            //else
-                            //{
-                            //    _transform.LookAt(_playerTransform);
+                            if (Vector3.Distance(_playerTransform.position, _transform.position) > 2.0f)
+                            {
+                                _isPlayerInAttackRange = false;
+                                _isAttacking = false;
+                                _navMeshAgent.SetDestination(_playerTransform.position);
+                            }
+                            else
+                            {
+                                _transform.LookAt(_playerTransform);
 
-                            //    _navMeshAgent.SetDestination(_transform.position);
-                            //    _isPlayerInAttackRange = true;
+                                _navMeshAgent.SetDestination(_transform.position);
+                                _isPlayerInAttackRange = true;
 
-                            //    if (_isAttacking == false)
-                            //    {
-                            //        _isAttacking = true;
+                                if (_isAttacking == false)
+                                {
+                                    _isAttacking = true;
 
-                            //        Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
+                                    Collider[] hitColliders = Physics.OverlapSphere(_attackDetection.position, 0.5f);
 
-                            //        foreach (var hitCollider in hitColliders)
-                            //        {
-                            //            if (hitCollider.transform.CompareTag("player"))
-                            //            {
-                            //                StartCoroutine(AttackCoroutineMelee());
-                            //            }
-                            //        }
-                            //    }
-                            //}
+                                    foreach (var hitCollider in hitColliders)
+                                    {
+                                        if (hitCollider.transform.CompareTag("player"))
+                                        {
+                                            StartCoroutine(AttackCoroutineMelee());
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         if (_enemyType == EnemyType.Ranged)
                         {
-                            //if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
-                            //{
-                            //    _isPlayerInAttackRange = false;
-                            //    _isAttacking = false;
-                            //    _navMeshAgent.SetDestination(_playerTransform.position);
-                            //}
-                            //else
-                            //{
-                            //    _transform.LookAt(_playerTransform);
+                            if (Vector3.Distance(_playerTransform.position, _transform.position) > 6.0f)
+                            {
+                                _isPlayerInAttackRange = false;
+                                _isAttacking = false;
+                                _navMeshAgent.SetDestination(_playerTransform.position);
+                            }
+                            else
+                            {
+                                _transform.LookAt(_playerTransform);
 
-                            //    _navMeshAgent.SetDestination(_transform.position);
-                            //    _isPlayerInAttackRange = true;
+                                _navMeshAgent.SetDestination(_transform.position);
+                                _isPlayerInAttackRange = true;
 
-                            //    if (_isAttacking == false)
-                            //    {
-                            //        _isAttacking = true;
+                                if (_isAttacking == false)
+                                {
+                                    _isAttacking = true;
 
-                            //        StartCoroutine(AttackCoroutineRanged());
-                            //    }
-                            //}
+                                    StartCoroutine(AttackCoroutineRanged());
+                                }
+                            }
                         }
                     }
                     else
@@ -236,41 +236,41 @@ namespace caca
             _isHidden = false;
         }
 
-        //IEnumerator AttackCoroutineMelee()
-        //{
-        //    if (_attackIndex == 0)
-        //    {
-        //        _attackIndex += 1;
+        IEnumerator AttackCoroutineMelee()
+        {
+            if (_attackIndex == 0)
+            {
+                _attackIndex += 1;
 
-        //        while (_isAlive == true && _isPlayerInAttackRange == true)
-        //        {
-        //            _player.TakeDamage(_damageMelee);
+                while (_isAlive == true && _isPlayerInAttackRange == true)
+                {
+                    _player.TakeDamage(_damageMelee);
 
-        //            yield return new WaitForSecondsRealtime(1 / _attackPerSecondMelee);
-        //        }
-        //    }
+                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondMelee);
+                }
+            }
 
-        //    _attackIndex -= 1;
-        //}
+            _attackIndex -= 1;
+        }
 
-        //IEnumerator AttackCoroutineRanged()
-        //{
-        //    if (_attackIndex == 0)
-        //    {
-        //        _attackIndex += 1;
+        IEnumerator AttackCoroutineRanged()
+        {
+            if (_attackIndex == 0)
+            {
+                _attackIndex += 1;
 
-        //        while (_isAlive == true && _isPlayerInAttackRange == true)
-        //        {
-        //            GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
+                while (_isAlive == true && _isPlayerInAttackRange == true)
+                {
+                    GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
 
-        //            clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
+                    clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
 
-        //            yield return new WaitForSecondsRealtime(1 / _attackPerSecondRanged);
-        //        }
-        //    }
+                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondRanged);
+                }
+            }
 
-        //    _attackIndex -= 1;
-        //}
+            _attackIndex -= 1;
+        }
 
         IEnumerator DamageFeedback()
         {
