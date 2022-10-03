@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 using proto;
 
 namespace caca
@@ -15,12 +16,14 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public TMP_Text _healthCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
         public Animator _animator;
         public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
         public bool _isInAttackRange = false;
+        public bool _isCursed = false;
 
         [Header("Player")]
         public int _nbCoconut = 0;
@@ -28,6 +31,7 @@ namespace caca
         public float _movementSpeed;
         public float _maxHealth;
         public float _healthTimeBeforeUpdate;
+        [Range(0.0f, 1.0f)] public float _healthBackgroundSpeed;
         public float _slowIntensity;
         public float _slowDuration;
 
@@ -95,6 +99,7 @@ namespace caca
             _timeCheckRightButton = -_rightButtonCooldown;
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
+            _healthCounter.text = _currentHealth + " / " + _maxHealth;
         }
 
         private void Update()
@@ -207,10 +212,13 @@ namespace caca
 
         public void TakeDamage(float damage)
         {
+            damage = Mathf.RoundToInt(damage);
+
             if (_currentHealth - damage > 0)
             {
-                _healthImage.fillAmount = (_currentHealth / _maxHealth);
                 _currentHealth -= damage;
+                _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                _healthCounter.text = _currentHealth + " / " + _maxHealth;
 
                 StartCoroutine(SlowCoroutine());
                 StartCoroutine(HealthBarCoroutine());
@@ -543,27 +551,32 @@ namespace caca
         {
             if (context.performed)
             {
-                if (_nbCoconut > 0)
+                if (!_isCursed)
                 {
-                    if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
+                    if (_nbCoconut > 0)
                     {
-                        _currentHealth += _maxHealth * _healthRegenPercentile;
-
-                        _healthImage.fillAmount = (_currentHealth / _maxHealth);
-                        _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
-
-                        _nbCoconut -= 1;
-                    }
-                    else
-                    {
-                        if (_currentHealth < _maxHealth)
+                        if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
                         {
-                            _currentHealth = _maxHealth;
+                            _currentHealth += _maxHealth * _healthRegenPercentile;
 
-                            _healthImage.fillAmount = (_maxHealth / _maxHealth);
-                            _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                            _healthCounter.text = _currentHealth + " / " + _maxHealth;
+                            _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                             _nbCoconut -= 1;
+                        }
+                        else
+                        {
+                            if (_currentHealth < _maxHealth)
+                            {
+                                _currentHealth = _maxHealth;
+
+                                _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                                _healthCounter.text = _currentHealth + " / " + _maxHealth;
+                                _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+
+                                _nbCoconut -= 1;
+                            }
                         }
                     }
                 }
@@ -672,7 +685,7 @@ namespace caca
 
                 while (_healthImageBackground.fillAmount > _healthImage.fillAmount)
                 {
-                    _healthImageBackground.fillAmount -= 0.05f * Time.deltaTime;
+                    _healthImageBackground.fillAmount -= _healthBackgroundSpeed * Time.deltaTime;
 
                     yield return new WaitForSecondsRealtime(0.01f);
                 }
