@@ -210,6 +210,8 @@ namespace caca
 
         public void TakeDamage(float damage)
         {
+            damage = Mathf.RoundToInt(damage);
+
             if (_currentHealth - damage > 0)
             {
                 _currentHealth -= damage;
