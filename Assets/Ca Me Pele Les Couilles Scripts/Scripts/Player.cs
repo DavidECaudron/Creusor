@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 using proto;
 
 namespace caca
@@ -15,6 +16,7 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public TMP_Text _healthCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
         public Animator _animator;
@@ -95,6 +97,7 @@ namespace caca
             _timeCheckRightButton = -_rightButtonCooldown;
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
+            _healthCounter.text = _currentHealth + " / " + _maxHealth;
         }
 
         private void Update()
@@ -210,6 +213,7 @@ namespace caca
             if (_currentHealth - damage > 0)
             {
                 _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                _healthCounter.text = _currentHealth + " / " + _maxHealth;
                 _currentHealth -= damage;
 
                 StartCoroutine(SlowCoroutine());
@@ -550,6 +554,7 @@ namespace caca
                         _currentHealth += _maxHealth * _healthRegenPercentile;
 
                         _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                        _healthCounter.text = _currentHealth + " / " + _maxHealth;
                         _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                         _nbCoconut -= 1;
@@ -561,6 +566,7 @@ namespace caca
                             _currentHealth = _maxHealth;
 
                             _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                            _healthCounter.text = _currentHealth + " / " + _maxHealth;
                             _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
 
                             _nbCoconut -= 1;
