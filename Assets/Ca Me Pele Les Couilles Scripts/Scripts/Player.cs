@@ -30,6 +30,7 @@ namespace caca
         public float _movementSpeed;
         public float _maxHealth;
         public float _healthTimeBeforeUpdate;
+        [Range(0.0f, 1.0f)] public float _healthBackgroundSpeed;
         public float _slowIntensity;
         public float _slowDuration;
 
@@ -680,7 +681,7 @@ namespace caca
 
                 while (_healthImageBackground.fillAmount > _healthImage.fillAmount)
                 {
-                    _healthImageBackground.fillAmount -= 0.05f * Time.deltaTime;
+                    _healthImageBackground.fillAmount -= _healthBackgroundSpeed * Time.deltaTime;
 
                     yield return new WaitForSecondsRealtime(0.01f);
                 }
