@@ -212,9 +212,9 @@ namespace caca
         {
             if (_currentHealth - damage > 0)
             {
+                _currentHealth -= damage;
                 _healthImage.fillAmount = (_currentHealth / _maxHealth);
                 _healthCounter.text = _currentHealth + " / " + _maxHealth;
-                _currentHealth -= damage;
 
                 StartCoroutine(SlowCoroutine());
                 StartCoroutine(HealthBarCoroutine());
