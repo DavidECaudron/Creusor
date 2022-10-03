@@ -23,6 +23,7 @@ namespace caca
         public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
         public bool _isInAttackRange = false;
+        public bool _isCursed = false;
 
         [Header("Player")]
         public int _nbCoconut = 0;
@@ -550,29 +551,32 @@ namespace caca
         {
             if (context.performed)
             {
-                if (_nbCoconut > 0)
+                if (!_isCursed)
                 {
-                    if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
+                    if (_nbCoconut > 0)
                     {
-                        _currentHealth += _maxHealth * _healthRegenPercentile;
-
-                        _healthImage.fillAmount = (_currentHealth / _maxHealth);
-                        _healthCounter.text = _currentHealth + " / " + _maxHealth;
-                        _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
-
-                        _nbCoconut -= 1;
-                    }
-                    else
-                    {
-                        if (_currentHealth < _maxHealth)
+                        if (_currentHealth + _maxHealth * _healthRegenPercentile < _maxHealth)
                         {
-                            _currentHealth = _maxHealth;
+                            _currentHealth += _maxHealth * _healthRegenPercentile;
 
-                            _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImage.fillAmount = (_currentHealth / _maxHealth);
                             _healthCounter.text = _currentHealth + " / " + _maxHealth;
-                            _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+                            _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                             _nbCoconut -= 1;
+                        }
+                        else
+                        {
+                            if (_currentHealth < _maxHealth)
+                            {
+                                _currentHealth = _maxHealth;
+
+                                _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                                _healthCounter.text = _currentHealth + " / " + _maxHealth;
+                                _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
+
+                                _nbCoconut -= 1;
+                            }
                         }
                     }
                 }

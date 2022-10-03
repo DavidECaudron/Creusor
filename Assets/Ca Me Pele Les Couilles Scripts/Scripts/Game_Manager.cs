@@ -187,6 +187,11 @@ namespace caca
             }
             else
             {
+                if (!_player.GetComponent<Player>()._isCursed)
+                {
+                    _player.GetComponent<Player>()._isCursed = true;
+                }
+
                 float _alpha = _tempDisappearingTime + _tempLimitTime - seconds;
 
                 if (_alpha > 0)
