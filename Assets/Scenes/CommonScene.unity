@@ -6556,14 +6556,14 @@ MonoBehaviour:
   _isInAttackRange: 0
   _nbCoconut: 0
   _healthRegenPercentile: 0.35
-  _movementSpeed: 5
+  _movementSpeed: 15
   _maxHealth: 100
   _healthTimeBeforeUpdate: 0.5
   _slowIntensity: 1
   _slowDuration: 2
   _leftButtonCooldownImage: {fileID: 2100783137}
   _leftButtonDamage: 10
-  _leftButtonCooldown: 0
+  _leftButtonCooldown: 0.5
   _rightButtonPrefab: {fileID: 7002771772038886105, guid: ce2d2e6361976ef48ae54207248d3703,
     type: 3}
   _rightButtonPivot: {fileID: 138213625}
@@ -39848,6 +39848,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 47186977006762809, guid: 35f3ee7d5e67c0d42a932bf49d40b26c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 234328261459068494, guid: 35f3ee7d5e67c0d42a932bf49d40b26c,
         type: 3}
       propertyPath: m_RootOrder
@@ -40142,6 +40147,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5484594619719042739, guid: 7de109d5419d4e34593f7c99bfae9338,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5758577492456932262, guid: 7de109d5419d4e34593f7c99bfae9338,
         type: 3}
       propertyPath: m_Name
@@ -40161,6 +40171,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 764517528}
     m_Modifications:
+    - target: {fileID: 1680583117883160971, guid: 0a778152f1ea18d45a3c3aedd19e3bae,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2544935230095414905, guid: 0a778152f1ea18d45a3c3aedd19e3bae,
         type: 3}
       propertyPath: m_RootOrder
@@ -40235,6 +40250,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 764517528}
     m_Modifications:
+    - target: {fileID: 1827436889931747698, guid: 8d76ac3b0b52f3d4f862521146aaa29c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3814575414845759263, guid: 8d76ac3b0b52f3d4f862521146aaa29c,
         type: 3}
       propertyPath: m_RootOrder
@@ -40374,6 +40394,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: retrievable
       objectReference: {fileID: 0}
+    - target: {fileID: 5510740327070196575, guid: a55ae9a378ba9194281c099d6063beea,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55ae9a378ba9194281c099d6063beea, type: 3}
 --- !u!1001 &3207299643119580983
@@ -40447,6 +40472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158105757372796510, guid: 93bbadb4271f4e84daa76db38beab367,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93bbadb4271f4e84daa76db38beab367, type: 3}
@@ -40532,7 +40562,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4100334522913723443}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
@@ -40566,7 +40596,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395843491699404192}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.39554355
@@ -40947,8 +40977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasBeenUsed: 0
   _transform: {fileID: 0}
-  _nbEnemyMelee: 3
-  _nbEnemyRanged: 1
+  _nbEnemyMelee: 1
+  _nbEnemyRanged: 3
   _spawnAreaRange: 5
 --- !u!1 &6106567406523801355
 GameObject:
@@ -41165,7 +41195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasBeenUsed: 0
   _transform: {fileID: 0}
-  _nbEnemyMelee: 5
+  _nbEnemyMelee: 3
   _nbEnemyRanged: 1
   _spawnAreaRange: 5
 --- !u!1 &6106567407036261173
@@ -45596,6 +45626,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 764517528}
     m_Modifications:
+    - target: {fileID: 4424903539749406275, guid: 7a976f0f7551d6541baafe0211d198ef,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4889241549876114991, guid: 7a976f0f7551d6541baafe0211d198ef,
         type: 3}
       propertyPath: m_Name
@@ -45839,6 +45874,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8550589116473576983, guid: 9162d1fb2f0f1314fba28a591ebe3bac,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9162d1fb2f0f1314fba28a591ebe3bac, type: 3}
 --- !u!135 &7505943961041594953
@@ -45849,7 +45889,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6110948714113679191}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.33495197
@@ -45957,7 +45997,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6312010962920374048}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.42294365
@@ -45997,7 +46037,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5774619160891080871}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6543571
@@ -46316,6 +46356,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.65
       objectReference: {fileID: 0}
+    - target: {fileID: 3099170845590205560, guid: 2fa5c0ad58f05fe489dc3248fc483328,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa5c0ad58f05fe489dc3248fc483328, type: 3}
 --- !u!1001 &8721823466322114166
@@ -46400,7 +46445,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5084504257705409815}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.1896952
@@ -46434,7 +46479,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7442401175418379381}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.37
