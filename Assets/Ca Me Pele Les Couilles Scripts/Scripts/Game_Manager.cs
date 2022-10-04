@@ -203,6 +203,11 @@ namespace caca
                     if (_hasBeenBuff == false)
                     {
                         EnemyBuff();
+
+                        foreach (Enemy item in _listEnemy)
+                        {
+                            item.Cursed();
+                        }
                     }
                 }
             }

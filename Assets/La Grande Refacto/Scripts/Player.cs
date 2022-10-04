@@ -9,6 +9,7 @@ namespace LaGrandeRefacto.Root
         [Header("Required")]
         [SerializeField] private Transform _transform;
         [SerializeField] private Transform _graphicsTransform;
+        [SerializeField] private Rigidbody _rigidBody;
 
         [Header("Tweak")]
         [SerializeField] private float _speed;
@@ -53,6 +54,11 @@ namespace LaGrandeRefacto.Root
         public Transform GetGraphicsTransform()
         {
             return _graphicsTransform;
+        }
+
+        public Rigidbody GetRigidbody()
+        {
+            return _rigidBody;
         }
 
         #endregion
