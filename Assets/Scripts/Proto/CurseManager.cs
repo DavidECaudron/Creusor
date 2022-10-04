@@ -7,6 +7,9 @@ namespace proto
     public class CurseManager : MonoBehaviour
     {
         Animator[] curseFXAnimators = new Animator[2];
+        AudioSource audioSourceCurse;
+        AudioSource audioSourceIslandLoop;
+
         void Awake()
         {
             curseFXAnimators[0] = GameObject.Find("PostProcessing").GetComponent<Animator>();
@@ -24,13 +27,28 @@ namespace proto
         {
             curseFXAnimators[0].SetTrigger("DisplayCurse");
             curseFXAnimators[1].SetTrigger("EndOfTimer");
+            StartCoroutine(SetCurseMusic());
+
 
         }
 
-
-        void Update()
+        IEnumerator SetCurseMusic()
         {
-        
+            float elapsedTime = 0;
+            float duration = 0.5f;
+
+            while(elapsedTime < duration)
+            {
+                float lerp = Mathf.Lerp(1,0, elapsedTime / duration);
+                audioSourceIslandLoop.volume = lerp;      
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            } 
+            audioSourceIslandLoop.volume = 0;
+            audioSourceIslandLoop.Stop();
+            audioSourceCurse.Play();
+
+            yield return null;
         }
     }
 }
