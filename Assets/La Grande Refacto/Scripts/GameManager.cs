@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LaGrandeRefacto.Root
@@ -10,27 +11,24 @@ namespace LaGrandeRefacto.Root
         [Header("Required")]
         [SerializeField] private GameObject _playerGameObject;
         [SerializeField] private Camera _playerCamera;
+
+        [SerializeField] private Transform _positionsTransform;
+
         [SerializeField] private LayerMask _mouseLeftButtonLayer;
         [SerializeField] private LayerMask _mouseRightButtonLayer;
 
-        [Header("Test")]
-        [SerializeField] private GameObject _enemyGameObject;
+        [Header("Debug")]
+        [SerializeField] private Player _player;
+        [SerializeField] private PlayerInput _playerInput;
 
-        #endregion
+        [SerializeField] private List<Position> _positionsList;
+        [SerializeField] private List<EnemyPack> _enemyPackList;
 
+        [SerializeField] private Vector3 _nextPosition;
+        [SerializeField] private Vector3 _lookAtPosition;
 
-        #region Hidden
-
-        private Player _player;
-        private PlayerInput _playerInput;
-
-        private Enemy _enemy;
-
-        private Vector3 _nextPosition;
-        private Vector3 _lookAtPosition;
-
-        private bool _leftButtonIndex = false;
-        private bool _rightButtonIndex = false;
+        [SerializeField] private bool _leftButtonIndex = false;
+        [SerializeField] private bool _rightButtonIndex = false;
 
         #endregion
 
@@ -44,20 +42,51 @@ namespace LaGrandeRefacto.Root
 
         private void Start()
         {
-            _player = _playerGameObject.GetComponent<Player>();
-            _playerInput = _playerGameObject.GetComponent<PlayerInput>();
-            
-            _enemy = _enemyGameObject.GetComponent<Enemy>();
-            _enemy.GetNavMeshAgent().speed = _enemy.GetSpeed();
-            _enemy.GetNavMeshAgent().acceleration = _enemy.GetSpeed();
-            _enemy.GetNavMeshAgent().angularSpeed = _enemy.GetSpeed() * 100.0f;
-
-            _nextPosition = _player.GetTransform().position;
-            _lookAtPosition = _player.GetTransform().position;
+            Setup();
+            EnemySpawn();
         }
 
         private void Update()
         {
+            PlayerMovement();
+        }
+
+        //private void FixedUpdate()
+        //{
+
+        //}
+
+        //private void LateUpdate()
+        //{
+
+        //}
+
+        #endregion
+
+
+        #region Main
+
+        private void Setup()
+        {
+            _player = _playerGameObject.GetComponent<Player>();
+            _playerInput = _playerGameObject.GetComponent<PlayerInput>();
+
+            _nextPosition = _player.GetTransform().position;
+            _lookAtPosition = _player.GetTransform().position;
+
+            _positionsList = new List<Position>();
+            _enemyPackList = new List<EnemyPack>();
+        }
+
+        #endregion
+
+
+        #region Player
+
+        private void PlayerMovement()
+        {
+            _player.GetRigidbody().velocity = new(0.0f, 0.0f, 0.0f);
+
             if (_playerInput.GetMouseLeftButton())
             {
                 if (!_leftButtonIndex)
@@ -91,56 +120,65 @@ namespace LaGrandeRefacto.Root
             _player.Movement(_nextPosition);
         }
 
-        //private void FixedUpdate()
-        //{
+        #endregion
 
-        //}
 
-        private void LateUpdate()
+        #region Spawners
+
+        private void EnemySpawn()
         {
-            float distance = Vector3.Distance(_enemy.GetTransform().position, _player.GetTransform().position);
-
-            if (_enemy.GetEnemyType() == EnemyType.Melee)
+            foreach (Transform item in _positionsTransform)
             {
-                if (distance >= 2.0f)
-                {
-                    if (!_enemy.GetNavMeshAgent().enabled)
-                    {
-                        _enemy.GetNavMeshAgent().enabled = true;
-                    }
+                Position positionTemp = item.GetComponent<Position>();
+                EnemyPack enemyPackTemp = item.GetComponent<EnemyPack>();
 
-                    _enemy.GetNavMeshAgent().SetDestination(_player.GetTransform().position);
+                positionTemp.GetSphereCollider().radius = positionTemp.GetRadius();
+
+                _positionsList.Add(positionTemp);
+                _enemyPackList.Add(enemyPackTemp);
+
+                for (int i = 0; i < enemyPackTemp.GetNbMelee(); i++)
+                {
+                    float radiusTemp = positionTemp.GetRadius();
+
+                    float randomX = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
+                    float randomZ = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
+
+                    float tempX = positionTemp.GetTransform().position.x + randomX;
+                    float tempZ = positionTemp.GetTransform().position.z + randomZ;
+
+                    Vector3 positionTmp = new (tempX, enemyPackTemp.GetEnemyScript().GetTransform().position.y, tempZ);
+
+                    GameObject clone = Instantiate(enemyPackTemp.GetEnemy(), positionTmp, Quaternion.identity, positionTemp.GetTransform());
+                    Enemy enemyClone = clone.GetComponent<Enemy>();
+
+                    enemyPackTemp.GetEnemyList().Add(enemyClone);
+
+                    enemyClone.SetEnemyType(EnemyType.Melee);
+                    enemyClone.SetInitialPosition();
+                    clone.SetActive(true);
                 }
-                else
+
+                for (int i = 0; i < enemyPackTemp.GetNbRanged(); i++)
                 {
-                    _enemy.GetTransform().LookAt(_player.GetTransform().position);
+                    float radiusTemp = positionTemp.GetRadius();
 
-                    if (_enemy.GetNavMeshAgent().enabled)
-                    {
-                        _enemy.GetNavMeshAgent().enabled = false;
-                    }
-                }
-            }
+                    float randomX = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
+                    float randomZ = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
 
-            if (_enemy.GetEnemyType() == EnemyType.Ranged)
-            {
-                if (distance >= 6.0f)
-                {
-                    if (!_enemy.GetNavMeshAgent().enabled)
-                    {
-                        _enemy.GetNavMeshAgent().enabled = true;
-                    }
+                    float tempX = positionTemp.GetTransform().position.x + randomX;
+                    float tempZ = positionTemp.GetTransform().position.z + randomZ;
 
-                    _enemy.GetNavMeshAgent().SetDestination(_player.GetTransform().position);
-                }
-                else
-                {
-                    _enemy.GetTransform().LookAt(_player.GetTransform().position);
+                    Vector3 positionTmp = new (tempX, enemyPackTemp.GetEnemyScript().GetTransform().position.y, tempZ);
 
-                    if (_enemy.GetNavMeshAgent().enabled)
-                    {
-                        _enemy.GetNavMeshAgent().enabled = false;
-                    }
+                    GameObject clone = Instantiate(enemyPackTemp.GetEnemy(), positionTmp, Quaternion.identity, positionTemp.GetTransform());
+                    Enemy enemyClone = clone.GetComponent<Enemy>();
+
+                    enemyPackTemp.GetEnemyList().Add(enemyClone);
+
+                    enemyClone.SetEnemyType(EnemyType.Ranged);
+                    enemyClone.SetInitialPosition();
+                    clone.SetActive(true);
                 }
             }
         }
@@ -150,7 +188,7 @@ namespace LaGrandeRefacto.Root
 
         #region Coroutine
 
-        IEnumerator PlayerNextPosition()
+        private IEnumerator PlayerNextPosition()
         {
             while (_playerInput.GetMouseLeftButton())
             {
@@ -179,7 +217,7 @@ namespace LaGrandeRefacto.Root
             }
         }
 
-        IEnumerator PlayerGraphicsLookAt()
+        private IEnumerator PlayerGraphicsLookAt()
         {
             while (_playerInput.GetMouseRightButton())
             {
