@@ -58,7 +58,6 @@ namespace caca
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
-        private int _attackIndex;
 
         #endregion
 
@@ -212,6 +211,11 @@ namespace caca
             }
         }
 
+        public void Cursed()
+        {
+
+        }
+
         #endregion
 
 
@@ -238,38 +242,30 @@ namespace caca
 
         IEnumerator AttackCoroutineMelee()
         {
-            if (_attackIndex == 0)
+            while (_isAlive == true && _isPlayerInAttackRange == true)
             {
-                _attackIndex += 1;
+                _player.TakeDamage(_damageMelee);
 
-                while (_isAlive == true && _isPlayerInAttackRange == true)
+                if (_isAttacking == true)
                 {
-                    _player.TakeDamage(_damageMelee);
-
                     yield return new WaitForSecondsRealtime(1 / _attackPerSecondMelee);
                 }
             }
-
-            _attackIndex -= 1;
         }
 
         IEnumerator AttackCoroutineRanged()
         {
-            if (_attackIndex == 0)
+            while (_isAlive == true && _isPlayerInAttackRange == true)
             {
-                _attackIndex += 1;
+                GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
 
-                while (_isAlive == true && _isPlayerInAttackRange == true)
+                clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
+
+                if (_isAttacking == true)
                 {
-                    GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
-
-                    clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
-
                     yield return new WaitForSecondsRealtime(1 / _attackPerSecondRanged);
                 }
             }
-
-            _attackIndex -= 1;
         }
 
         IEnumerator DamageFeedback()
