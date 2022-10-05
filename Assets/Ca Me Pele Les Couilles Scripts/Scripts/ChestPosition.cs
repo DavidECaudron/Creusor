@@ -15,7 +15,7 @@ namespace caca
 
         [Header("Chest Pack")]
         public int _nbChest = 0;
-        [Range(0, 10)] public int _spawnAreaRange;
+        [Range(1, 10)] public int _spawnAreaRange;
 
         #endregion
 
@@ -25,6 +25,17 @@ namespace caca
         private void Awake()
         {
             _transform = gameObject.GetComponent<Transform>();
+        }
+
+        #endregion
+
+
+        #region Gizmos
+
+        void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(_transform.position, _spawnAreaRange);
         }
 
         #endregion

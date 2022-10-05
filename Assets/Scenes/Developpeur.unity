@@ -39927,73 +39927,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6106567405684015648, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
-      propertyPath: _nbEnemyMelee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015648, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015648, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015649, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015649, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015651, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567405684015651, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879436, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406137879436, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879436, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879437, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879437, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879439, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406137879439, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406225397638, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
@@ -40057,213 +39997,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406572688584, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
-      propertyPath: _nbEnemyMelee
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688584, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688584, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688585, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688585, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688587, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406572688587, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522368, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406759522368, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522368, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522369, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522369, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522371, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567406759522371, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396202, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567407117396202, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396202, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396203, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396203, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396205, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407117396205, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894048, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894048, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894049, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567407217894049, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894049, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894062, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407217894062, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518348, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518348, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518350, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518350, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518351, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567407284518351, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407284518351, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499137, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbChest
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499137, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499150, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _nbEnemyMelee
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567407478499150, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499150, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: _spawnAreaRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499151, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106567407478499151, guid: 345483dfc799ad445b7380ee3f98095e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345483dfc799ad445b7380ee3f98095e, type: 3}

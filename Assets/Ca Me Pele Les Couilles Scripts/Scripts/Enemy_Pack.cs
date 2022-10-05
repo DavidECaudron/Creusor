@@ -16,7 +16,7 @@ namespace caca
         public EnemyType _enemyType;
         public int _numberOfEnemyMelee;
         public int _numberOfEnemyRanged;
-        [Range(0, 5)] public int _spawnAreaRange;
+        [Range(0, 5)] public float _spawnAreaRange;
         public float _movementSpeed;
         public float _maxHealth;
         public float _damageMelee;
@@ -63,8 +63,8 @@ namespace caca
 
             for (int i = 0; i < _numberOfEnemyMelee; i += 1)
             {
-                int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
-                int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
+                float randomX = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
+                float randomZ = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
 
                 Vector3 randomPos = new (_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
 
@@ -88,8 +88,8 @@ namespace caca
 
             for (int i = 0; i < _numberOfEnemyRanged; i += 1)
             {
-                int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
-                int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
+                float randomX = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
+                float randomZ = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
 
                 Vector3 randomPos = new(_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
 

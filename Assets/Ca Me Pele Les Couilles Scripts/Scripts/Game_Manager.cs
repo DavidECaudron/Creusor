@@ -144,8 +144,8 @@ namespace caca
             {
                 int random = Random.Range(0, _enemyPackPositions.Length);
 
-                _enemyPack._numberOfEnemyRanged = _enemyPackPositions[random]._nbEnemyMelee;
-                _enemyPack._numberOfEnemyMelee = _enemyPackPositions[random]._nbEnemyRanged;
+                _enemyPack._numberOfEnemyMelee = _enemyPackPositions[random]._nbEnemyMelee;
+                _enemyPack._numberOfEnemyRanged = _enemyPackPositions[random]._nbEnemyRanged;
                 _enemyPack._spawnAreaRange = _enemyPackPositions[random]._spawnAreaRange;
 
                 if (_enemyPackPositions[random]._hasBeenUsed == false)

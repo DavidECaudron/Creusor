@@ -55,6 +55,7 @@ namespace caca
         private Player _player;
         private Transform _healthSliderTransform;
         private MeshRenderer _meshRenderer;
+        private float _timeCheck;
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
@@ -73,6 +74,7 @@ namespace caca
 
         private void Start()
         {
+            _timeCheck = Time.time;
             _initialPosition = _transform.position;
             _player = _playerTransform.GetComponent<Player>();
             _navMeshAgent.speed = _movementSpeed;
@@ -132,6 +134,9 @@ namespace caca
                             {
                                 _isPlayerInAttackRange = false;
                                 _isAttacking = false;
+
+                                StopCoroutine(AttackCoroutineMelee());
+
                                 _navMeshAgent.SetDestination(_playerTransform.position);
                             }
                             else
@@ -164,6 +169,9 @@ namespace caca
                             {
                                 _isPlayerInAttackRange = false;
                                 _isAttacking = false;
+
+                                StopCoroutine(AttackCoroutineRanged());
+
                                 _navMeshAgent.SetDestination(_playerTransform.position);
                             }
                             else
@@ -244,12 +252,14 @@ namespace caca
         {
             while (_isAlive == true && _isPlayerInAttackRange == true)
             {
-                _player.TakeDamage(_damageMelee);
-
-                if (_isAttacking == true)
+                if (Time.time >= _timeCheck)
                 {
-                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondMelee);
+                    _player.TakeDamage(_damageMelee);
+
+                    _timeCheck = Time.time + (1 / _attackPerSecondMelee);
                 }
+
+                yield return new WaitForEndOfFrame();
             }
         }
 
@@ -257,14 +267,16 @@ namespace caca
         {
             while (_isAlive == true && _isPlayerInAttackRange == true)
             {
-                GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
-
-                clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
-
-                if (_isAttacking == true)
+                if (Time.time >= _timeCheck)
                 {
-                    yield return new WaitForSecondsRealtime(1 / _attackPerSecondRanged);
+                    GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
+
+                    clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
+
+                    _timeCheck = Time.time + (1 / _attackPerSecondRanged);
                 }
+
+                yield return new WaitForEndOfFrame();
             }
         }
 
