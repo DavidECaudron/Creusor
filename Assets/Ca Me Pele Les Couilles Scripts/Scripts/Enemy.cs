@@ -37,6 +37,7 @@ namespace caca
 
         [Header("Enemy")]
         public EnemyType _enemyType;
+        public int _level;
         public float _movementSpeed;
         public float _maxHealth;
         public float _currentHealth;
