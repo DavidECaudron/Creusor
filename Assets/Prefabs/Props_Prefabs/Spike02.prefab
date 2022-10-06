@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 4494241640035741302}
   - component: {fileID: 716383917260038611}
   - component: {fileID: 3320819962788353305}
+  - component: {fileID: 3053918671001551391}
+  - component: {fileID: -2894781927054226958}
   m_Layer: 0
   m_Name: Spike02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4494241640035741302
 Transform:
@@ -83,3 +85,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3053918671001551391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824981434362836172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5914568, y: 4.020504, z: 0.5914568}
+  m_Center: {x: 0, y: 2.0005455, z: 0}
+--- !u!208 &-2894781927054226958
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824981434362836172}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.296, y: 2.01, z: 0.296}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.0010002, z: 0}
+  m_TimeToStationary: 0.5
