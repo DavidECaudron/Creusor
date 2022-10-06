@@ -22,7 +22,7 @@ namespace caca
         public Transform _attackDetection;
         public Transform _transform;
         public NavMeshAgent _navMeshAgent;
-        public Slider _healthSlider;
+        public Image _healthSlider;
         public GameObject _graphics;
         public GameObject _physics;
         public GameObject _healthBar;
@@ -210,7 +210,7 @@ namespace caca
             {
                 StartCoroutine(DamageFeedback());
                 _currentHealth -= damage;
-                _healthSlider.value = (_currentHealth/_maxHealth);
+                _healthSlider.fillAmount = (_currentHealth/_maxHealth);
             }
             else
             {

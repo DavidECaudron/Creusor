@@ -237,7 +237,7 @@ namespace caca
 
                 item._maxHealth *= _buffMultiplier;
                 item._currentHealth = item._maxHealth;
-                item._healthSlider.value = item._currentHealth / item._maxHealth;
+                item._healthSlider.fillAmount = item._currentHealth / item._maxHealth;
                 item._damageMelee *= _buffMultiplier;
                 item._damageRanged *= _buffMultiplier;
                 item._movementSpeed *= _buffMultiplier;
