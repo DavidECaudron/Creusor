@@ -16,6 +16,7 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public Transform _shovelTransform;
         public TMP_Text _healthCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
@@ -24,6 +25,7 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
         public bool _isInAttackRange = false;
         public bool _isCursed = false;
+        public IdleAnimationTest _test;
 
         [Header("Player")]
         public int _nbCoconut = 0;
@@ -632,9 +634,26 @@ namespace caca
         {
             _animator.SetBool("_isSlashing", true);
 
+            _shovelTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
             yield return new WaitForSeconds(_leftButtonCooldown);
 
             _animator.SetBool("_isSlashing", false);
+
+            _shovelTransform.rotation = new Quaternion(0f, 90f, 0f, 0f);
+        }
+
+        IEnumerator ShockwaveAnimationCoroutine()
+        {
+            _animator.SetBool("_isShockwaving", true);
+
+            _shovelTransform.rotation = new Quaternion(0f, 180f, 0f, 0f);
+
+            yield return new WaitForSeconds(_shockwaveCooldown);
+
+            _animator.SetBool("_isShockwaving", false);
+
+            _shovelTransform.rotation = new Quaternion(0f, 90f, 0f, 0f);
         }
 
         IEnumerator CastLookPositionCoroutine()
@@ -695,6 +714,14 @@ namespace caca
         }
 
 
+        //IEnumerator ShockwaveCoroutine()
+        //{
+        //    _animator.SetBool("_isShockwaving", true);
+
+        //    yield return new WaitForSecondsRealtime(0.5f);
+
+        //    _animator.SetBool("_isShockwaving", false);
+        //}
 
         private void OnTriggerEnter(Collider other)
         {

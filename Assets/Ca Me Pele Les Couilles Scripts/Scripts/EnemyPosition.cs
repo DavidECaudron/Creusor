@@ -15,7 +15,7 @@ namespace caca
         [Header("Enemy Pack")]
         public int _nbEnemyMelee = 0;
         public int _nbEnemyRanged = 0;
-        [Range(1, 10)] public int _spawnAreaRange;
+        [Range(0, 20)] public float _spawnAreaRange;
 
         #endregion
 
