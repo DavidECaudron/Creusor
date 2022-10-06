@@ -257,7 +257,7 @@ MonoBehaviour:
   _attackDetection: {fileID: 6629121594291238708}
   _transform: {fileID: 0}
   _navMeshAgent: {fileID: 0}
-  _healthSlider: {fileID: 0}
+  _healthSlider: {fileID: 4334268655482423137}
   _graphics: {fileID: 6210558270163703876}
   _physics: {fileID: 6210558269752369396}
   _healthBar: {fileID: 5175197439996567493}
@@ -271,6 +271,7 @@ MonoBehaviour:
   _initialPosition: {x: 0, y: 0, z: 0}
   _isPlayerInDetectionRange: 0
   _enemyType: 0
+  _level: 0
   _movementSpeed: 7
   _maxHealth: 100
   _currentHealth: 0
