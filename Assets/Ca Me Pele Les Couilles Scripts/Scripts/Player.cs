@@ -25,7 +25,7 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
         public bool _isInAttackRange = false;
         public bool _isCursed = false;
-        public IdleAnimationTest _test;
+        public AnimationScriptable _animationScriptable;
 
         [Header("Player")]
         public int _nbCoconut = 0;
@@ -93,6 +93,7 @@ namespace caca
         {
             _rigidbody = gameObject.GetComponent<Rigidbody>();
             _transform = gameObject.GetComponent<Transform>();
+            _animationScriptable._player = this;
         }
 
         private void Start()
@@ -182,7 +183,7 @@ namespace caca
                     _nextPosition.z = _enemyTransform.position.z;
                 }
 
-                if (Vector3.Distance(_transform.position, _nextPosition) > 2.0f)
+                if (Vector3.Distance(_nextPosition, _transform.position) > 2.0f)
                 {
                     _isInAttackRange = false;
 
@@ -251,11 +252,11 @@ namespace caca
 
                 StartCoroutine(CastNextPositionCoroutine());
 
-                if (_isInAttackRange == true)
+                if (_isInAttackRange == true && _enemyTransform != null)
                 {
-                    if (Time.time >= _leftButtonCooldown + _timeCheckLeftButton)
+                    if (Time.time >= _leftButtonCooldown + _timeCheckLeftButton && _animator.GetBool("_isSlashing") == false)
                     {
-                        StartCoroutine(AttackAnimationCoroutine());
+                        _animator.SetBool("_isSlashing", true);
 
                         _enemyTransform.GetComponent<Enemy>().TakeDamage(_leftButtonDamage);
 
@@ -613,6 +614,8 @@ namespace caca
                         _isTargetingGround = true;
                         _isTargetingEnemy = false;
 
+                        _enemyTransform = null;
+
                         _nextPosition.x = _hit.point.x;
                         _nextPosition.z = _hit.point.z;
                     }
@@ -628,19 +631,6 @@ namespace caca
 
                 yield return new WaitForEndOfFrame();
             }
-        }
-
-        IEnumerator AttackAnimationCoroutine()
-        {
-            _animator.SetBool("_isSlashing", true);
-
-            _shovelTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-
-            yield return new WaitForSeconds(_leftButtonCooldown);
-
-            _animator.SetBool("_isSlashing", false);
-
-            _shovelTransform.rotation = new Quaternion(0f, 90f, 0f, 0f);
         }
 
         IEnumerator ShockwaveAnimationCoroutine()
