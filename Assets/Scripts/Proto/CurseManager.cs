@@ -10,10 +10,15 @@ namespace proto
         AudioSource audioSourceCurse;
         AudioSource audioSourceIslandLoop;
 
+        GameObject audioManager;
+
         void Awake()
         {
             curseFXAnimators[0] = GameObject.Find("PostProcessing").GetComponent<Animator>();
             curseFXAnimators[1] = GameObject.Find("CurseTimer").GetComponent<Animator>();  
+            audioManager = GameObject.Find("AudioManager");
+            audioSourceIslandLoop = audioManager.transform.GetChild(1).GetComponent<AudioSource>();
+            audioSourceCurse = audioManager.transform.GetChild(2).GetComponent<AudioSource>();
         }
 
         // Update is called once per frame

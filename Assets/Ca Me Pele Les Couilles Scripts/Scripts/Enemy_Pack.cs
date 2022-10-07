@@ -112,6 +112,16 @@ namespace caca
             }
         }
 
+        public void ChasePlayer()
+        {
+            _sphereCollider.enabled = false;
+
+            for (int i = 0; i < _enemyTable.Length; i++)
+            {
+                _enemyTable[i]._isPlayerInDetectionRange = true;
+            }
+        }
+
         #endregion
 
 
