@@ -18,6 +18,7 @@ namespace caca
         public Transform _graphics;
         public Transform _shovelTransform;
         public TMP_Text _healthCounter;
+        public TMP_Text _coconutCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
         public Animator _animator;
@@ -103,6 +104,7 @@ namespace caca
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
             _healthCounter.text = _currentHealth + " / " + _maxHealth;
+            _coconutCounter.text = _nbCoconut.ToString();
         }
 
         private void Update()
@@ -474,6 +476,7 @@ namespace caca
                             _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                             _nbCoconut -= 1;
+                            _coconutCounter.text = _nbCoconut.ToString();
                         }
                         else
                         {
@@ -486,6 +489,7 @@ namespace caca
                                 _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
 
                                 _nbCoconut -= 1;
+                                _coconutCounter.text = _nbCoconut.ToString();
                             }
                         }
                     }
@@ -623,6 +627,7 @@ namespace caca
             if (other.CompareTag("coconut"))
             {
                 _nbCoconut += 1;
+                _coconutCounter.text = _nbCoconut.ToString();
                 Destroy(other.gameObject);
             }
         }
