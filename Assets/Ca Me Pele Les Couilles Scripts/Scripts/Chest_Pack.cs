@@ -13,7 +13,7 @@ namespace caca
 
         [Header("Enemy Pack")]
         public int _numberOfChest;
-        [Range(0, 10)] public int _spawnAreaRange;
+        [Range(0, 20)] public float _spawnAreaRange;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace caca
 
             _sphereCollider.radius = _spawnAreaRange;
 
-            float tempSize = (_sphereCollider.radius / 3) + 0.5f;
+            float tempSize = _sphereCollider.radius / 5;
 
             _areaTransform.localScale = new Vector3(tempSize, _areaTransform.localScale.y, tempSize);
 
@@ -54,8 +54,8 @@ namespace caca
 
             for (int i = 0; i < _numberOfChest; i += 1)
             {
-                int randomX = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
-                int randomZ = Random.Range(-_spawnAreaRange, _spawnAreaRange + 1);
+                float randomX = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
+                float randomZ = Random.Range(-_spawnAreaRange * 0.6f, _spawnAreaRange * 0.6f);
 
                 Vector3 randomPos = new (_transform.position.x + randomX, _transform.position.y, _transform.position.z + randomZ);
 

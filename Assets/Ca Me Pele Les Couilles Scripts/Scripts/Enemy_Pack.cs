@@ -16,7 +16,7 @@ namespace caca
         public EnemyType _enemyType;
         public int _numberOfEnemyMelee;
         public int _numberOfEnemyRanged;
-        [Range(0, 5)] public float _spawnAreaRange;
+        [Range(0, 20)] public float _spawnAreaRange;
         public float _movementSpeed;
         public float _maxHealth;
         public float _damageMelee;
@@ -43,7 +43,7 @@ namespace caca
             _transform = gameObject.GetComponent<Transform>();
             _sphereCollider = GetComponent<SphereCollider>();
 
-            _sphereCollider.radius = _spawnAreaRange * 3;
+            _sphereCollider.radius = _spawnAreaRange;
 
             SpawnEnemies();
         }

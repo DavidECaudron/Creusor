@@ -16,6 +16,7 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public Transform _shovelTransform;
         public TMP_Text _healthCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
@@ -24,6 +25,7 @@ namespace caca
         public LayerMask _abilitiesLayerMask;
         public bool _isInAttackRange = false;
         public bool _isCursed = false;
+        public AnimationScriptable _animationScriptable;
 
         [Header("Player")]
         public int _nbCoconut = 0;
@@ -91,6 +93,7 @@ namespace caca
         {
             _rigidbody = gameObject.GetComponent<Rigidbody>();
             _transform = gameObject.GetComponent<Transform>();
+            _animationScriptable._player = this;
         }
 
         private void Start()
@@ -180,7 +183,7 @@ namespace caca
                     _nextPosition.z = _enemyTransform.position.z;
                 }
 
-                if (Vector3.Distance(_transform.position, _nextPosition) > 2.0f)
+                if (Vector3.Distance(_nextPosition, _transform.position) > 2.0f)
                 {
                     _isInAttackRange = false;
 
@@ -249,11 +252,11 @@ namespace caca
 
                 StartCoroutine(CastNextPositionCoroutine());
 
-                if (_isInAttackRange == true)
+                if (_isInAttackRange == true && _enemyTransform != null)
                 {
-                    if (Time.time >= _leftButtonCooldown + _timeCheckLeftButton)
+                    if (Time.time >= _leftButtonCooldown + _timeCheckLeftButton && _animator.GetBool("_isSlashing") == false)
                     {
-                        StartCoroutine(AttackAnimationCoroutine());
+                        _animator.SetBool("_isSlashing", true);
 
                         _enemyTransform.GetComponent<Enemy>().TakeDamage(_leftButtonDamage);
 
@@ -611,6 +614,8 @@ namespace caca
                         _isTargetingGround = true;
                         _isTargetingEnemy = false;
 
+                        _enemyTransform = null;
+
                         _nextPosition.x = _hit.point.x;
                         _nextPosition.z = _hit.point.z;
                     }
@@ -628,13 +633,17 @@ namespace caca
             }
         }
 
-        IEnumerator AttackAnimationCoroutine()
+        IEnumerator ShockwaveAnimationCoroutine()
         {
-            _animator.SetBool("_isSlashing", true);
+            _animator.SetBool("_isShockwaving", true);
 
-            yield return new WaitForSeconds(_leftButtonCooldown);
+            _shovelTransform.rotation = new Quaternion(0f, 180f, 0f, 0f);
 
-            _animator.SetBool("_isSlashing", false);
+            yield return new WaitForSeconds(_shockwaveCooldown);
+
+            _animator.SetBool("_isShockwaving", false);
+
+            _shovelTransform.rotation = new Quaternion(0f, 90f, 0f, 0f);
         }
 
         IEnumerator CastLookPositionCoroutine()
@@ -695,6 +704,14 @@ namespace caca
         }
 
 
+        //IEnumerator ShockwaveCoroutine()
+        //{
+        //    _animator.SetBool("_isShockwaving", true);
+
+        //    yield return new WaitForSecondsRealtime(0.5f);
+
+        //    _animator.SetBool("_isShockwaving", false);
+        //}
 
         private void OnTriggerEnter(Collider other)
         {
