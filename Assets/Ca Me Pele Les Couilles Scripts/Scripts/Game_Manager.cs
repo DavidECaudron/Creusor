@@ -205,6 +205,11 @@ namespace caca
                     {
                         item.Cursed();
                     }
+
+                    for (int i = 0; i < _enemyPackTable.Length; i++)
+                    {
+                        _enemyPackTable[i].ChasePlayer();
+                    }
                 }
             }
         }

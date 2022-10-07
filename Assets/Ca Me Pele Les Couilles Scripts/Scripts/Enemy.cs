@@ -111,8 +111,6 @@ namespace caca
             {
                 _rangedModel.SetActive(true);
             }
-
-            StartCoroutine(CursedEnemy());
         }
 
         private void LateUpdate()
