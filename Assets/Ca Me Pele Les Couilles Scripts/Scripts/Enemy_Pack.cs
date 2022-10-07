@@ -43,7 +43,7 @@ namespace caca
             _transform = gameObject.GetComponent<Transform>();
             _sphereCollider = GetComponent<SphereCollider>();
 
-            _sphereCollider.radius = _spawnAreaRange;
+            _sphereCollider.radius = _spawnAreaRange * 3.0f;
 
             SpawnEnemies();
         }
