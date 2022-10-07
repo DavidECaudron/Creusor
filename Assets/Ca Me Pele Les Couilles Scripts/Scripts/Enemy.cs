@@ -61,7 +61,8 @@ namespace caca
         public Renderer _EnemyBiteAttackTopRend;  
         public Renderer _EnemyBiteAttackBottomRend;    
         public Renderer _EnemyParticleRend;
-        public ParticleSystem _EnemyParticles;       
+        public ParticleSystem _EnemyParticles;    
+
 
        
        //VFX
@@ -286,7 +287,7 @@ namespace caca
             _EnemyBiteAttackTopRend.material.SetFloat("_CurseAmount", 1);
             _EnemyBiteAttackBottomRend.material.SetFloat("_CurseAmount", 1);      
             _EnemyParticleRend.material.SetFloat("_CurseAmount", 1);
-            _enemyBodyRend.transform.localScale = targetBodyScale;
+            _enemyBodyRend.transform.localScale = targetBodyScale;     
 
             yield return null;
         }

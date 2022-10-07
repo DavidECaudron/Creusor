@@ -20,6 +20,7 @@ namespace caca
         public TMP_Text _healthCounter;
         public TMP_Text _coconutCounter;
         public Image _healthImage;
+        public Image _healthCursedImage;
         public Image _healthImageBackground;
         public Animator _animator;
         public LayerMask _leftMouseButtonLayerMask;
@@ -228,6 +229,7 @@ namespace caca
             {
                 _currentHealth -= damage;
                 _healthImage.fillAmount = (_currentHealth / _maxHealth);
+                _healthCursedImage.fillAmount = (_currentHealth / _maxHealth);                
                 _healthCounter.text = _currentHealth + " / " + _maxHealth;
 
                 StartCoroutine(SlowCoroutine());
@@ -477,6 +479,8 @@ namespace caca
                             _currentHealth += _maxHealth * _healthRegenPercentile;
 
                             _healthImage.fillAmount = (_currentHealth / _maxHealth);
+
+                            _healthCursedImage.fillAmount = (_currentHealth / _maxHealth);
                             _healthCounter.text = _currentHealth + " / " + _maxHealth;
                             _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
@@ -490,6 +494,7 @@ namespace caca
                                 _currentHealth = _maxHealth;
 
                                 _healthImage.fillAmount = (_maxHealth / _maxHealth);
+                                _healthCursedImage.fillAmount = (_maxHealth / _maxHealth);
                                 _healthCounter.text = _currentHealth + " / " + _maxHealth;
                                 _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
 
