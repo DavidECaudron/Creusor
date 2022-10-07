@@ -18,6 +18,7 @@ namespace caca
         public Transform _graphics;
         public Transform _shovelTransform;
         public TMP_Text _healthCounter;
+        public TMP_Text _coconutCounter;
         public Image _healthImage;
         public Image _healthImageBackground;
         public Animator _animator;
@@ -103,6 +104,7 @@ namespace caca
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
             _healthCounter.text = _currentHealth + " / " + _maxHealth;
+            _coconutCounter.text = _nbCoconut.ToString();
         }
 
         private void Update()
@@ -379,6 +381,10 @@ namespace caca
                             {
                                 treeBehavior.DestroyTree(clone.transform.position);
                             }
+                            else
+                            {
+                                hit.gameObject.SetActive(false);
+                            }
                         }
 
                         //if (hit.CompareTag("ground"))
@@ -446,104 +452,7 @@ namespace caca
 
                 if (Time.time >= _shockwaveCooldown + _timeCheckShockwave)
                 {
-                    GameObject clone = Instantiate(_shockwavePrefab, _shockwaveSpawn.position, _shockwaveSpawn.rotation, _abilitiesClone);
-
-                    Collider[] hitColliders = Physics.OverlapSphere(_shockwaveSpawn.position, 4.0f);
-
-                    foreach (Collider hit in hitColliders)
-                    {
-                        if (hit.CompareTag("chest"))
-                        {
-                            Chest chest = hit.transform.GetComponent<Chest>();
-
-                            if (chest._isTaken == false)
-                            {
-                                _gameManager.AddGold(chest._gold);
-                                _gameManager.AddChest(chest._nbChest);
-
-                                if (chest._isTrapped == true)
-                                {
-                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
-                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
-                                }
-
-                                if (chest._mask != null)
-                                {
-                                    chest._mask.SetActive(true);
-                                }
-
-                                if (chest._areaMask != null)
-                                {
-                                    chest._areaMask.SetActive(false);
-                                }
-
-                                chest._isTaken = true;
-
-                                if (chest._animator != null)
-                                {
-                                    chest._animator.SetBool("RevealChest", true);
-                                }
-                            }
-                        }
-
-                        if (hit.CompareTag("retrievable"))
-                        {
-                            Chest chest = hit.transform.GetComponent<Chest>();
-
-                            if (chest._isTaken == false)
-                            {
-                                _gameManager.AddGold(chest._gold);
-                                _gameManager.AddChest(chest._nbChest);
-
-                                if (chest._isTrapped == true)
-                                {
-                                    _gameManager._chestPackTable[chest._indexChestPack].UnTrapChest();
-                                    _gameManager._enemyPackTable[chest._indexEnemyPack].ShowEnemy();
-                                }
-
-                                if (chest._mask != null)
-                                {
-                                    chest._mask.SetActive(true);
-                                }
-
-                                if (chest._areaMask != null)
-                                {
-                                    chest._areaMask.SetActive(false);
-                                }
-
-                                chest._isTaken = true;
-
-                                if (chest._animator != null)
-                                {
-                                    chest._animator.SetBool("RevealChest", true);
-                                }
-
-                                Destroy(hit.gameObject, 2.0f);
-                            }
-                        }
-
-                        if (hit.CompareTag("enemy"))
-                        {
-                            hit.transform.parent.parent.GetComponent<Enemy>().TakeDamage(_shockwaveDamage);
-                        }
-
-                        if (hit.CompareTag("destructible"))
-                        {
-                            //hit.gameObject.SetActive(false);
-
-                            TreeBehavior treeBehavior = hit.GetComponent<TreeBehavior>();
-
-                            if (treeBehavior != null)
-                            {
-                                treeBehavior.DestroyTree(clone.transform.position);
-                            }
-                        }
-
-                        //if (hit.CompareTag("ground"))
-                        //{
-                        //    Debug.Log("ground");
-                        //}
-                    }
+                    _animator.SetBool("_isShockwaving", true);
 
                     _timeCheckShockwave = Time.time;
                 }
@@ -567,6 +476,7 @@ namespace caca
                             _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                             _nbCoconut -= 1;
+                            _coconutCounter.text = _nbCoconut.ToString();
                         }
                         else
                         {
@@ -579,6 +489,7 @@ namespace caca
                                 _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
 
                                 _nbCoconut -= 1;
+                                _coconutCounter.text = _nbCoconut.ToString();
                             }
                         }
                     }
@@ -615,6 +526,7 @@ namespace caca
                         _isTargetingEnemy = false;
 
                         _enemyTransform = null;
+                        _isInAttackRange = false;
 
                         _nextPosition.x = _hit.point.x;
                         _nextPosition.z = _hit.point.z;
@@ -631,19 +543,6 @@ namespace caca
 
                 yield return new WaitForEndOfFrame();
             }
-        }
-
-        IEnumerator ShockwaveAnimationCoroutine()
-        {
-            _animator.SetBool("_isShockwaving", true);
-
-            _shovelTransform.rotation = new Quaternion(0f, 180f, 0f, 0f);
-
-            yield return new WaitForSeconds(_shockwaveCooldown);
-
-            _animator.SetBool("_isShockwaving", false);
-
-            _shovelTransform.rotation = new Quaternion(0f, 90f, 0f, 0f);
         }
 
         IEnumerator CastLookPositionCoroutine()
@@ -728,6 +627,7 @@ namespace caca
             if (other.CompareTag("coconut"))
             {
                 _nbCoconut += 1;
+                _coconutCounter.text = _nbCoconut.ToString();
                 Destroy(other.gameObject);
             }
         }
