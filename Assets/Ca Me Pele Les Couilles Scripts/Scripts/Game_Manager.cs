@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using proto;
 
 namespace caca
 {
@@ -13,6 +14,7 @@ namespace caca
         [Header("Others")]
         public GameObject _positions;
         public GameObject _player;
+        public CurseManager _curseManager;
         public Slider _sliderLeft;
         public Slider _sliderRight;
         public Image _timerImage;
@@ -51,8 +53,8 @@ namespace caca
         private int _nbChest = 0;
         private float _startTime;
         private float _tempLimitTime;
-        private float _tempDisappearingTime;
         private bool _hasBeenBuff = false;
+        private bool _hasBeenCursed = false;
 
         #endregion
 
@@ -66,7 +68,6 @@ namespace caca
 
             _startTime = Time.realtimeSinceStartup;
             _tempLimitTime = (float)_limitTime;
-            _tempDisappearingTime = (float)_disappearingTime;
             _gold = PlayerPrefs.GetInt("Gold");
             _goldText.text = _gold.ToString();
             _chestCounter.text = _nbChest.ToString() + "/" + _listChest.Count;
@@ -182,8 +183,11 @@ namespace caca
                 _sliderLeft.value = 1 - (timeLeft / _tempLimitTime);
                 _sliderRight.value = 1 - (timeLeft / _tempLimitTime);
 
-                _timerImage.color = _gradientTimer.Evaluate(1 - (timeLeft / _tempLimitTime));
-                _normalMonsterImage.color = _gradientNormalMonster.Evaluate(1 - (timeLeft / _tempLimitTime));
+                if (timeLeft <= _tempLimitTime / 4 && _hasBeenCursed == false)
+                {
+                    _hasBeenCursed = true;
+                    _curseManager.TimerAlmostOverFX();
+                }
             }
             else
             {
@@ -192,22 +196,14 @@ namespace caca
                     _player.GetComponent<Player>()._isCursed = true;
                 }
 
-                float _alpha = _tempDisappearingTime + _tempLimitTime - seconds;
+                if (_hasBeenBuff == false)
+                {
+                    _curseManager.DisplayCurseFX();
+                    EnemyBuff();
 
-                if (_alpha > 0)
-                {
-                    _canvasGroup.alpha = (_alpha / _tempDisappearingTime);
-                }
-                else
-                {
-                    if (_hasBeenBuff == false)
+                    foreach (Enemy item in _listEnemy)
                     {
-                        EnemyBuff();
-
-                        foreach (Enemy item in _listEnemy)
-                        {
-                            item.Cursed();
-                        }
+                        item.Cursed();
                     }
                 }
             }
