@@ -48,6 +48,23 @@ namespace caca
         public bool _isAlive = true;
         public bool _isHidden = false;
 
+        //VFX
+
+        public Renderer _enemyBodyRend;
+        public Renderer _enemyMeleeMaskRend;   
+        public Renderer _enemyDistanceMaskRend;  
+        public Renderer _EnemyMeleeTeethRend;
+        public Renderer _EnemyMeleeEyeLeftRend;
+        public Renderer _EnemyMeleeEyeRightRend;    
+        public Renderer _EnemyDistanceEyeRend;
+        public Renderer _EnemyStoneRend;
+        public Renderer _EnemyBiteAttackTopRend;  
+        public Renderer _EnemyBiteAttackBottomRend;    
+        public Renderer _EnemyParticleRend;
+        public ParticleSystem _EnemyParticles;       
+
+       
+       //VFX
         #endregion
 
 
@@ -60,6 +77,8 @@ namespace caca
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
+
+
 
         #endregion
 
@@ -92,6 +111,8 @@ namespace caca
             {
                 _rangedModel.SetActive(true);
             }
+
+            StartCoroutine(CursedEnemy());
         }
 
         private void LateUpdate()
@@ -215,6 +236,7 @@ namespace caca
             else
             {
                 _isAlive = false;
+                _EnemyParticles.Stop();
                 _player._isInAttackRange = false;
                 HideEnemy();
             }
@@ -222,7 +244,53 @@ namespace caca
 
         public void Cursed()
         {
+            StartCoroutine(CursedEnemy());
+        }
 
+        IEnumerator CursedEnemy()
+        {
+            float elapsedTime = 0;
+            float duration = 1f;
+
+            Vector3 currentBodyScale = _enemyBodyRend.transform.localScale;
+            Vector3 targetBodyScale = Vector3.one;
+
+            while(elapsedTime < duration)
+            {
+                float curseLerp = Mathf.Lerp(0, 1, elapsedTime / duration);
+                Vector3 scaleLerp = Vector3.Lerp(currentBodyScale, targetBodyScale, elapsedTime / duration);
+
+                _enemyBodyRend.material.SetFloat("_CurseAmount", curseLerp);
+                _enemyMeleeMaskRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _enemyDistanceMaskRend.material.SetFloat("_CurseAmount", curseLerp);     
+                _EnemyMeleeTeethRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyMeleeEyeLeftRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyMeleeEyeRightRend.material.SetFloat("_CurseAmount", curseLerp);      
+                _EnemyDistanceEyeRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyStoneRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyBiteAttackTopRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyBiteAttackBottomRend.material.SetFloat("_CurseAmount", curseLerp);   
+                _EnemyParticleRend.material.SetFloat("_CurseAmount", curseLerp);
+                _enemyBodyRend.transform.localScale = scaleLerp;
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            _enemyBodyRend.material.SetFloat("_CurseAmount", 1);
+            _enemyMeleeMaskRend.material.SetFloat("_CurseAmount", 1);   
+            _enemyDistanceMaskRend.material.SetFloat("_CurseAmount", 1);     
+            _EnemyMeleeTeethRend.material.SetFloat("_CurseAmount", 1);   
+            _EnemyMeleeEyeLeftRend.material.SetFloat("_CurseAmount", 1);   
+            _EnemyMeleeEyeRightRend.material.SetFloat("_CurseAmount", 1);      
+            _EnemyDistanceEyeRend.material.SetFloat("_CurseAmount", 1);   
+            _EnemyStoneRend.material.SetFloat("_CurseAmount", 1);   
+            _EnemyBiteAttackTopRend.material.SetFloat("_CurseAmount", 1);
+            _EnemyBiteAttackBottomRend.material.SetFloat("_CurseAmount", 1);      
+            _EnemyParticleRend.material.SetFloat("_CurseAmount", 1);
+            _enemyBodyRend.transform.localScale = targetBodyScale;
+
+            yield return null;
         }
 
         #endregion

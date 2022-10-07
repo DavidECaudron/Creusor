@@ -96,12 +96,15 @@ Material:
     - _DamageColorAmount: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _Disolve: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Float: 0.06
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NoiseScale: 20
     - _NormalRimLightBrightness: 1.08
     - _NormalRimPower: 3.2
     - _OcclusionStrength: 1
@@ -124,9 +127,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CursedColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CursedDisolveColor: {r: 2.639016, g: 0.1138399, b: 0.1138399, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _NormalColor: {r: 0.36889917, g: 0.28773582, b: 1, a: 0}
+    - _NormalDisolveColor: {r: 1.364706, g: 0.2431373, b: 2, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TakeDamageColor: {r: 1, g: 0, b: 0.2114377, a: 1}
     - _ToonRampTinting: {r: 1, g: 1, b: 1, a: 1}

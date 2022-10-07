@@ -6780,7 +6780,8 @@ MonoBehaviour:
     m_Bits: 2049
   _isInAttackRange: 0
   _isCursed: 0
-  _test: {fileID: 0}
+  _animationScriptable: {fileID: 11400000, guid: c0be8a287ecd91949a48c1ac4782a35b,
+    type: 2}
   _nbCoconut: 0
   _healthRegenPercentile: 0.35
   _movementSpeed: 15
@@ -6972,7 +6973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343608892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.65, y: 0, z: -59}
+  m_LocalPosition: {x: 3.65, y: 0, z: -13.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17711,7 +17712,7 @@ Transform:
   - {fileID: 6448314404470678170}
   - {fileID: 6448314404983894684}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &867385523
 PrefabInstance:
@@ -28604,7 +28605,7 @@ PrefabInstance:
     - target: {fileID: 305082140838053182, guid: a403173c7352ba343b74918804b09860,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 305082140838053182, guid: a403173c7352ba343b74918804b09860,
         type: 3}
@@ -41738,7 +41739,7 @@ Transform:
   - {fileID: 6448314405235908817}
   - {fileID: 6448314403405943091}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2313043479675632459
 PrefabInstance:

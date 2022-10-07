@@ -364,8 +364,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 126.0,
-            "y": -91.0
+            "x": 219.0,
+            "y": -62.00006103515625
         },
         "m_Blocks": [
             {
@@ -381,8 +381,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 126.0,
-            "y": 109.0
+            "x": 219.0,
+            "y": 138.0
         },
         "m_Blocks": [
             {
@@ -590,7 +590,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "138af61cdb714e6c9c2769e8c39095ec",
     "m_Id": 0,
-    "m_DisplayName": "_CursedAmount",
+    "m_DisplayName": "_CurseAmount",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2079,10 +2079,10 @@
     "m_Guid": {
         "m_GuidSerialized": "0fe87a46-55dd-489f-90b3-1424777b9d40"
     },
-    "m_Name": "_CursedAmount",
+    "m_Name": "_CurseAmount",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "_CursedAmount",
-    "m_DefaultReferenceName": "_CursedAmount",
+    "m_RefNameGeneratedByDisplayName": "_CurseAmount",
+    "m_DefaultReferenceName": "_CurseAmount",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
