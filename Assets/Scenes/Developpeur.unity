@@ -28409,7 +28409,7 @@ MonoBehaviour:
   _movementSpeed: 5
   _maxHealth: 1000
   _healthTimeBeforeUpdate: 0.5
-  _healthBackgroundSpeed: 0
+  _healthBackgroundSpeed: 0.01
   _slowIntensity: 1
   _slowDuration: 2
   _leftButtonCooldownImage: {fileID: 1825377474}
@@ -40092,12 +40092,12 @@ PrefabInstance:
     - target: {fileID: 6106567406137879436, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _nbEnemyRanged
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406137879436, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _spawnAreaRange
-      value: 1
+      value: 14.4
       objectReference: {fileID: 0}
     - target: {fileID: 6106567406137879437, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
