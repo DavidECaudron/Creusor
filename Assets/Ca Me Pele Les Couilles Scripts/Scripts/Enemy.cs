@@ -30,6 +30,7 @@ namespace caca
         public GameObject _meleeModel;
         public GameObject _rangedModel;
         public GameObject _enemyProjectile;
+        public Animator _animator;
         public Transform _projectileBin;
         public Transform _projectileSpawn;
         public Vector3 _initialPosition;
@@ -237,7 +238,9 @@ namespace caca
                 _isAlive = false;
                 _EnemyParticles.Stop();
                 _player._isInAttackRange = false;
-                HideEnemy();
+                //HideEnemy();
+                _animator.SetBool("isDefeat", true);
+
             }
         }
 
@@ -314,6 +317,7 @@ namespace caca
             _physics.transform.localPosition = new (0.0f, 1.0f, 0.0f);
             _healthBar.transform.localPosition = new (0.0f, 3.5f, 0.0f);
             _isHidden = false;
+            _animator.SetBool("isDefeat", false);
         }
 
         IEnumerator AttackCoroutineMelee()
@@ -322,6 +326,8 @@ namespace caca
             {
                 if (Time.time >= _timeCheck)
                 {
+                    _animator.SetTrigger("MeleeAttack");
+
                     _player.TakeDamage(_damageMelee);
 
                     _timeCheck = Time.time + (1 / _attackPerSecondMelee);
