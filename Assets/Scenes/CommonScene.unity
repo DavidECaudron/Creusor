@@ -6771,6 +6771,7 @@ MonoBehaviour:
   _healthCounter: {fileID: 600944419}
   _coconutCounter: {fileID: 1953829898}
   _healthImage: {fileID: 1828726818}
+  _healthCursedImage: {fileID: 0}
   _healthImageBackground: {fileID: 1068782840}
   _animator: {fileID: 2111779169}
   _leftMouseButtonLayerMask:
@@ -26910,6 +26911,7 @@ GameObject:
   - component: {fileID: 1333250480}
   - component: {fileID: 1333250482}
   - component: {fileID: 1333250481}
+  - component: {fileID: 1333250483}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -26980,6 +26982,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333250479}
   m_CullTransparentMesh: 1
+--- !u!95 &1333250483
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333250479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c298748eca0dd4d6fb8d8c833339573e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1342880992
 GameObject:
   m_ObjectHideFlags: 0
@@ -35329,6 +35351,7 @@ GameObject:
   - component: {fileID: 1828726817}
   - component: {fileID: 1828726819}
   - component: {fileID: 1828726818}
+  - component: {fileID: 1828726820}
   m_Layer: 5
   m_Name: HP_Gauge
   m_TagString: Untagged
@@ -35394,6 +35417,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828726816}
   m_CullTransparentMesh: 1
+--- !u!225 &1828726820
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828726816}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1829783163
 PrefabInstance:
   m_ObjectHideFlags: 0
