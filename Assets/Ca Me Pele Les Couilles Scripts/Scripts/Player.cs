@@ -162,6 +162,11 @@ namespace caca
                 _graphics.transform.position = new Vector3(graphicsPosition.x, 0.0f, graphicsPosition.z);
             }
 
+            if (_animator.GetBool("_isShockwaving") == true)
+            {
+                _nextPosition = _transform.position;
+            }
+
             Vector3 direction;
 
             if (_isTargetingGround == true && Vector3.Distance(_transform.position, _nextPosition) > 1.0f)
