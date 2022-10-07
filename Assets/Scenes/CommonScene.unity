@@ -28758,6 +28758,11 @@ PrefabInstance:
       objectReference: {fileID: 2064389758}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
+      propertyPath: _curseManager
+      value: 
+      objectReference: {fileID: 712319047}
+    - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
+        type: 3}
       propertyPath: _buffMultiplier
       value: 1.25
       objectReference: {fileID: 0}
