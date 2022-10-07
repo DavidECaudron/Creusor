@@ -21125,7 +21125,7 @@ PrefabInstance:
     - target: {fileID: 6106567407117396202, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
       propertyPath: _spawnAreaRange
-      value: 15
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 6106567407117396203, guid: 345483dfc799ad445b7380ee3f98095e,
         type: 3}
