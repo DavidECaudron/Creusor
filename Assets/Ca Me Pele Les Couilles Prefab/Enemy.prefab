@@ -299,6 +299,7 @@ MonoBehaviour:
   _rangedModel: {fileID: 7744243911457334323}
   _enemyProjectile: {fileID: 7318216793362743927, guid: 9adc8c2951bf21042a175ff7555c2607,
     type: 3}
+  _animator: {fileID: 7744243913048686846}
   _projectileBin: {fileID: 0}
   _projectileSpawn: {fileID: 6377600677895957852}
   _initialPosition: {x: 0, y: 0, z: 0}
@@ -326,7 +327,6 @@ MonoBehaviour:
   _EnemyBiteAttackBottomRend: {fileID: 1711813855852553168}
   _EnemyParticleRend: {fileID: 6526537953360344250}
   _EnemyParticles: {fileID: 6526537953360344251}
-  _canvasAnchor: {fileID: 5872404319752127190}
 --- !u!54 &2120911041552032690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1159,6 +1159,12 @@ MeshRenderer:
 --- !u!4 &7744243913048686842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2902546462336591189, guid: 32afb922b692bd840b247b0dc8a8bc2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4845590005761713583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7744243913048686846 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2902546462336591185, guid: 32afb922b692bd840b247b0dc8a8bc2c,
     type: 3}
   m_PrefabInstance: {fileID: 4845590005761713583}
   m_PrefabAsset: {fileID: 0}
