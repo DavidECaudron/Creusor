@@ -7,7 +7,9 @@ namespace proto
     public class TreeBehavior : MonoBehaviour
     {
         List<Rigidbody> rbFragments = new List<Rigidbody>();
+        List<MeshRenderer> rendFragments = new List<MeshRenderer>();
         List<Rigidbody> rbLeaves = new List<Rigidbody>();
+        List<MeshRenderer> rendLeaves = new List<MeshRenderer>();
         MeshRenderer treeRenderer;
         //MeshCollider treeCollider;
         GameObject shatteredGroup;
@@ -35,11 +37,13 @@ namespace proto
             for(int i = 0; i < shatteredGroup.transform.childCount; i++)
             {
                 rbFragments.Add(shatteredGroup.transform.GetChild(i).GetComponent<Rigidbody>());
+                rendFragments.Add(shatteredGroup.transform.GetChild(i).GetComponent<MeshRenderer>());
             }
 
             for(int i = 0; i < leavesGroup.transform.childCount; i++)
             {
                 rbLeaves.Add(leavesGroup.transform.GetChild(i).GetComponent<Rigidbody>());
+                rendLeaves.Add(leavesGroup.transform.GetChild(i).GetComponent<MeshRenderer>());
             }
 
             shatteredGroup.SetActive(false);
@@ -84,6 +88,7 @@ namespace proto
 
             for(int i = 0; i < rbFragments.Count; i++)
             {
+                rendFragments[i].enabled = true;
                 rbFragments[i].isKinematic = false;
                 float fragmentPosY = rbFragments[i].transform.position.y;
                 rbFragments[i].AddRelativeForce(new Vector3(forceDirection.x * thrust,  fragmentPosY, forceDirection.z * thrust));
@@ -91,6 +96,7 @@ namespace proto
 
             for(int i = 0; i < rbLeaves.Count; i++)
             {
+                rendLeaves[i].enabled = true;
                 rbLeaves[i].isKinematic = false;
             }
 

@@ -86,6 +86,11 @@ namespace caca
         private float _currentHealth;
         private int _heightIndex = 0;
 
+        //VFX
+        public SkinnedMeshRenderer _playerMeshRenderer;
+        public MeshRenderer _shovelMeshRenderer;
+        //VFX
+
         #endregion
 
 
@@ -231,7 +236,8 @@ namespace caca
                 _healthImage.fillAmount = (_currentHealth / _maxHealth);
                 _healthCursedImage.fillAmount = (_currentHealth / _maxHealth);                
                 _healthCounter.text = _currentHealth + " / " + _maxHealth;
-
+                
+                StartCoroutine(DamageFeedback());
                 StartCoroutine(SlowCoroutine());
                 StartCoroutine(HealthBarCoroutine());
 
@@ -510,6 +516,17 @@ namespace caca
             {
 
             }
+        }
+
+        IEnumerator DamageFeedback()
+        {
+            _playerMeshRenderer.material.SetFloat("_DamageColorAmount", 1.0f);
+            _shovelMeshRenderer.material.SetFloat("_DamageColorAmount", 1.0f);
+
+            yield return new WaitForSecondsRealtime(0.10f);
+
+            _playerMeshRenderer.material.SetFloat("_DamageColorAmount", 0f);
+            _shovelMeshRenderer.material.SetFloat("_DamageColorAmount", 0f);
         }
 
         #endregion

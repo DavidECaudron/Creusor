@@ -101,12 +101,12 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Distance: 1.71
+    - _Distance: 1.39
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 2.66
-    - _FoamCutOff: 2.4
-    - _FoamScale: 50
+    - _FoamAmount: 2.91
+    - _FoamCutOff: 2.8
+    - _FoamScale: 3.55
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
