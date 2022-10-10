@@ -66,9 +66,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GrassSwampTexture:
+        m_Texture: {fileID: 2800000, guid: 5d997620d4c5c4f88981aa2434780750, type: 3}
+        m_Scale: {x: 30, y: 30}
+        m_Offset: {x: 0, y: 0}
     - _GrassTexture:
         m_Texture: {fileID: 2800000, guid: e68364f840f047444a9ccce3d3df6f0d, type: 3}
-        m_Scale: {x: 30, y: 30}
+        m_Scale: {x: 20, y: 30}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
@@ -86,6 +90,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RockTexture:
+        m_Texture: {fileID: 2800000, guid: 93e663930e86849e4a9b02a6ff159b27, type: 3}
+        m_Scale: {x: 30, y: 30}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_2f88831a02654954a3e3dff02f4f132d_Texture_1:
         m_Texture: {fileID: 2800000, guid: 414b7dffd77aa4207bc37cd7e670a7ac, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -101,6 +109,10 @@ Material:
     - _SampleTexture2D_9475e218f4c94f788e007b34f254599e_Texture_1:
         m_Texture: {fileID: 2800000, guid: 67ec28e500a1fed44b142f43e0728819, type: 3}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SandTexture:
+        m_Texture: {fileID: 2800000, guid: 188c69073e8090444890d940bd5b5001, type: 3}
+        m_Scale: {x: 30, y: 20}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
@@ -135,6 +147,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DebugVertexColor: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirtLevel: -61.94
@@ -153,6 +166,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GrassIntensity: 0.4
+    - _GroundMerge: -15.52
     - _HoleNoiseScale: 0
     - _LineSize: 0.6
     - _Metallic: 0

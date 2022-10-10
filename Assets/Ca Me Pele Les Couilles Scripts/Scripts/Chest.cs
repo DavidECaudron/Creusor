@@ -18,6 +18,8 @@ namespace caca
         public int _indexChestPack;
         public int _indexEnemyPack;
 
+        public AudioSource audioSource;
+
         #endregion
     }
 }

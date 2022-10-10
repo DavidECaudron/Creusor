@@ -10,6 +10,8 @@ namespace proto
         AudioSource audioSourceCurse;
         AudioSource audioSourceIslandLoop;
 
+        AudioSource audioSourceCurseLaught;
+
         GameObject audioManager;
 
         void Awake()
@@ -20,6 +22,7 @@ namespace proto
             audioManager = GameObject.Find("AudioManager");
             audioSourceIslandLoop = audioManager.transform.GetChild(0).GetComponent<AudioSource>();
             audioSourceCurse = audioManager.transform.GetChild(2).GetComponent<AudioSource>();
+            audioSourceCurseLaught = audioManager.transform.GetChild(4).GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -41,12 +44,14 @@ namespace proto
 
         IEnumerator SetCurseMusic()
         {
+            audioSourceCurseLaught.Play();
             float elapsedTime = 0;
-            float duration = 0.5f;
+            float duration = 1f;
+            float startMusicVolume = audioSourceIslandLoop.volume;
 
             while(elapsedTime < duration)
             {
-                float lerp = Mathf.Lerp(1,0, elapsedTime / duration);
+                float lerp = Mathf.Lerp(startMusicVolume, 0, elapsedTime / duration);
                 audioSourceIslandLoop.volume = lerp;      
                 elapsedTime += Time.deltaTime;
                 yield return null;

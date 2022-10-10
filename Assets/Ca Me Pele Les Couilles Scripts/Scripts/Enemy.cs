@@ -27,8 +27,7 @@ namespace caca
         public GameObject _physics;
         public GameObject _healthBar;
         public GameObject _body;
-        public GameObject _meleeModel;
-        public GameObject _rangedModel;
+
         public GameObject _enemyProjectile;
         public Animator _animator;
         public Transform _projectileBin;
@@ -50,22 +49,29 @@ namespace caca
         public bool _isHidden = false;
 
         //VFX
+        public MeshRenderer _enemyBodyRend;
+        public MeshRenderer _EnemyStoneRend;
+        public MeshRenderer _EnemyParticleRend;
+        public ParticleSystem _EnemyParticles;   
+        ///
+        public MeshRenderer _enemyMeleeMaskRend;   
+        public MeshRenderer _EnemyMeleeTeethRend;
+        public MeshRenderer _EnemyMeleeEyeLeftRend;
+        public MeshRenderer _EnemyMeleeEyeRightRend;    
+        public MeshRenderer _EnemyBiteAttackTopRend;  
+        public MeshRenderer _EnemyBiteAttackBottomRend;    
+        public MeshRenderer _enemyDistanceMaskRend;  
+        public MeshRenderer _EnemyDistanceEyeRend;
 
-        public Renderer _enemyBodyRend;
-        public Renderer _enemyMeleeMaskRend;   
-        public Renderer _enemyDistanceMaskRend;  
-        public Renderer _EnemyMeleeTeethRend;
-        public Renderer _EnemyMeleeEyeLeftRend;
-        public Renderer _EnemyMeleeEyeRightRend;    
-        public Renderer _EnemyDistanceEyeRend;
-        public Renderer _EnemyStoneRend;
-        public Renderer _EnemyBiteAttackTopRend;  
-        public Renderer _EnemyBiteAttackBottomRend;    
-        public Renderer _EnemyParticleRend;
-        public ParticleSystem _EnemyParticles;    
+        public Transform _maskGroup;
 
+        private Vector3 _initialMaskPos;
+        private Quaternion _initialMaskRot;
+        ///
 
-       
+        public AudioSource _audioSource;
+        public AudioClip[] _attackMeleeBiteClips = new AudioClip[3]; 
+        public AudioClip[] _DefeatClips = new AudioClip[4]; 
        //VFX
         #endregion
 
@@ -92,6 +98,8 @@ namespace caca
             _transform = gameObject.GetComponent<Transform>();
             _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
             _healthSliderTransform = _healthSlider.gameObject.transform.parent.parent.GetComponent<Transform>();
+            _initialMaskPos = _maskGroup.transform.localPosition;
+            _initialMaskRot = _maskGroup.transform.localRotation;
         }
 
         private void Start()
@@ -106,12 +114,26 @@ namespace caca
 
             if (_enemyType == EnemyType.Melee)
             {
-                _meleeModel.SetActive(true);
+                _enemyMeleeMaskRend.enabled = true;   
+                _EnemyMeleeTeethRend.enabled = true;   
+                _EnemyMeleeEyeLeftRend.enabled = true;   
+                _EnemyMeleeEyeRightRend.enabled = true;      
+                _EnemyBiteAttackTopRend.enabled = true;   
+                _EnemyBiteAttackBottomRend.enabled = true;       
+                _enemyDistanceMaskRend.enabled = false;     
+                _EnemyDistanceEyeRend.enabled = false;    
             }
 
             if (_enemyType == EnemyType.Ranged)
             {
-                _rangedModel.SetActive(true);
+                _enemyMeleeMaskRend.enabled = false;   
+                _EnemyMeleeTeethRend.enabled = false;   
+                _EnemyMeleeEyeLeftRend.enabled = false;   
+                _EnemyMeleeEyeRightRend.enabled = false;      
+                _EnemyBiteAttackTopRend.enabled = false;   
+                _EnemyBiteAttackBottomRend.enabled = false;       
+                _enemyDistanceMaskRend.enabled = true;     
+                _EnemyDistanceEyeRend.enabled = true;    
             }
         }
 
@@ -139,7 +161,7 @@ namespace caca
 
                     if (_heightIndex > 0)
                     {
-                        _graphics.transform.position = new (graphicsPosition.x, 0.0f, graphicsPosition.z);
+                        _graphics.transform.position = new (graphicsPosition.x, -0.5f, graphicsPosition.z);
                         _healthBar.transform.position = new (healthBarPosition.x, 2.5f, healthBarPosition.z);
                     }
                     else
@@ -225,22 +247,41 @@ namespace caca
             }
         }
 
+        IEnumerator ResetMaskPosAndRot()
+        {
+            yield return new WaitForSecondsRealtime(3);
+            _maskGroup.transform.localPosition = _initialMaskPos;
+            _maskGroup.transform.localRotation = _initialMaskRot;     
+            yield return null;     
+        }
+
         public void TakeDamage(float damage)
         {
-            if (_currentHealth - damage > 0)
+
+            if(_isAlive && damage > 0)
             {
                 StartCoroutine(DamageFeedback());
-                _currentHealth -= damage;
-                _healthSlider.fillAmount = (_currentHealth/_maxHealth);
             }
-            else
-            {
-                _isAlive = false;
-                _EnemyParticles.Stop();
-                _player._isInAttackRange = false;
-                //HideEnemy();
-                _animator.SetBool("isDefeat", true);
 
+            if (_currentHealth > 0)
+            {
+                _currentHealth -= damage;
+            
+                if(_currentHealth <= 0)
+                {
+                    _healthSlider.fillAmount = 0;
+                    _isAlive = false;
+                    _EnemyParticles.Stop();
+                    _player._isInAttackRange = false;
+                    //HideEnemy();
+                    _animator.SetBool("isDefeat", true);
+                    _audioSource.PlayOneShot(_DefeatClips[Random.Range(0,_DefeatClips.Length)], 1f);
+                    StartCoroutine(ResetMaskPosAndRot());                    
+                }
+                else
+                {
+                    _healthSlider.fillAmount = (_currentHealth/_maxHealth);
+                }
             }
         }
 
@@ -327,6 +368,8 @@ namespace caca
                 if (Time.time >= _timeCheck)
                 {
                     _animator.SetTrigger("MeleeAttack");
+
+                    _audioSource.PlayOneShot(_attackMeleeBiteClips[Random.Range(0,_attackMeleeBiteClips.Length)], 0.2f);
 
                     _player.TakeDamage(_damageMelee);
 
