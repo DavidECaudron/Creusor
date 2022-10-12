@@ -28568,10 +28568,12 @@ MonoBehaviour:
   _camera: {fileID: 1288086366}
   _abilitiesClone: {fileID: 1147593380}
   _graphics: {fileID: 149788005}
+  _physics: {fileID: 1104441542}
   _shovelTransform: {fileID: 684619318}
   _healthCounter: {fileID: 769419551}
   _coconutCounter: {fileID: 313875650}
   _healthImage: {fileID: 1098059482}
+  _healthCursedImage: {fileID: 0}
   _healthImageBackground: {fileID: 1035443439}
   _animator: {fileID: 468461144}
   _leftMouseButtonLayerMask:
@@ -28580,6 +28582,9 @@ MonoBehaviour:
   _abilitiesLayerMask:
     serializedVersion: 2
     m_Bits: 2049
+  _graphicsHeightLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   _isInAttackRange: 0
   _isCursed: 0
   _animationScriptable: {fileID: 11400000, guid: c0be8a287ecd91949a48c1ac4782a35b,
@@ -28592,6 +28597,7 @@ MonoBehaviour:
   _healthBackgroundSpeed: 0.01
   _slowIntensity: 1
   _slowDuration: 2
+  _isAlive: 1
   _leftButtonCooldownImage: {fileID: 1825377474}
   _leftButtonDamage: 5
   _leftButtonCooldown: 0.1
@@ -28608,6 +28614,14 @@ MonoBehaviour:
   _shockwaveCooldownImage: {fileID: 839206813}
   _shockwaveDamage: 80
   _shockwaveCooldown: 2
+  _playerMeshRenderer: {fileID: 0}
+  _shovelMeshRenderer: {fileID: 0}
+  audioSourcePlayer: {fileID: 0}
+  playerDamageClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1519928790
 MonoBehaviour:
   m_ObjectHideFlags: 0

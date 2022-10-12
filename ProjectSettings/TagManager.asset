@@ -13,6 +13,7 @@ TagManager:
   - destructible
   - coconut
   - retrievable
+  - height
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,8 @@ namespace LaGrandeRefacto.Root
         [SerializeField] private SphereCollider _sphereCollider;
 
         [Header("Tweak")]
-        [SerializeField, Range(1, 10)] private float _radius;
+        [SerializeField, Range(0, 10)] private float _detectionRadius;
+        [SerializeField, Range(0, 10)] private float _spawnRadius;
 
         #endregion
 
@@ -58,8 +58,11 @@ namespace LaGrandeRefacto.Root
 
         void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(_transform.position, _radius);
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(_transform.position, _spawnRadius);
+
+            Gizmos.color = Color.black;
+            Gizmos.DrawSphere(_transform.position, _detectionRadius);
         }
 
         #endregion
@@ -77,9 +80,14 @@ namespace LaGrandeRefacto.Root
             return _sphereCollider;
         }
 
-        public float GetRadius()
+        public float GetDetectionRadius()
         {
-            return _radius;
+            return _detectionRadius;
+        }
+
+        public float GetSpawnRadius()
+        {
+            return _spawnRadius;
         }
 
         #endregion
