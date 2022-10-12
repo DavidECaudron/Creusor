@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,16 +18,6 @@ namespace LaGrandeRefacto.Root
         [Header("Debug")]
         [SerializeField] private List<Enemy> _enemyList;
         [SerializeField] private Vector3 _initialPosition;
-
-        #endregion
-
-
-        #region Main
-
-        public void MoveToDestination()
-        {
-            
-        }
 
         #endregion
 

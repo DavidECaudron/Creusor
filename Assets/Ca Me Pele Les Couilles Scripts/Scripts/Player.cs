@@ -16,6 +16,7 @@ namespace caca
         public Camera _camera;
         public Transform _abilitiesClone;
         public Transform _graphics;
+        public Transform _physics;
         public Transform _shovelTransform;
         public TMP_Text _healthCounter;
         public TMP_Text _coconutCounter;
@@ -25,6 +26,7 @@ namespace caca
         public Animator _animator;
         public LayerMask _leftMouseButtonLayerMask;
         public LayerMask _abilitiesLayerMask;
+        public LayerMask _graphicsHeightLayer;
         public bool _isInAttackRange = false;
         public bool _isCursed = false;
         public AnimationScriptable _animationScriptable;
@@ -114,6 +116,7 @@ namespace caca
 
         private void Start()
         {
+            StartCoroutine(PlayerGroundDetection());
             _timeCheckLeftButton = -_leftButtonCooldown;
             _timeCheckRightButton = -_rightButtonCooldown;
             _timeCheckShockwave = -_shockwaveCooldown;
@@ -658,6 +661,32 @@ namespace caca
             }
         }
 
+        private IEnumerator PlayerGroundDetection()
+        {
+            while (true)
+            {
+                Physics.Raycast(_physics.position, new Vector3(0.0f, -1.0f, 0.0f), out RaycastHit value, 1.0f, _graphicsHeightLayer);
+                Transform hit = value.transform;
+
+                if (hit != null)
+                {
+                    if (hit.CompareTag("height"))
+                    {
+                        Vector3 temp = new(_graphics.localPosition.x, -1.0f, _graphics.localPosition.z);
+
+                        _graphics.localPosition = temp;
+                    }
+                    else
+                    {
+                        Vector3 temp = new(_graphics.localPosition.x, 0.0f, _graphics.localPosition.z);
+
+                        _graphics.localPosition = temp;
+                    }
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
 
         //IEnumerator ShockwaveCoroutine()
         //{

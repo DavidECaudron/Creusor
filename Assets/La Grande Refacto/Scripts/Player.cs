@@ -9,6 +9,7 @@ namespace LaGrandeRefacto.Root
         [Header("Required")]
         [SerializeField] private Transform _transform;
         [SerializeField] private Transform _graphicsTransform;
+        [SerializeField] private Transform _physicsTransform;
         [SerializeField] private Rigidbody _rigidBody;
 
         [Header("Tweak")]
@@ -36,7 +37,7 @@ namespace LaGrandeRefacto.Root
 
         public void Rotation(Vector3 position)
         {
-            Vector3 lookAtPosition = new (position.x, GetTransform().position.y, position.z);
+            Vector3 lookAtPosition = new (position.x, _graphicsTransform.position.y, position.z);
 
             GetGraphicsTransform().LookAt(lookAtPosition);
         }
@@ -54,6 +55,11 @@ namespace LaGrandeRefacto.Root
         public Transform GetGraphicsTransform()
         {
             return _graphicsTransform;
+        }
+
+        public Transform GetPhysicsTransform()
+        {
+            return _physicsTransform;
         }
 
         public Rigidbody GetRigidbody()

@@ -16,6 +16,7 @@ namespace LaGrandeRefacto.Root
 
         [SerializeField] private LayerMask _mouseLeftButtonLayer;
         [SerializeField] private LayerMask _mouseRightButtonLayer;
+        [SerializeField] private LayerMask _graphicsHeightLayer;
 
         [Header("Debug")]
         [SerializeField] private Player _player;
@@ -44,6 +45,7 @@ namespace LaGrandeRefacto.Root
         {
             Setup();
             EnemySpawn();
+            StartCoroutine(PlayerGroundDetection());
         }
 
         private void Update()
@@ -132,14 +134,14 @@ namespace LaGrandeRefacto.Root
                 Position positionTemp = item.GetComponent<Position>();
                 EnemyPack enemyPackTemp = item.GetComponent<EnemyPack>();
 
-                positionTemp.GetSphereCollider().radius = positionTemp.GetRadius();
+                positionTemp.GetSphereCollider().radius = positionTemp.GetDetectionRadius();
 
                 _positionsList.Add(positionTemp);
                 _enemyPackList.Add(enemyPackTemp);
 
                 for (int i = 0; i < enemyPackTemp.GetNbMelee(); i++)
                 {
-                    float radiusTemp = positionTemp.GetRadius();
+                    float radiusTemp = positionTemp.GetSpawnRadius();
 
                     float randomX = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
                     float randomZ = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
@@ -161,7 +163,7 @@ namespace LaGrandeRefacto.Root
 
                 for (int i = 0; i < enemyPackTemp.GetNbRanged(); i++)
                 {
-                    float radiusTemp = positionTemp.GetRadius();
+                    float radiusTemp = positionTemp.GetSpawnRadius();
 
                     float randomX = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
                     float randomZ = Random.Range(-radiusTemp * 0.60f, radiusTemp * 0.60f);
@@ -199,7 +201,7 @@ namespace LaGrandeRefacto.Root
 
                 if (hit != null)
                 {
-                    if (hit.CompareTag("ground"))
+                    if (hit.CompareTag("ground") || hit.CompareTag("enemy"))
                     {
                         _nextPosition = value.point;
                     }
@@ -228,7 +230,7 @@ namespace LaGrandeRefacto.Root
 
                 if (hit != null)
                 {
-                    if (hit.CompareTag("ground"))
+                    if (hit.CompareTag("ground") || hit.CompareTag("enemy"))
                     {
                         _lookAtPosition = value.point;
                     }
@@ -240,6 +242,33 @@ namespace LaGrandeRefacto.Root
 
                     //    _enemyTransform = _hit.transform;
                     //}
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        private IEnumerator PlayerGroundDetection()
+        {
+            while (true)
+            {
+                Physics.Raycast(_player.GetPhysicsTransform().position, new Vector3(0.0f, -1.0f, 0.0f), out RaycastHit value, 1.0f,_graphicsHeightLayer);
+                Transform hit = value.transform;
+
+                if (hit != null)
+                {
+                    if (hit.CompareTag("enemy"))
+                    {
+                        Vector3 temp = new (_player.GetGraphicsTransform().localPosition.x, -1.0f, _player.GetGraphicsTransform().localPosition.z);
+
+                        _player.GetGraphicsTransform().localPosition = temp;
+                    }
+                    else
+                    {
+                        Vector3 temp = new(_player.GetGraphicsTransform().localPosition.x, 0.0f, _player.GetGraphicsTransform().localPosition.z);
+
+                        _player.GetGraphicsTransform().localPosition = temp;
+                    }
                 }
 
                 yield return new WaitForEndOfFrame();
