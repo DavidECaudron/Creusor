@@ -57,6 +57,7 @@ namespace caca
         //public string[] LeaveIslandLines;
 
         public float _textSpeed = 0.3f;
+        public float _introTimeDifference;
         int _dialogueIndex = 0;
         int _lineIndex = 0;
 
@@ -209,7 +210,7 @@ namespace caca
 
         public void TimeManagement()
         {
-            float seconds = Time.realtimeSinceStartup - _startTime;
+            float seconds = Time.realtimeSinceStartup - _introTimeDifference;
             float timeLeft = _tempLimitTime - seconds;
 
             if (timeLeft > 0)
@@ -341,48 +342,38 @@ namespace caca
         IEnumerator StartDialogue()
         {
             _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[Random.Range(0, 3)], 0.3f); 
+            _canvasGroupDialogueButton.interactable = true;
             foreach (char c in _introLines[_lineIndex].ToCharArray())
             {
                 _dialogueText.text += c;
-                if(_dialogueText.text.Length == 10)
-                {
-                    _canvasGroupDialogueButton.interactable = true;
-                }
                 yield return new WaitForSeconds(_textSpeed);
 
             }
             yield return null;
         }
 
-        public void DialogueNextButton()
+        public void NextLine()
         {
-            if(_dialogueText.text == _introLines[_lineIndex])
+            if(_lineIndex < _introLines.Length - 1)
             {
-                if(_lineIndex < _introLines.Length - 1)
-                {
-                    _lineIndex++;
-                    _dialogueText.text = string.Empty;
-                    StartCoroutine(StartDialogue());
-                }
-                else
-                {
-                    _dialogueText.text = string.Empty;
-                    _canvasGroupDialogueFrame.alpha = 0;
-
-                    if(!_introIsEnded)
-                    {
-                        _introIsEnded = true;
-                        _canvasGroupHUD.alpha = 1;
-                        _canvasGroupMap.alpha = 1;
-
-                    }
-                    _inDialogue = false;
-                }
+                _lineIndex++;
+                _dialogueText.text = string.Empty;
+                StartCoroutine(StartDialogue());
             }
             else
             {
-                StopAllCoroutines();
-                _dialogueText.text = _introLines[_lineIndex];
+                _dialogueText.text = string.Empty;
+                _canvasGroupDialogueFrame.alpha = 0;
+
+                if(!_introIsEnded)
+                {
+                    _introIsEnded = true;
+                    _introTimeDifference = Time.realtimeSinceStartup;
+                    _canvasGroupHUD.alpha = 1;
+                    _canvasGroupMap.alpha = 1;
+
+                }
+                _inDialogue = false;
             }
         }
 
