@@ -48,8 +48,18 @@ namespace caca
         public Animator _animatorPostProcessing;
         public CanvasGroup _canvasGroupHUD;
         public CanvasGroup _canvasGroupMap;     
-        public CanvasGroup _canvasGroupDialogueFrame;    
-        int dialogueIndex = 0;
+        public CanvasGroup _canvasGroupDialogueFrame;   
+        public CanvasGroup _canvasGroupDialogueButton; 
+
+        public TextMeshProUGUI _dialogueText;
+        public string[] _introLines;
+        //public string[] NoChestLines;
+        //public string[] LeaveIslandLines;
+
+        public float _textSpeed = 0.3f;
+        int _dialogueIndex = 0;
+        int _lineIndex = 0;
+
 
         #endregion
 
@@ -83,8 +93,9 @@ namespace caca
         {
             ChestSpawn();
             EnemySpawn();
-            //_canvasGroupHUD.alpha = 0;
+            _canvasGroupHUD.alpha = 0;
             _canvasGroupMap.alpha = 0;
+            _canvasGroupDialogueButton.interactable = false;
 
             _startTime = Time.realtimeSinceStartup;
             _tempLimitTime = (float)_limitTime;
@@ -321,9 +332,47 @@ namespace caca
         void NewDialogue()
         {
             _inDialogue = true;
+            _dialogueText.text = string.Empty;
             _canvasGroupDialogueFrame.alpha = 1f;
             _pelicanAnimator.SetTrigger("IsTalking");
+            StartCoroutine(StartDialogue());
+        }
+
+        IEnumerator StartDialogue()
+        {
             _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[Random.Range(0, 3)], 0.3f); 
+            _canvasGroupDialogueButton.interactable = true;
+            foreach (char c in _introLines[_lineIndex].ToCharArray())
+            {
+                _dialogueText.text += c;
+                yield return new WaitForSeconds(_textSpeed);
+
+            }
+            yield return null;
+        }
+
+        public void NextLine()
+        {
+            if(_lineIndex < _introLines.Length - 1)
+            {
+                _lineIndex++;
+                _dialogueText.text = string.Empty;
+                StartCoroutine(StartDialogue());
+            }
+            else
+            {
+                _dialogueText.text = string.Empty;
+                _canvasGroupDialogueFrame.alpha = 0;
+
+                if(!_introIsEnded)
+                {
+                    _introIsEnded = true;
+                    _canvasGroupHUD.alpha = 1;
+                    _canvasGroupMap.alpha = 1;
+
+                }
+                _inDialogue = false;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
