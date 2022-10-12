@@ -10,18 +10,27 @@ namespace proto
         List<MeshRenderer> rendFragments = new List<MeshRenderer>();
         List<Rigidbody> rbLeaves = new List<Rigidbody>();
         List<MeshRenderer> rendLeaves = new List<MeshRenderer>();
+
+        Color leavesColor;
         MeshRenderer treeRenderer;
         //MeshCollider treeCollider;
         GameObject shatteredGroup;
         GameObject leavesGroup;
         public float thrust = 10f;
 
+        public bool containCoconuts = false;
+
         bool hideFragments = false;
 
         float timer = 0.5f;
         float elapsedTime = 0;
 
+        List<Vector3> coconutSpawnPositions = new List<Vector3>();
 
+        public GameObject coconutPrefab;
+
+        [SerializeField] List<Rigidbody> rbCoconuts = new List<Rigidbody>();
+        [SerializeField] List<Animator> animatorCoconuts = new List<Animator>();
 
 
 
@@ -33,6 +42,7 @@ namespace proto
             //treeCollider = GetComponent<MeshCollider>();
             shatteredGroup = transform.GetChild(0).gameObject;
             leavesGroup = transform.GetChild(1).gameObject;
+            leavesColor = transform.GetComponent<VegetationRandomizer>().randomColor;
 
             for(int i = 0; i < shatteredGroup.transform.childCount; i++)
             {
@@ -44,13 +54,38 @@ namespace proto
             {
                 rbLeaves.Add(leavesGroup.transform.GetChild(i).GetComponent<Rigidbody>());
                 rendLeaves.Add(leavesGroup.transform.GetChild(i).GetComponent<MeshRenderer>());
+                rendLeaves[i].material.SetColor("_RandomColor", leavesColor);
             }
 
             shatteredGroup.SetActive(false);
-        }
-        void Start()
-        {
-            //DestroyTree(digMask.transform.position);
+            Transform coconutSpawnParent = transform.GetChild(2);
+
+            
+            for(int i = 0; i < coconutSpawnParent.childCount; i++)
+            {
+                coconutSpawnPositions.Add(coconutSpawnParent.GetChild(i).position);
+            }
+
+            if(containCoconuts)
+            {
+                float spawnCoconutRandom = Random.Range(0,1f);
+                GameObject coconutInstanceA = Instantiate(coconutPrefab, coconutSpawnPositions[0], Quaternion.identity);
+                rbCoconuts.Add(coconutInstanceA.GetComponent<Rigidbody>());
+                animatorCoconuts.Add(coconutInstanceA.GetComponent<Animator>());
+
+                if(spawnCoconutRandom > (1f - 0.3f)) //30% chance to spawn a second coconut;
+                {
+                    GameObject coconutInstanceB = Instantiate(coconutPrefab, coconutSpawnPositions[1], Quaternion.identity);
+                    rbCoconuts.Add(coconutInstanceB.GetComponent<Rigidbody>());
+                    animatorCoconuts.Add(coconutInstanceB.GetComponent<Animator>());
+                }
+                if(spawnCoconutRandom > (1f - 0.1f)) //10% chance to spawn a second coconut;
+                {
+                    GameObject coconutInstanceC = Instantiate(coconutPrefab, coconutSpawnPositions[2], Quaternion.identity);
+                    rbCoconuts.Add(coconutInstanceC.GetComponent<Rigidbody>());
+                    animatorCoconuts.Add(coconutInstanceC.GetComponent<Animator>());
+                }
+            }
         }
 
         // Update is called once per frame
@@ -86,6 +121,11 @@ namespace proto
 
             Vector3 forceDirection = (transform.position - digMaskPos).normalized;
 
+            for(int i = 0; i < rbCoconuts.Count; i++)
+            {
+                rbCoconuts[i].isKinematic = false;
+                animatorCoconuts[i].SetTrigger("Collectable");
+            }
             for(int i = 0; i < rbFragments.Count; i++)
             {
                 rendFragments[i].enabled = true;

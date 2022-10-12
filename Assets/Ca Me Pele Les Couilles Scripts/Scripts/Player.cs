@@ -38,6 +38,7 @@ namespace caca
         [Range(0.0f, 1.0f)] public float _healthBackgroundSpeed;
         public float _slowIntensity;
         public float _slowDuration;
+        public bool _isAlive = true;
 
         [Header("Left Button")]
         public Image _leftButtonCooldownImage;
@@ -91,6 +92,14 @@ namespace caca
         public MeshRenderer _shovelMeshRenderer;
         //VFX
 
+        //SFX
+
+        public AudioSource audioSourcePlayer;
+        public AudioClip[] playerDamageClips = new AudioClip[4];
+
+
+        //SFX
+
         #endregion
 
 
@@ -115,8 +124,11 @@ namespace caca
 
         private void Update()
         {
-            Movement();
+            if(_isAlive)
+            {
+                Movement();
 
+            }
             if ((Time.time - _timeCheckLeftButton) / _leftButtonCooldown <= 1.05f)
             {
                 _leftButtonCooldownImage.fillAmount = (Time.time - _timeCheckLeftButton) / _leftButtonCooldown;
@@ -236,7 +248,9 @@ namespace caca
                 _healthImage.fillAmount = (_currentHealth / _maxHealth);
                 _healthCursedImage.fillAmount = (_currentHealth / _maxHealth);                
                 _healthCounter.text = _currentHealth + " / " + _maxHealth;
-                
+
+                audioSourcePlayer.PlayOneShot(playerDamageClips[Random.Range(0, playerDamageClips.Length)], 0.2f);
+
                 StartCoroutine(DamageFeedback());
                 StartCoroutine(SlowCoroutine());
                 StartCoroutine(HealthBarCoroutine());
@@ -245,7 +259,12 @@ namespace caca
             }
             else
             {
-                _gameManager.LoadMainMenuDead();
+                if(_isAlive)
+                {
+                    _isAlive = false;
+                    _animator.SetTrigger("_IsDead");
+                    _gameManager.GameOver();
+                }
             }
         }
 
@@ -520,6 +539,7 @@ namespace caca
 
         IEnumerator DamageFeedback()
         {
+            _animator.SetBool("_TakeDamage", true);
             _playerMeshRenderer.material.SetFloat("_DamageColorAmount", 1.0f);
             _shovelMeshRenderer.material.SetFloat("_DamageColorAmount", 1.0f);
 
@@ -527,6 +547,7 @@ namespace caca
 
             _playerMeshRenderer.material.SetFloat("_DamageColorAmount", 0f);
             _shovelMeshRenderer.material.SetFloat("_DamageColorAmount", 0f);
+            _animator.SetBool("_TakeDamage", false);
         }
 
         #endregion

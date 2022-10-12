@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 34dfa32f0a27b024a852c484a8213bd9
+guid: 44ef4d38a63aa4b41a7ff252a40b436f
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4403244677763796253
+    second: Pirate@Hit_01.001
   externalObjects: {}
   materials:
     materialImportMode: 2

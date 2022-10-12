@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using proto;
+using System.Collections;
 
 namespace caca
 {
@@ -41,6 +42,12 @@ namespace caca
         [Header("Chest Pack")]
         public Chest_Pack _chestPack;
         public int _nbChestPack = 0;
+
+        public AudioSource _audioSourceGameOver;
+
+        public Animator _animatorPostProcessing;
+        public CanvasGroup _canvasGroupHUD;
+        public CanvasGroup _canvasGroupMap;        
 
         #endregion
 
@@ -258,9 +265,21 @@ namespace caca
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
 
-        public void LoadMainMenuDead()
+        public void GameOver()
         {
+            StartCoroutine(GameOverTransition());
+        }
+        IEnumerator GameOverTransition()
+        {
+            _audioSourceGameOver.Play();
+            _animatorPostProcessing.SetBool("GameOver", true);
+            _canvasGroupHUD.alpha = 0;
+            _canvasGroupMap.alpha = 0;
+
+            yield return new WaitForSeconds(3f);
+
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            yield return null;
         }
 
         public void AddEnemyInTable(Enemy enemy)

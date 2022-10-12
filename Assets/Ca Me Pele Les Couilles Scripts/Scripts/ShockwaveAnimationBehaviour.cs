@@ -113,6 +113,10 @@ namespace caca
                     {
                         treeBehavior.DestroyTree(clone.transform.position);
                     }
+                    else
+                    {
+                        hit.gameObject.SetActive(false);
+                    }
                 }
 
                 //if (hit.CompareTag("ground"))

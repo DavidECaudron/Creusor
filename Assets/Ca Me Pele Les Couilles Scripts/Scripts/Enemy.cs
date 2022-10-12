@@ -72,6 +72,8 @@ namespace caca
         public AudioSource _audioSource;
         public AudioClip[] _attackMeleeBiteClips = new AudioClip[3]; 
         public AudioClip[] _DefeatClips = new AudioClip[4]; 
+
+        public AudioClip[] _takeDamageClips = new AudioClip[2]; 
        //VFX
         #endregion
 
@@ -85,6 +87,8 @@ namespace caca
         private bool _isPlayerInAttackRange = false;
         private bool _isAttacking = false;
         private int _heightIndex = 0;
+
+        private bool isMoving = false;
 
 
 
@@ -170,7 +174,7 @@ namespace caca
                         _healthBar.transform.position = new (healthBarPosition.x, 3.5f, healthBarPosition.z);
                     }
 
-                    if (_isPlayerInDetectionRange == true)
+                    if (_isPlayerInDetectionRange == true && _player._isAlive)
                     {
                         if (_enemyType == EnemyType.Melee)
                         {
@@ -261,6 +265,7 @@ namespace caca
             if(_isAlive && damage > 0)
             {
                 StartCoroutine(DamageFeedback());
+                _audioSource.PlayOneShot(_takeDamageClips[Random.Range(0,_takeDamageClips.Length)], 0.3f);
             }
 
             if (_currentHealth > 0)
@@ -275,7 +280,9 @@ namespace caca
                     _player._isInAttackRange = false;
                     //HideEnemy();
                     _animator.SetBool("isDefeat", true);
-                    _audioSource.PlayOneShot(_DefeatClips[Random.Range(0,_DefeatClips.Length)], 1f);
+                    int random = Random.Range(0,_DefeatClips.Length);
+                    Debug.Log(random);
+                    _audioSource.PlayOneShot(_DefeatClips[random], 0.3f);
                     StartCoroutine(ResetMaskPosAndRot());                    
                 }
                 else
@@ -370,6 +377,7 @@ namespace caca
                     _animator.SetTrigger("MeleeAttack");
 
                     _audioSource.PlayOneShot(_attackMeleeBiteClips[Random.Range(0,_attackMeleeBiteClips.Length)], 0.2f);
+                    yield return new WaitForSeconds(0.2f);
 
                     _player.TakeDamage(_damageMelee);
 

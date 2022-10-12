@@ -157,13 +157,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4112172745391424699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.625, z: 0.32299995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6210558268499514104}
-  m_RootOrder: 2
+  m_Father: {fileID: 7744243913048686842}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5175197439996567493
 GameObject:
@@ -245,7 +245,6 @@ Transform:
   m_Children:
   - {fileID: 6210558270163703877}
   - {fileID: 6210558269752369397}
-  - {fileID: 6377600677895957852}
   - {fileID: 6629121594291238708}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -294,7 +293,7 @@ MonoBehaviour:
   _physics: {fileID: 6210558269752369396}
   _healthBar: {fileID: 5175197439996567493}
   _body: {fileID: 7744243912390240525}
-  _enemyProjectile: {fileID: 7318216793362743927, guid: 9adc8c2951bf21042a175ff7555c2607,
+  _enemyProjectile: {fileID: 255061423819889225, guid: 9adc8c2951bf21042a175ff7555c2607,
     type: 3}
   _animator: {fileID: 7744243913048686846}
   _projectileBin: {fileID: 0}
@@ -302,7 +301,7 @@ MonoBehaviour:
   _initialPosition: {x: 0, y: 0, z: 0}
   _isPlayerInDetectionRange: 0
   _enemyType: 0
-  _level: 0
+  _level: 5
   _movementSpeed: 7
   _maxHealth: 100
   _currentHealth: 0
@@ -335,6 +334,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ab51e7b432a03d4fafdc337a3159e36, type: 3}
   - {fileID: 8300000, guid: 222c279b3c315c647bba835258f668a7, type: 3}
   - {fileID: 8300000, guid: 60289882be641e9478e3948214a856e2, type: 3}
+  _takeDamageClips:
+  - {fileID: 8300000, guid: 86cb0c5f318d5b9409db8c7acba24674, type: 3}
+  - {fileID: 8300000, guid: c1eada723d0f7e248ae2980c5125d58c, type: 3}
 --- !u!54 &2120911041552032690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -713,7 +715,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6210558268499514104}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9053705539360152014
 GameObject:
