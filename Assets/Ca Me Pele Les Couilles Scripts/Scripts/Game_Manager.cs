@@ -49,6 +49,7 @@ namespace caca
         public CanvasGroup _canvasGroupHUD;
         public CanvasGroup _canvasGroupMap;     
         public CanvasGroup _canvasGroupDialogueFrame;    
+        int dialogueIndex = 0;
 
         #endregion
 
@@ -69,6 +70,10 @@ namespace caca
 
         public Animator _pelicanAnimator;
 
+        public AudioSource _pelicanAudioSource;
+
+        public AudioClip[] _pelicanVoiceClips = new AudioClip[4];
+
         #endregion
 
 
@@ -78,7 +83,7 @@ namespace caca
         {
             ChestSpawn();
             EnemySpawn();
-            _canvasGroupHUD.alpha = 0;
+            //_canvasGroupHUD.alpha = 0;
             _canvasGroupMap.alpha = 0;
 
             _startTime = Time.realtimeSinceStartup;
@@ -90,7 +95,10 @@ namespace caca
 
         private void Update()
         {
-            TimeManagement();
+            if(_introIsEnded)
+            {
+                TimeManagement();
+            }
         }
 
         #endregion
@@ -310,7 +318,13 @@ namespace caca
             _listChest.Remove(chest);
         }
 
-        
+        void NewDialogue()
+        {
+            _inDialogue = true;
+            _canvasGroupDialogueFrame.alpha = 1f;
+            _pelicanAnimator.SetTrigger("IsTalking");
+            _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[Random.Range(0, 3)], 0.3f); 
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -318,10 +332,7 @@ namespace caca
             {
                 if(!_introIsEnded)
                 {
-                    _inDialogue = true;
-                    _canvasGroupDialogueFrame.alpha = 1f;
-                    _pelicanAnimator.SetTrigger("IsTalking");
-                    // NewDialogue()
+                    NewDialogue();
                 }
                 if (_nbChest > 0)
                 {
