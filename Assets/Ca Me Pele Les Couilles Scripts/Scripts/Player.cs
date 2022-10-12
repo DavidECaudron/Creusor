@@ -124,7 +124,15 @@ namespace caca
 
         private void Update()
         {
-            if(_isAlive)
+
+            if(!_isAlive || _gameManager._inDialogue)
+            {
+                _nextPosition = _transform.position;
+                _animator.SetBool("_isRunning", false);
+
+            }
+
+            if(_isAlive && !_gameManager._inDialogue)
             {
                 Movement();
 
@@ -280,7 +288,7 @@ namespace caca
 
         public void OnMouseLeftButton(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed  && _isAlive && !_gameManager._inDialogue)
             {
                 _isLeftClicking = true;
 
@@ -307,7 +315,7 @@ namespace caca
 
         public void OnMouseRightButton(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 _isUsingAbility = true;
 
@@ -316,7 +324,7 @@ namespace caca
                 _rightButtonPivot.gameObject.SetActive(true);
             }
 
-            if (context.canceled)
+            if (context.canceled && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 _rightButtonPivot.gameObject.SetActive(false);
 
@@ -434,7 +442,7 @@ namespace caca
 
         public void OnMousePosition(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed  && _isAlive && !_gameManager._inDialogue)
             {
                 _mousePosition = context.ReadValue<Vector2>();
             }
@@ -447,7 +455,7 @@ namespace caca
 
         public void OnDig(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed )
             {
                 
             }
@@ -473,12 +481,12 @@ namespace caca
 
         public void OnShockwave(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed  && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 _shockwaveSpawn.gameObject.SetActive(true);
             }
 
-            if (context.canceled)
+            if (context.canceled  && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 _shockwaveSpawn.gameObject.SetActive(false);
 
@@ -493,7 +501,7 @@ namespace caca
 
         public void OnConsumable(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed  && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 if (!_isCursed)
                 {

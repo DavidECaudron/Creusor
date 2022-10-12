@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: -5130777311964611999}
   - component: {fileID: 8185313585907332157}
   - component: {fileID: 4189197022692487517}
+  - component: {fileID: 5757829000321612375}
   m_Layer: 2
   m_Name: Destroyable_PalmTree_D
   m_TagString: destructible
@@ -242,7 +243,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 10
   containCoconuts: 0
-  coconutPrefab: {fileID: 0}
+  coconutPrefab: {fileID: 8326010945525539511, guid: e55220b3ab74a0a43a71d9a550722ae4,
+    type: 3}
+  rbCoconuts: []
+  animatorCoconuts: []
 --- !u!135 &4189197022692487517
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -256,6 +260,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: -0.16, z: 0}
+--- !u!64 &5757829000321612375
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247046484251933178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7223215191828335325, guid: ee6559c7a5a600c41b7cc96bb86eb086, type: 3}
 --- !u!1 &9144205362009601112
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4047403015786695188}
   - component: {fileID: 1118185785015698865}
   - component: {fileID: 2909447705297187195}
+  - component: {fileID: 6744551196670327987}
   m_Layer: 0
   m_Name: Raflesia_Flower
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3702120753039134894}
-  m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -78.83, y: -0.5, z: -39.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.69064, y: 0.69064, z: 0.69064}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &1118185785015698865
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &6744551196670327987
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3702120753039134894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.429302
+  m_Center: {x: -0.18019567, y: 0.43731248, z: 0.10054671}

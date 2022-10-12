@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3107450419268816590}
   - component: {fileID: 2067216157330833771}
   - component: {fileID: 4275267816761324961}
+  - component: {fileID: 3011047429271780866}
   m_Layer: 0
   m_Name: Lotus_Flower3
-  m_TagString: Untagged
+  m_TagString: destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2329540910684591220}
-  m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -55.146, y: -0.351, z: 20.259}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.221, y: 1.221, z: 1.221}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &2067216157330833771
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3011047429271780866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329540910684591220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7985086, y: 0.44562694, z: 0.83740604}
+  m_Center: {x: -0.011254612, y: 0.25423318, z: 0.0009703937}

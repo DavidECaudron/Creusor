@@ -47,7 +47,8 @@ namespace caca
 
         public Animator _animatorPostProcessing;
         public CanvasGroup _canvasGroupHUD;
-        public CanvasGroup _canvasGroupMap;        
+        public CanvasGroup _canvasGroupMap;     
+        public CanvasGroup _canvasGroupDialogueFrame;    
 
         #endregion
 
@@ -63,6 +64,11 @@ namespace caca
         private bool _hasBeenBuff = false;
         private bool _hasBeenCursed = false;
 
+        public bool _introIsEnded = false;
+        public bool _inDialogue = false;
+
+        public Animator _pelicanAnimator;
+
         #endregion
 
 
@@ -72,6 +78,8 @@ namespace caca
         {
             ChestSpawn();
             EnemySpawn();
+            _canvasGroupHUD.alpha = 0;
+            _canvasGroupMap.alpha = 0;
 
             _startTime = Time.realtimeSinceStartup;
             _tempLimitTime = (float)_limitTime;
@@ -302,13 +310,23 @@ namespace caca
             _listChest.Remove(chest);
         }
 
+        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("player"))
             {
+                if(!_introIsEnded)
+                {
+                    _inDialogue = true;
+                    _canvasGroupDialogueFrame.alpha = 1f;
+                    _pelicanAnimator.SetTrigger("IsTalking");
+                    // NewDialogue()
+                }
                 if (_nbChest > 0)
                 {
-                    LoadMainMenuAlive();
+
+                    //LoadMainMenuAlive();
                 }
             }
         }
