@@ -341,37 +341,48 @@ namespace caca
         IEnumerator StartDialogue()
         {
             _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[Random.Range(0, 3)], 0.3f); 
-            _canvasGroupDialogueButton.interactable = true;
             foreach (char c in _introLines[_lineIndex].ToCharArray())
             {
                 _dialogueText.text += c;
+                if(_dialogueText.text.Length == 10)
+                {
+                    _canvasGroupDialogueButton.interactable = true;
+                }
                 yield return new WaitForSeconds(_textSpeed);
 
             }
             yield return null;
         }
 
-        public void NextLine()
+        public void DialogueNextButton()
         {
-            if(_lineIndex < _introLines.Length - 1)
+            if(_dialogueText.text == _introLines[_lineIndex])
             {
-                _lineIndex++;
-                _dialogueText.text = string.Empty;
-                StartCoroutine(StartDialogue());
+                if(_lineIndex < _introLines.Length - 1)
+                {
+                    _lineIndex++;
+                    _dialogueText.text = string.Empty;
+                    StartCoroutine(StartDialogue());
+                }
+                else
+                {
+                    _dialogueText.text = string.Empty;
+                    _canvasGroupDialogueFrame.alpha = 0;
+
+                    if(!_introIsEnded)
+                    {
+                        _introIsEnded = true;
+                        _canvasGroupHUD.alpha = 1;
+                        _canvasGroupMap.alpha = 1;
+
+                    }
+                    _inDialogue = false;
+                }
             }
             else
             {
-                _dialogueText.text = string.Empty;
-                _canvasGroupDialogueFrame.alpha = 0;
-
-                if(!_introIsEnded)
-                {
-                    _introIsEnded = true;
-                    _canvasGroupHUD.alpha = 1;
-                    _canvasGroupMap.alpha = 1;
-
-                }
-                _inDialogue = false;
+                StopAllCoroutines();
+                _dialogueText.text = _introLines[_lineIndex];
             }
         }
 
