@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextPosition: {x: 0, y: 0, z: 0}
   _damage: 0
-  _movementSpeed: 12
+  _movementSpeed: 17
   _timeBeforeDestroy: 3
   audioSource: {fileID: -618491867544821639}
   projectileShootClips:

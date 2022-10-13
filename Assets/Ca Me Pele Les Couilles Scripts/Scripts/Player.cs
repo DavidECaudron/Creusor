@@ -79,6 +79,7 @@ namespace caca
 
         private bool _isLeftClicking = false;
         private bool _isUsingAbility = false;
+        
         private bool _isTargetingGround = false;
         private bool _isTargetingEnemy = false;
         private bool _isCalculatingHealth = false;
@@ -442,7 +443,6 @@ namespace caca
                 _isUsingAbility = false;
             }
         }
-
         public void OnMousePosition(InputAction.CallbackContext context)
         {
             if (context.performed  && _isAlive && !_gameManager._inDialogue)
@@ -504,7 +504,7 @@ namespace caca
 
         public void OnConsumable(InputAction.CallbackContext context)
         {
-            if (context.performed  && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
+            if (context.performed && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded)
             {
                 if (!_isCursed)
                 {
@@ -540,6 +540,18 @@ namespace caca
                         }
                     }
                 }
+            }
+
+            if (context.canceled)
+            {
+
+            }
+        }
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            if (context.performed && _isAlive && !_gameManager._inDialogue && _gameManager._introIsEnded && _gameManager._nearOfPelican)
+            {
+                _gameManager.NewDialogue();
             }
 
             if (context.canceled)
