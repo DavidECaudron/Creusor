@@ -6,6 +6,7 @@ namespace caca
 {
     public class Main_Menu : MonoBehaviour
     {
+        public Animator _creditAnimator;
         void Start()
         {
             Invoke("DisplayScene", 2f);
@@ -16,6 +17,19 @@ namespace caca
             _sceneTransitionAnimator.SetBool("HideScreen", true);
             Invoke("LoadScene", 2f);
         }  
+
+        public void CreditButton()
+        {
+            _sceneTransitionAnimator.SetBool("HideScreen", true);
+            Invoke("DisplayCredits",0f);
+            Invoke("DisplayScene", 42f);
+        } 
+
+        public void DisplayCredits()
+        {
+            _creditAnimator.SetTrigger("DisplayCredits");
+        }
+
         public void DisplayScene()
         {
             _sceneTransitionAnimator.SetBool("HideScreen", false);            
