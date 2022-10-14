@@ -287,7 +287,6 @@ namespace caca
                     //HideEnemy();
                     _animator.SetBool("isDefeat", true);
                     int random = Random.Range(0,_DefeatClips.Length);
-                    Debug.Log(random);
                     _audioSource.PlayOneShot(_DefeatClips[random], 0.3f);
                     StartCoroutine(ResetMaskPosAndRot());                    
                 }
