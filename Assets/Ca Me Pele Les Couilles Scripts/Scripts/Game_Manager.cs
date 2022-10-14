@@ -45,7 +45,7 @@ namespace caca
 
         public AudioSource _audioSourceGameOver;
         public AudioSource _audioSourceIslandLoop;
-
+        public AudioSource _audioSourceCurseLoop;
         public Animator _animatorPostProcessing;
         public Animator _sceneTransitionAnimator;       
         public CanvasGroup _canvasGroupHUD;
@@ -517,6 +517,7 @@ namespace caca
          
             yield return null;
         }
+
         IEnumerator CloseDialogue()
         {
             _canvasGroupDialogueChoices.interactable = true;

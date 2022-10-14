@@ -149,8 +149,7 @@ namespace caca
             _healthSliderTransform.LookAt(lookAtPosition);
 
             Movement();
-
-            if(_player._isAlive!)
+            if(!_player._isAlive)
             {
                 _healthCanvasGroup.alpha = 0;
             }

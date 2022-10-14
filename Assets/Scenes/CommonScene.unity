@@ -11773,10 +11773,10 @@ RectTransform:
   m_Father: {fileID: 120826995}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 54.59999, y: 0}
-  m_SizeDelta: {x: 335, y: 56}
+  m_SizeDelta: {x: 335, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509309475
 MonoBehaviour:
@@ -32615,6 +32615,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
         type: 3}
+      propertyPath: _audioSourceCurseLoop
+      value: 
+      objectReference: {fileID: 1797980007}
+    - target: {fileID: 305082140838053183, guid: a403173c7352ba343b74918804b09860,
+        type: 3}
       propertyPath: _gradientTimer.ctime0
       value: 54934
       objectReference: {fileID: 0}
@@ -35117,9 +35122,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -54.59999, y: 0}
-  m_SizeDelta: {x: 335, y: 0}
+  m_SizeDelta: {x: 335, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583840822
 MonoBehaviour:
@@ -40980,6 +40985,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: M_Bourse (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3015915494319373083, guid: 0ce67722a94d646a191aab391340f1b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce67722a94d646a191aab391340f1b0, type: 3}
 --- !u!114 &1873119850 stripped
@@ -41310,7 +41320,6 @@ GameObject:
   - component: {fileID: 1887223851}
   - component: {fileID: 1887223850}
   - component: {fileID: 1887223849}
-  - component: {fileID: 1887223848}
   - component: {fileID: 1887223847}
   m_Layer: 5
   m_Name: ChoiceB
@@ -41361,19 +41370,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1887223848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887223845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f541678ab15c0ca488a425c38584883b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneTransitionAnimator: {fileID: 0}
 --- !u!114 &1887223849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43473,7 +43469,6 @@ GameObject:
   - component: {fileID: 2007303630}
   - component: {fileID: 2007303629}
   - component: {fileID: 2007303628}
-  - component: {fileID: 2007303627}
   - component: {fileID: 2007303626}
   m_Layer: 5
   m_Name: ChoiceA
@@ -43524,19 +43519,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2007303627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007303624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f541678ab15c0ca488a425c38584883b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneTransitionAnimator: {fileID: 0}
 --- !u!114 &2007303628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48838,6 +48820,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: M_Bourse (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3015915494319373083, guid: 0ce67722a94d646a191aab391340f1b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce67722a94d646a191aab391340f1b0, type: 3}
