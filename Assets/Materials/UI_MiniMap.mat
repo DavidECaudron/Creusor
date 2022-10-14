@@ -84,9 +84,9 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorBackground: {r: 0, g: 0.5356469, b: 0.6981132, a: 1}
-    - _ColorBackground_Highlight: {r: 0.7830188, g: 0.55451626, b: 0, a: 0}
-    - _ColorTerrain: {r: 0, g: 1, b: 0.9803922, a: 0}
+    - _ColorBackground: {r: 0, g: 0.51098055, b: 0.7924528, a: 1}
+    - _ColorBackground_Highlight: {r: 1, g: 0.60412586, b: 0.07075471, a: 0}
+    - _ColorTerrain: {r: 0, g: 0.7075472, b: 0.69367373, a: 0}
     - _ColorTerrainHighlight: {r: 0.9254902, g: 0.86956203, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

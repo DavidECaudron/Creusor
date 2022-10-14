@@ -63,6 +63,7 @@ MonoBehaviour:
   _animator: {fileID: 1553055932310565910}
   _mask: {fileID: 4299769478916220664}
   _areaMask: {fileID: 0}
+  _areaMaskIcon: {fileID: 0}
   _isTaken: 0
   _isTrapped: 0
   _gold: 25

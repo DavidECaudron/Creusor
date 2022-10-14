@@ -323,6 +323,7 @@ MonoBehaviour:
   _EnemyBiteAttackBottomRend: {fileID: 1711813855852553168}
   _enemyDistanceMaskRend: {fileID: 7744243911457334317}
   _EnemyDistanceEyeRend: {fileID: 7744243911871218953}
+  _healthCanvasGroup: {fileID: 1566720130}
   _maskGroup: {fileID: 8824602513093895857}
   _audioSource: {fileID: 3296864326532090575}
   _attackMeleeBiteClips:

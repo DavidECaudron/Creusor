@@ -63,6 +63,8 @@ namespace caca
         public MeshRenderer _enemyDistanceMaskRend;  
         public MeshRenderer _EnemyDistanceEyeRend;
 
+        public CanvasGroup _healthCanvasGroup;
+
         public Transform _maskGroup;
 
         private Vector3 _initialMaskPos;
@@ -147,6 +149,11 @@ namespace caca
             _healthSliderTransform.LookAt(lookAtPosition);
 
             Movement();
+
+            if(_player._isAlive!)
+            {
+                _healthCanvasGroup.alpha = 0;
+            }
         }
 
         #endregion

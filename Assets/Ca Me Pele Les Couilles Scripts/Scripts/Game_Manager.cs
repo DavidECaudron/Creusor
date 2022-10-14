@@ -47,6 +47,7 @@ namespace caca
         public AudioSource _audioSourceIslandLoop;
 
         public Animator _animatorPostProcessing;
+        public Animator _sceneTransitionAnimator;       
         public CanvasGroup _canvasGroupHUD;
         public CanvasGroup _canvasGroupMap;     
         public CanvasGroup _canvasGroupDialogueFrame;   
@@ -84,6 +85,8 @@ namespace caca
         private bool _hasBeenBuff = false;
         private bool _hasBeenCursed = false;
 
+        public bool _gameRunEnded = false;
+
 
         public Animator _pelicanAnimator;
 
@@ -97,7 +100,8 @@ namespace caca
         #region Updates
 
         private void Start()
-        {      
+        {   
+            Invoke("DisplayScene", 2f);  
             //Step 1
             _linePerDialogue[0] = 5;
             _lines[0] = "Ohé camarade ! Es-tu prêt à te lancer dans cette quête de richesse au péril de ta vie ?";
@@ -132,6 +136,15 @@ namespace caca
             {
                 TimeManagement();
             }
+        }
+
+        void DisplayScene()
+        {
+            _sceneTransitionAnimator.SetBool("HideScreen", false);
+        }
+        void HideScene()
+        {
+            _sceneTransitionAnimator.SetBool("HideScreen", true);
         }
 
         #endregion
@@ -318,6 +331,7 @@ namespace caca
 
         public void GameOver()
         {
+            _gameRunEnded = true;
             StartCoroutine(GameOverTransition());
         }
         IEnumerator GameOverTransition()
@@ -328,7 +342,8 @@ namespace caca
             _canvasGroupMap.alpha = 0;
 
             yield return new WaitForSeconds(3f);
-
+            Invoke("HideScene", 2f);  
+            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             yield return null;
         }
@@ -360,6 +375,7 @@ namespace caca
             _canvasGroupDialogueFrame.alpha = 1f;
             _canvasGroupHUD.alpha = 0;
             _canvasGroupMap.alpha = 0;
+            _canvasGroupPelican.alpha = 0;
             StartCoroutine(StartDialogue());
         }
 
@@ -454,6 +470,10 @@ namespace caca
                         }
                         _canvasGroupHUD.alpha = 1;
                         _canvasGroupMap.alpha = 1;
+                        if(!_gameRunEnded)
+                        {
+                            _canvasGroupPelican.alpha = 1;
+                        }
                         _canvasGroupDialogueButton.interactable = false;
                         _inDialogue = false;
                         _currentLineCount = 0;
@@ -478,29 +498,42 @@ namespace caca
         public void StayOnIsland()
         {
             StartCoroutine(CloseDialogue());
-            _lineIndex -= 4;
-            _currentLineCount = 0;
-            _inDialogue = false;
-            _canvasGroupHUD.alpha = 1;
-            _canvasGroupMap.alpha = 1;
+            //_lineIndex -= 3;
         }
 
         public void LeaveIsland()
         {
+            _gameRunEnded = true;
             StartCoroutine(CloseDialogue());
+            StartCoroutine(SceneTransition());
+
         }
 
         IEnumerator SceneTransition()
         {
-            yield return new WaitForSeconds(1);
+            HideScene();
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);   
+         
             yield return null;
         }
         IEnumerator CloseDialogue()
         {
             _canvasGroupDialogueChoices.interactable = true;
-            yield return new WaitForSeconds(0.5f);
+            _canvasGroupDialogueChoices.interactable = false;
+
+            if(_lineIndex == 8)
+            {
+                yield return new WaitForSeconds(0.5f);
+                _lineIndex -= 3;
+            }
             _canvasGroupDialogueChoices.alpha = 0;
             _canvasGroupDialogueFrame.alpha = 0;
+            _currentLineCount = 0;
+            _dialogueText.text = string.Empty;
+            _inDialogue = false;
+            _canvasGroupHUD.alpha = 1;
+            _canvasGroupMap.alpha = 1;
             yield return null;
         }
 
