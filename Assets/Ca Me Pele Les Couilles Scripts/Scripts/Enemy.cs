@@ -404,12 +404,18 @@ namespace caca
                     if(!isCursed)
                     {
                         GameObject clone = Instantiate(_enemyProjectiles[0], _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
-                        clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;                        
+                        EnemyProjectile projectileClone = clone.GetComponent<EnemyProjectile>();
+                        projectileClone._player = _player;
+                        projectileClone._direction = _player._graphics.position - _graphics.transform.position;
+                        projectileClone._damage = _damageRanged;
                     }
                     else
                     {
                         GameObject clone = Instantiate(_enemyProjectiles[1], _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
-                        clone.GetComponent<EnemyProjectile>()._damage = _damageRanged; 
+                        EnemyProjectile projectileClone = clone.GetComponent<EnemyProjectile>();
+                        projectileClone._player = _player;
+                        projectileClone._direction = _player._graphics.position - _graphics.transform.position;
+                        projectileClone._damage = _damageRanged;
                     }
                     
 
