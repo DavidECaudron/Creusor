@@ -91,7 +91,7 @@ namespace caca
         private bool _isAttacking = false;
         private int _heightIndex = 0;
 
-        private bool isMoving = false;
+        //private bool isMoving = false;
 
 
 
