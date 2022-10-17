@@ -28,7 +28,8 @@ namespace caca
         public GameObject _healthBar;
         public GameObject _body;
 
-        public GameObject _enemyProjectile;
+        public GameObject[] _enemyProjectiles = new GameObject[2];
+        bool isCursed = false;
         public Animator _animator;
         public Transform _projectileBin;
         public Transform _projectileSpawn;
@@ -343,7 +344,8 @@ namespace caca
             _EnemyBiteAttackTopRend.material.SetFloat("_CurseAmount", 1);
             _EnemyBiteAttackBottomRend.material.SetFloat("_CurseAmount", 1);      
             _EnemyParticleRend.material.SetFloat("_CurseAmount", 1);
-            _enemyBodyRend.transform.localScale = targetBodyScale;     
+            _enemyBodyRend.transform.localScale = targetBodyScale;    
+            isCursed = true; 
 
             yield return null;
         }
@@ -399,9 +401,17 @@ namespace caca
             {
                 if (Time.time >= _timeCheck)
                 {
-                    GameObject clone = Instantiate(_enemyProjectile, _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
-
-                    clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;
+                    if(!isCursed)
+                    {
+                        GameObject clone = Instantiate(_enemyProjectiles[0], _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
+                        clone.GetComponent<EnemyProjectile>()._damage = _damageRanged;                        
+                    }
+                    else
+                    {
+                        GameObject clone = Instantiate(_enemyProjectiles[1], _projectileSpawn.position, _projectileSpawn.rotation, _player._abilitiesClone);
+                        clone.GetComponent<EnemyProjectile>()._damage = _damageRanged; 
+                    }
+                    
 
                     _timeCheck = Time.time + (1 / _attackPerSecondRanged);
                 }

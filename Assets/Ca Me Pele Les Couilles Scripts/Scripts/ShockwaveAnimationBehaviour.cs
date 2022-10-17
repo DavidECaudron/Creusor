@@ -58,6 +58,7 @@ namespace caca
                         if (chest._animator != null)
                         {
                             chest._animator.SetBool("RevealChest", true);
+                            chest._itemSpawner.DropCoins();
                         }
                     }
                 }
@@ -92,6 +93,7 @@ namespace caca
                         if (chest._animator != null)
                         {
                             chest._animator.SetBool("RevealChest", true);
+                            chest._itemSpawner.DropCoins();
                         }
 
                         Destroy(hit.gameObject, 2.0f);

@@ -293,8 +293,9 @@ MonoBehaviour:
   _physics: {fileID: 6210558269752369396}
   _healthBar: {fileID: 5175197439996567493}
   _body: {fileID: 7744243912390240525}
-  _enemyProjectile: {fileID: 255061423819889225, guid: 9adc8c2951bf21042a175ff7555c2607,
-    type: 3}
+  _enemyProjectiles:
+  - {fileID: 255061423819889225, guid: 9adc8c2951bf21042a175ff7555c2607, type: 3}
+  - {fileID: 255061423819889225, guid: 02c7d6e5915c3421190aecfa8b87473a, type: 3}
   _animator: {fileID: 7744243913048686846}
   _projectileBin: {fileID: 0}
   _projectileSpawn: {fileID: 6377600677895957852}

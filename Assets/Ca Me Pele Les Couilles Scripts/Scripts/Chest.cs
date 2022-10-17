@@ -11,6 +11,8 @@ namespace caca
         public Animator _animator;
         public GameObject _mask;
         public GameObject _areaMask;
+
+        public ItemSpawner _itemSpawner;
         public bool _isTaken = false;
         public bool _isTrapped = false;
         public int _gold;

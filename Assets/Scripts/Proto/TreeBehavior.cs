@@ -36,7 +36,7 @@ namespace proto
 
         // Start is called before the first frame update
 
-       void Awake()
+       void Start()
         {
             treeRenderer = GetComponent<MeshRenderer>();
             //treeCollider = GetComponent<MeshCollider>();

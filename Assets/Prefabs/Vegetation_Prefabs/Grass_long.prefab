@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b79dd67d8a6de204895c0b298137418c, type: 2}
+  - {fileID: 2100000, guid: 9647a27cc79d747d2a7c73fe5c47f68f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,17 +99,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gradient:
     serializedVersion: 2
-    key0: {r: 0.34437618, g: 0.13950695, b: 0.5377358, a: 1}
-    key1: {r: 0.49056602, g: 0.47021058, b: 0, a: 1}
-    key2: {r: 0.31298554, g: 0.4245283, b: 0, a: 1}
-    key3: {r: 0.110663526, g: 0.33962262, b: 0, a: 1}
+    key0: {r: 0.42098552, g: 0.3065148, b: 0.5283019, a: 1}
+    key1: {r: 0.5377358, g: 0.52309334, b: 0.21560162, a: 1}
+    key2: {r: 0.42198125, g: 0.49056602, b: 0.2244571, a: 1}
+    key3: {r: 0.48404756, g: 0.5283019, b: 0.27162695, a: 1}
     key4: {r: 0, g: 0, b: 0, a: 1}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 193
     ctime1: 12914
-    ctime2: 36044
+    ctime2: 36623
     ctime3: 65535
     ctime4: 0
     ctime5: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 4
+  useAlphaRandomizer: 0
+  randomColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!135 &7946854205204107220
 SphereCollider:
   m_ObjectHideFlags: 0

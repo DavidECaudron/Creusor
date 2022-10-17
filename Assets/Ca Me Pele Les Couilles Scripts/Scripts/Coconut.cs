@@ -6,30 +6,16 @@ namespace caca
 {
     public class Coconut : MonoBehaviour
     {
-        #region Inspector
-
-        public Player player;
-
-        #endregion
+        public AudioSource _coconutAudioSource;
+        public AudioClip _coconutFallClip;
 
 
-        #region Update
-
-        private void Awake()
+        private void OnCollisionEnter(Collision col)
         {
-            player = GameObject.Find("Player").GetComponent<Player>();
+            if(col.gameObject.tag == "ground")
+            {
+                _coconutAudioSource.PlayOneShot(_coconutFallClip, 0.2f);
+            }
         }
-
-        #endregion
-
-
-        #region Util
-
-        private void OnDestroy()
-        {
-            player._nbCoconut += 1;
-        }
-
-        #endregion
     }
 }

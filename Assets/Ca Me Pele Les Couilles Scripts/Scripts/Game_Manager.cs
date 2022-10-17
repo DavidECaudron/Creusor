@@ -46,17 +46,26 @@ namespace caca
         public AudioSource _audioSourceGameOver;
         public AudioSource _audioSourceIslandLoop;
         public AudioSource _audioSourceCurseLoop;
+        public AudioSource _audioSourceGold;
+        public AudioClip _goldPickupClip;
         public Animator _animatorPostProcessing;
-        public Animator _sceneTransitionAnimator;       
+        public Animator _sceneTransitionAnimator;
+        public Animator _goldCountAnimator; 
+        public Animator _chestIconAnimator;
+
         public CanvasGroup _canvasGroupHUD;
         public CanvasGroup _canvasGroupMap;     
+
+        public CanvasGroup _canvasGroupCurse;
         public CanvasGroup _canvasGroupDialogueFrame;   
         public CanvasGroup _canvasGroupDialogueButton; 
         public CanvasGroup _canvasGroupDialogueChoices; 
         public CanvasGroup _canvasGroupPelican; 
+        public CanvasGroup[] _pelicanEmotionPictures = new CanvasGroup[2]; 
 
         public TextMeshProUGUI _dialogueText;
         string[] _lines = new string[9];
+        int[] _lineEmotionIndexes = new int[9];
 
         public float _textSpeed = 0.3f;
         public float _introTimeDifference;
@@ -92,7 +101,8 @@ namespace caca
 
         public AudioSource _pelicanAudioSource;
 
-        public AudioClip[] _pelicanVoiceClips = new AudioClip[4];
+        public AudioClip[] _pelicanVoiceClips = new AudioClip[5];
+        public int _pelicanVoiceIndex = 0;
 
         #endregion
 
@@ -105,17 +115,24 @@ namespace caca
             //Step 1
             _linePerDialogue[0] = 5;
             _lines[0] = "Ohé camarade ! Es-tu prêt à te lancer dans cette quête de richesse au péril de ta vie ?";
+            _lineEmotionIndexes[0] = 0;
             _lines[1] = "Si tu veux continuer à voyager d'île en île, il va faloir payer grassement l'incroyable navigateur que je suis !";
+            _lineEmotionIndexes[1] = 0;
             _lines[2] = "Je te conseil de faire attention à la malédiction de l'île, ça enrage les monstres. Tu ne ferais pas long feu. Crois-moi.";
+            _lineEmotionIndexes[2] = 0;  
             _lines[3] = "Parcontre, inutile de te dire que revenir bredouille n'est pas une option ! Utilise ta boussole pour trouver où creuser !";
+            _lineEmotionIndexes[3] = 1;
             _lines[4] = "On ne perd pas de temps, À vos marques... prêt... CREUSEZ !!!";
+            _lineEmotionIndexes[4] = 0;
 
             //Step - 02        
             _linePerDialogue[1] = 3;
-            _lines[5] = "Tu es de retour !? Regardons un peu ce que tu nous rapporte de cette chasse aux trésors..."; 
+            _lines[5] = "Tu es de retour !? Regardons un peu ce que tu nous rapporte de cette chasse aux trésors...";
+            _lineEmotionIndexes[5] = 0; 
             // _lines[6] is variable in coroutine //    
             // _lines[7] is variable in coroutine //           
-            _lines[8] = "On mets les voiles ? On ne pourra probablement plus revenir sur cette île après !";     
+            _lines[8] = "On mets les voiles ? On ne pourra probablement plus revenir sur cette île après !";
+            _lineEmotionIndexes[8] = 0;     
 
             ChestSpawn();
             EnemySpawn();
@@ -256,7 +273,8 @@ namespace caca
                 {
                     _hasBeenCursed = true;
                     _curseManager.TimerAlmostOverFX();
-                    _lines[6] = "Tu as reçu un coffre sur la tête !? La malédiction de l'île est réveillée, On doit s'en aller !";
+                    _lines[5] = "Tu as reçu un coffre sur la tête !? La malédiction de l'île est réveillée, On doit s'en aller !";
+                    _lineEmotionIndexes[6] = 1;
                 }
             }
             else
@@ -264,6 +282,7 @@ namespace caca
                 if (!_player.GetComponent<Player>()._isCursed)
                 {
                     _player.GetComponent<Player>()._isCursed = true;
+                    _player.GetComponent<Player>().CurseConsomable();
                 }
 
                 if (_hasBeenBuff == false)
@@ -284,16 +303,37 @@ namespace caca
             }
         }
 
-        public void AddGold(int gold)
+        public void AddGold(int addedGold)
         {
-            _gold += gold;
-            _goldText.text = _gold.ToString();
+            StartCoroutine(UpdadeGoldCount(addedGold, _gold));   
+        }
+
+        IEnumerator UpdadeGoldCount(int addedGold, int previousGoldSold)
+        {
+            for(int i = 0; i < addedGold; i++)
+            {
+                _gold += 1;
+                _goldText.text = _gold.ToString("0000");
+                _goldCountAnimator.SetTrigger("CollectGold");
+                if(i%3==0)
+                {
+                    _audioSourceGold.PlayOneShot(_goldPickupClip);
+                }
+                yield return new WaitForSeconds(0.001f);
+                yield return null;
+            }
+
+            _gold = previousGoldSold + addedGold;
+            _goldText.text = _gold.ToString("0000");
+            
+            yield return null;
         }
 
         public void AddChest(int chest)
         {
             _nbChest += chest;
             _chestCounter.text = _nbChest.ToString() + " / 3";
+            _chestIconAnimator.SetTrigger("CollectChest");
             _linePerDialogue[1] = 4; // Unlock Island leaving;
         }
 
@@ -340,9 +380,10 @@ namespace caca
             _animatorPostProcessing.SetBool("GameOver", true);
             _canvasGroupHUD.alpha = 0;
             _canvasGroupMap.alpha = 0;
+            _canvasGroupCurse.alpha = 0;            
 
             yield return new WaitForSeconds(3f);
-            Invoke("HideScene", 2f);  
+            HideScene();  
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             yield return null;
@@ -381,30 +422,63 @@ namespace caca
 
         IEnumerator StartDialogue()
         {
-            _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[Random.Range(0, 3)], 0.3f);
-            _pelicanAnimator.SetTrigger("IsTalking");
+            if(_lineEmotionIndexes[_lineIndex] == 0)
+            {
+                _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[_pelicanVoiceIndex], 0.3f);
+                _pelicanAnimator.SetTrigger("IsTalking");
+                _pelicanVoiceIndex++;
+
+                if(_pelicanVoiceIndex > 2)
+                {
+                    _pelicanVoiceIndex = 0;
+                }
+                _pelicanEmotionPictures[0].alpha = 1;
+                _pelicanEmotionPictures[1].alpha = 0;
+
+            }
+            else if(_lineEmotionIndexes[_lineIndex] == 1)
+            {
+                _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[3], 0.3f);
+                _pelicanEmotionPictures[0].alpha = 0;
+                _pelicanEmotionPictures[1].alpha = 1;
+            }
+            else if(_lineEmotionIndexes[_lineIndex] == 1)
+            {
+                _pelicanAudioSource.PlayOneShot(_pelicanVoiceClips[4], 0.3f);
+                _pelicanEmotionPictures[0].alpha = 1;
+                _pelicanEmotionPictures[1].alpha = 0;
+            }
 
             if(_dialogueStep == 1)
             {
                 if(_nbChest == 0)
                 {
                     _lines[6] = "Comment !? Tu oses revenir bredouille ! Je pensais que nôtre accord était pourtant simple :";
+                    _lineEmotionIndexes[6] = 1;
                     _lines[7] = "Je prend une partie du butin, Mais si tu ne ramènes rien je ne t’embarque pas ! Alors on se bouge !";
+                    _lineEmotionIndexes[7] = 1;
                 }
                 else if(_nbChest == 1)
                 {
                     _lines[6] = "C'est un maigre début, mais je suppose que je vais devoir faire avec cette fois... ";
+                    _lineEmotionIndexes[6] = 1;
                     _lines[7] = "j'ai placé de meilleurs espoirs en toi le bleu ! Rapportes-moi plus de trésors la prochaine fois !";    
+                    _lineEmotionIndexes[7] = 0;    
                 }
                 else if(_nbChest == 2)
-                {
+                {   
                     _lines[6] = "Par mon bec ! C'est un beau butin que tu ramènes là mon garçon ! Tu as un bon coup de pelle !";
+                    _lineEmotionIndexes[6] = 2;        
                     _lines[7] = "Je suis certain que ta prochaine chasse sera encore plus profitable héhé !";                    
+                    _lineEmotionIndexes[7] = 0;  
+                
                 }
                 else if(_nbChest == 3)
                 {
                     _lines[6] = "Yo-ho-ho ! Je dois reconnaître qu'aucun pirate ne manie la pelle aussi bien que toi !";
+                    _lineEmotionIndexes[6] = 2;  
                     _lines[7] = "Par mes yeux ! Tant de richesse pour moi... Heuuu je veux dire nous !";
+                    _lineEmotionIndexes[7] = 2;  
                 }
             }
 
@@ -503,7 +577,7 @@ namespace caca
 
         public void LeaveIsland()
         {
-            _gameRunEnded = true;
+            _gameRunEnded = true;        
             StartCoroutine(CloseDialogue());
             StartCoroutine(SceneTransition());
 
@@ -511,6 +585,9 @@ namespace caca
 
         IEnumerator SceneTransition()
         {
+            _canvasGroupHUD.alpha = 0;
+            _canvasGroupMap.alpha = 0;
+            _canvasGroupCurse.alpha = 0;  
             HideScene();
             yield return new WaitForSeconds(3);
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);   
@@ -520,8 +597,8 @@ namespace caca
 
         IEnumerator CloseDialogue()
         {
-            _canvasGroupDialogueChoices.interactable = true;
             _canvasGroupDialogueChoices.interactable = false;
+            _canvasGroupDialogueButton.interactable = false;
 
             if(_lineIndex == 8)
             {
@@ -533,8 +610,11 @@ namespace caca
             _currentLineCount = 0;
             _dialogueText.text = string.Empty;
             _inDialogue = false;
-            _canvasGroupHUD.alpha = 1;
-            _canvasGroupMap.alpha = 1;
+            if(!_gameRunEnded)
+            {
+                _canvasGroupHUD.alpha = 1;
+                _canvasGroupMap.alpha = 1;
+            }
             yield return null;
         }
 
@@ -544,6 +624,8 @@ namespace caca
             {
                 if(!_introIsEnded)
                 {
+                    _gold = 0;
+                    _goldText.text = _gold.ToString("0000");
                     NewDialogue();
                 }
                 else

@@ -20,6 +20,12 @@ namespace caca
         public Transform _shovelTransform;
         public TMP_Text _healthCounter;
         public TMP_Text _coconutCounter;
+        public CanvasGroup _healItemCanvasGroup;
+        public CanvasGroup _healItemCursedCanvasGroup;
+        public Animator _healItemAnimator;
+        public AudioSource _healAudioSource;
+        public AudioClip _healAudioClip;
+        public AudioClip _getCoconutClip;              
         public Image _healthImage;
         public Image _healthCursedImage;
         public Image _healthImageBackground;
@@ -123,7 +129,8 @@ namespace caca
             _timeCheckShockwave = -_shockwaveCooldown;
             _currentHealth = _maxHealth;
             _healthCounter.text = _currentHealth + " / " + _maxHealth;
-            _coconutCounter.text = _nbCoconut.ToString();
+            //_coconutCounter.text = _nbCoconut.ToString();
+            _healItemCanvasGroup.alpha = 0;
         }
 
         private void Update()
@@ -280,9 +287,13 @@ namespace caca
             }
         }
 
-        public void AttackEnemy()
+        public void CurseConsomable()
         {
-
+            if(_nbCoconut > 0)
+            {
+                _healItemCursedCanvasGroup.alpha = 1;
+                _healItemAnimator.SetTrigger("CurseHealingItem");
+            }
         }
 
         #endregion
@@ -370,6 +381,7 @@ namespace caca
                                 if (chest._animator != null)
                                 {
                                     chest._animator.SetBool("RevealChest", true);
+                                    chest._itemSpawner.DropCoins();
                                 }
                             }
                         }
@@ -404,6 +416,7 @@ namespace caca
                                 if (chest._animator != null)
                                 {
                                     chest._animator.SetBool("RevealChest", true);
+                                    chest._itemSpawner.DropCoins();
                                 }
 
                                 Destroy(hit.gameObject, 2.0f);
@@ -521,7 +534,18 @@ namespace caca
                             _healthImageBackground.fillAmount = (_currentHealth / _maxHealth);
 
                             _nbCoconut -= 1;
+                            _healItemAnimator.SetTrigger("UseHealingItem");
+                            _healAudioSource.PlayOneShot(_healAudioClip, 0.3f);
                             _coconutCounter.text = _nbCoconut.ToString();
+
+                            if(_nbCoconut > 0 && _nbCoconut < 2)
+                            {
+                                _healItemCanvasGroup.alpha = 1;
+                            }
+                            else if( _nbCoconut == 0)
+                            {
+                                StartCoroutine(HideCoconutIcon());
+                            }
                         }
                         else
                         {
@@ -535,7 +559,18 @@ namespace caca
                                 _healthImageBackground.fillAmount = (_maxHealth / _maxHealth);
 
                                 _nbCoconut -= 1;
+                                _healAudioSource.PlayOneShot(_healAudioClip, 0.3f);
                                 _coconutCounter.text = _nbCoconut.ToString();
+                                _healItemAnimator.SetTrigger("UseHealingItem");
+
+                                if(_nbCoconut > 0 && _nbCoconut < 2)
+                                {
+                                    _healItemCanvasGroup.alpha = 1;
+                                }
+                                else if( _nbCoconut == 0)
+                                {
+                                    StartCoroutine(HideCoconutIcon());
+                                }
                             }
                         }
                     }
@@ -558,6 +593,13 @@ namespace caca
             {
 
             }
+        }
+
+        IEnumerator HideCoconutIcon()
+        {
+            yield return new WaitForSeconds(0.3f);
+            _healItemCanvasGroup.alpha = 0;
+            yield return null;
         }
 
         IEnumerator DamageFeedback()
@@ -723,8 +765,25 @@ namespace caca
 
             if (other.CompareTag("coconut"))
             {
-                _nbCoconut += 1;
-                _coconutCounter.text = _nbCoconut.ToString();
+                _healAudioSource.PlayOneShot(_getCoconutClip, 0.25f);
+                _healItemAnimator.SetTrigger("GetCoconut");
+                if(_isCursed)
+                {
+                    _healItemCursedCanvasGroup.alpha = 1;
+                    _healItemCanvasGroup.alpha = 1;    
+                    _healItemAnimator.SetTrigger("CurseHealingItem");                
+                }
+                else
+                {
+                    _nbCoconut += 1;
+                    _coconutCounter.text = _nbCoconut.ToString();
+
+                    if(_nbCoconut > 0 && _nbCoconut < 2)
+                    {
+                        _healItemCanvasGroup.alpha = 1;
+                    }
+                }
+
                 Destroy(other.gameObject);
             }
         }
