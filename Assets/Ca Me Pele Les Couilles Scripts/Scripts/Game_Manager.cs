@@ -116,22 +116,22 @@ namespace caca
             _linePerDialogue[0] = 5;
             _lines[0] = "Ohé camarade ! Es-tu prêt à te lancer dans cette quête de richesse au péril de ta vie ?";
             _lineEmotionIndexes[0] = 0;
-            _lines[1] = "Si tu veux continuer à voyager d'île en île, il va faloir payer grassement l'incroyable navigateur que je suis !";
+            _lines[1] = "Si tu veux continuer à voyager d'île en île, il va falloir payer grassement l'incroyable navigateur que je suis !";
             _lineEmotionIndexes[1] = 0;
-            _lines[2] = "Je te conseil de faire attention à la malédiction de l'île, ça enrage les monstres. Tu ne ferais pas long feu. Crois-moi.";
+            _lines[2] = "Je te conseil de faire attention à la malédiction de l'île, cela enrage les monstres. Tu ne ferais pas long feu. Crois-moi.";
             _lineEmotionIndexes[2] = 0;  
-            _lines[3] = "Parcontre, inutile de te dire que revenir bredouille n'est pas une option ! Utilise ta boussole pour trouver où creuser !";
+            _lines[3] = "Par contre, inutile de te dire que revenir bredouille n'est pas une option ! Utilise ta boussole pour trouver où creuser !";
             _lineEmotionIndexes[3] = 1;
             _lines[4] = "On ne perd pas de temps, À vos marques... prêt... CREUSEZ !!!";
             _lineEmotionIndexes[4] = 0;
 
             //Step - 02        
             _linePerDialogue[1] = 3;
-            _lines[5] = "Tu es de retour !? Regardons un peu ce que tu nous rapporte de cette chasse aux trésors...";
+            _lines[5] = "Tu es de retour !? Regardons ce que tu nous rapportes...";
             _lineEmotionIndexes[5] = 0; 
             // _lines[6] is variable in coroutine //    
             // _lines[7] is variable in coroutine //           
-            _lines[8] = "On mets les voiles ? On ne pourra probablement plus revenir sur cette île après !";
+            _lines[8] = "On met les voiles ? On ne pourra probablement plus revenir sur cette île après !";
             _lineEmotionIndexes[8] = 0;     
 
             ChestSpawn();
@@ -453,21 +453,21 @@ namespace caca
             {
                 if(_nbChest == 0)
                 {
-                    _lines[6] = "Comment !? Tu oses revenir bredouille ! Je pensais que nôtre accord était pourtant simple :";
+                    _lines[6] = "Comment !? Tu oses revenir bredouille ! Notre accord est pourtant très simple :";
                     _lineEmotionIndexes[6] = 1;
-                    _lines[7] = "Je prend une partie du butin, Mais si tu ne ramènes rien je ne t’embarque pas ! Alors on se bouge !";
+                    _lines[7] = "Je prend une partie du butin, Mais si tu ne me ramènes rien je ne t’embarque pas ! Alors on se bouge !";
                     _lineEmotionIndexes[7] = 1;
                 }
                 else if(_nbChest == 1)
                 {
-                    _lines[6] = "C'est un maigre début, mais je suppose que je vais devoir faire avec cette fois... ";
+                    _lines[6] = "C'est un maigre début ! Je suppose que je vais devoir me contenter de ces quelques pièces…";
                     _lineEmotionIndexes[6] = 1;
-                    _lines[7] = "j'ai placé de meilleurs espoirs en toi le bleu ! Rapportes-moi plus de trésors la prochaine fois !";    
+                    _lines[7] = "J'ai placé de meilleurs espoirs en toi le bleu ! Rapporte-moi plus de trésors la prochaine fois !";    
                     _lineEmotionIndexes[7] = 0;    
                 }
                 else if(_nbChest == 2)
                 {   
-                    _lines[6] = "Par mon bec ! C'est un beau butin que tu ramènes là mon garçon ! Tu as un bon coup de pelle !";
+                    _lines[6] = "Par mon bec ! C'est un beau butin que tu me ramènes là mon garçon ! Tu as un bon coup de pelle !";
                     _lineEmotionIndexes[6] = 2;        
                     _lines[7] = "Je suis certain que ta prochaine chasse sera encore plus profitable héhé !";                    
                     _lineEmotionIndexes[7] = 0;  
@@ -477,7 +477,7 @@ namespace caca
                 {
                     _lines[6] = "Yo-ho-ho ! Je dois reconnaître qu'aucun pirate ne manie la pelle aussi bien que toi !";
                     _lineEmotionIndexes[6] = 2;  
-                    _lines[7] = "Par mes yeux ! Tant de richesse pour moi... Heuuu je veux dire nous !";
+                    _lines[7] = "Par mes yeux ! Tant de richesse pour moi... Heuuu je veux dire pour nous !";
                     _lineEmotionIndexes[7] = 2;  
                 }
             }
