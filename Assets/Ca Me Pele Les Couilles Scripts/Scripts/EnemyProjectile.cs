@@ -8,6 +8,7 @@ namespace caca
     {
         #region Inspector
 
+        public Player _player;
         public Vector3 _nextPosition;
         public float _damage;
         public float _movementSpeed;
@@ -25,6 +26,7 @@ namespace caca
         #region Hidden
 
         private Transform _transform;
+        public Vector3 _direction;
 
         #endregion
 
@@ -42,7 +44,8 @@ namespace caca
         private void Start()
         {
             transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            StartCoroutine(InitializeProjectile());         
+            StartCoroutine(InitializeProjectile());
+
         }
 
         private void LateUpdate()
@@ -57,7 +60,7 @@ namespace caca
 
         public void Movement()
         {
-            _transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(0.0f, 0.0f, 1.0f));
+            _transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(0.0f, _direction.normalized.y, 1.0f));
         }
 
         #endregion
