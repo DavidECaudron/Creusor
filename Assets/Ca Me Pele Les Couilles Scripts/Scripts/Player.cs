@@ -393,7 +393,6 @@ namespace caca
                             if (chest._isTaken == false)
                             {
                                 _gameManager.AddGold(chest._gold);
-                                _gameManager.AddChest(chest._nbChest);
 
                                 if (chest._isTrapped == true)
                                 {
@@ -409,14 +408,6 @@ namespace caca
                                 if (chest._areaMask != null)
                                 {
                                     chest._areaMask.SetActive(false);
-                                }
-
-                                chest._isTaken = true;
-
-                                if (chest._animator != null)
-                                {
-                                    chest._animator.SetBool("RevealChest", true);
-                                    chest._itemSpawner.DropCoins();
                                 }
 
                                 Destroy(hit.gameObject, 2.0f);
