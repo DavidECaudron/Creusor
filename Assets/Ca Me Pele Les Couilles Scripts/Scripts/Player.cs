@@ -719,7 +719,7 @@ namespace caca
         {
             while (true)
             {
-                Physics.Raycast(_physics.position, new Vector3(0.0f, -1.0f, 0.0f), out RaycastHit value, 1.0f, _graphicsHeightLayer);
+                Physics.Raycast(_physics.position, new Vector3(0.0f, -1.0f, 0.0f), out RaycastHit value, 5.0f, _graphicsHeightLayer);
                 Transform hit = value.transform;
 
                 if (hit != null)

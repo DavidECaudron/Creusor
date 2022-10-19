@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1512847249740782044}
   - component: {fileID: 3682327968319352086}
   - component: {fileID: 1680583117883160971}
-  - component: {fileID: 1738644216735038988}
+  - component: {fileID: 5247101410506617374}
   m_Layer: 0
   m_Name: Vase_01
-  m_TagString: chest
+  m_TagString: destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2889830705469492419}
-  m_LocalRotation: {x: -5.770307e-17, y: 0.9423626, z: 0.33459356, w: -2.0487947e-17}
+  m_LocalRotation: {x: 0, y: 0.94236153, z: 0.3345965, w: 0}
   m_LocalPosition: {x: 7.1069217, y: -1.104, z: 38.397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,21 +98,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.51555014
   m_Center: {x: 6.5006327e-24, y: 0.51254755, z: -0.02137364}
---- !u!114 &1738644216735038988
-MonoBehaviour:
+--- !u!65 &5247101410506617374
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2889830705469492419}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389bddeb0099cd643bae09259072c9a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isTaken: 0
-  _isTrapped: 0
-  _gold: 2
-  _nbChest: 0
-  _indexChestPack: 0
-  _indexEnemyPack: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75876856, y: 4.12, z: 0.686}
+  m_Center: {x: 0, y: -0.74, z: -0.021373555}
